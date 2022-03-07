@@ -8,43 +8,34 @@ import (
 )
 
 type Node struct {
-	Val, Freq  int
-	Next, Prev *Node
+	//可封装任何结构
+	Val int
 }
-type DoubleList struct {
-	Head, Tail *Node
-}
+
 type FreqStack struct {
 	MaxFreq int
 	Cnt     map[int]int
-	Cache   map[int]*DoubleList
+	Cache   map[int][]*Node
 }
 
 func Constructor() FreqStack {
 	return FreqStack{
 		MaxFreq: 0,
 		Cnt:     make(map[int]int),
-		Cache:   make(map[int]*DoubleList),
+		Cache:   make(map[int][]*Node),
 	}
 }
 func (p *FreqStack) Push(val int) {
 	//val.freq
 	p.Cnt[val]++
 	freq := p.Cnt[val]
-	//insert new doublelist
+	//check is stack exist
 	if _, ok := p.Cache[freq]; !ok {
-		head := &Node{Val: -1, Freq: -1}
-		tail := &Node{Val: -2, Freq: -2}
-		head.Next = tail
-		tail.Prev = head
-		p.Cache[freq] = &DoubleList{Head: head, Tail: tail}
+		p.Cache[freq] = []*Node{}
 	}
 	//insert new node
-	tmp := &Node{Val: val, Freq: freq}
-	tmp.Next = p.Cache[freq].Head.Next
-	tmp.Prev = p.Cache[freq].Head
-	p.Cache[freq].Head.Next.Prev = tmp
-	p.Cache[freq].Head.Next = tmp
+	tmp := &Node{Val: val}
+	p.Cache[freq] = append(p.Cache[freq], tmp)
 	//check maxFreq
 	if freq > p.MaxFreq {
 		p.MaxFreq = freq
@@ -52,29 +43,35 @@ func (p *FreqStack) Push(val int) {
 }
 
 func (p *FreqStack) Pop() int {
-	x := p.Cache[p.MaxFreq].Head.Next
-	x.Next.Prev = x.Prev
-	x.Prev.Next = x.Next
-	x.Next = nil
-	x.Prev = nil
-	if p.Cache[p.MaxFreq].Head.Next == p.Cache[p.MaxFreq].Tail {
+	//pop
+	max_stack := p.Cache[p.MaxFreq]
+	x := max_stack[len(max_stack)-1]
+	p.Cache[p.MaxFreq] = max_stack[:len(max_stack)-1]
+	//check maxfreq
+	if len(p.Cache[p.MaxFreq]) == 0 {
 		p.MaxFreq--
 	}
 	p.Cnt[x.Val]--
 	return x.Val
 }
+
+//debug
 func (p *FreqStack) log() string {
 	sb := &strings.Builder{}
 	for i := 1; i <= p.MaxFreq; i++ {
 		sb.WriteString(strconv.Itoa(i))
-		cur := p.Cache[i].Head
 		sb.WriteString(":head->")
-		for cur != p.Cache[i].Tail {
-			cur = cur.Next
-			if cur != p.Cache[i].Tail {
-				sb.WriteString(strconv.Itoa(cur.Val))
-				sb.WriteString("->")
-			}
+		// cur := p.Cache[i][0]
+		// for cur != p.Cache[i].Tail {
+		// 	cur = cur.Next
+		// 	if cur != p.Cache[i].Tail {
+		// 		sb.WriteString(strconv.Itoa(cur.Val))
+		// 		sb.WriteString("->")
+		// 	}
+		// }
+		for _, no := range p.Cache[i] {
+			sb.WriteString(strconv.Itoa(no.Val))
+			sb.WriteString("->")
 		}
 		sb.WriteString("tail\n")
 	}
@@ -82,10 +79,10 @@ func (p *FreqStack) log() string {
 }
 
 func Test_maximum_frequency_stack(t *testing.T) {
-	// c1 := -1string{"FreqStack", "push", "push",
+	// c1 := []string{"FreqStack", "push", "push",
 	// 	"push", "push", "push", "push",
 	// 	"pop", "pop", "pop", "pop"}
-	// c2 := -1int{-1, 5, 7,
+	// c2 := []int{-1, 5, 7,
 	// 	5, 7, 4, 5,
 	// 	-1, -1, -1, -1}
 	c1 := []string{"FreqStack", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "push", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop", "pop"}
