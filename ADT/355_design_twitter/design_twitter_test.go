@@ -50,6 +50,7 @@ func (t *Twitter) NewUser(uid int) *User {
 		Followed: make(map[int]*User),
 		Posted:   nil,
 	}
+	new.Followed[uid] = new
 	return new
 }
 
@@ -78,9 +79,7 @@ func (t *Twitter) GetNewsFeed(userId int) []int {
 	}
 	//loc user
 	user := t.UserList[userId]
-	if len(user.Followed) < 1 {
-		t.Follow(userId, userId)
-	}
+
 	//检索当前用户新闻推送中最近 10 条推文的 ID
 	pq := &PQ{}
 	for _, fol := range user.Followed {
@@ -90,10 +89,11 @@ func (t *Twitter) GetNewsFeed(userId int) []int {
 		heap.Push(pq, fol.Posted)
 	}
 	for pq.Len() > 0 {
-		if pq.Len() == 10 {
+		if len(res) >= 10 {
 			break
 		}
 		tmp := heap.Pop(pq).(*Tweet)
+		res = append(res, tmp.TweetId)
 		if tmp.Next != nil {
 			heap.Push(pq, tmp.Next)
 		}
@@ -122,6 +122,7 @@ func (t *Twitter) Unfollow(followerId int, followeeId int) {
 	}
 	user := t.UserList[followerId]
 	delete(user.Followed, followeeId)
+
 }
 
 /**
@@ -136,11 +137,17 @@ func Test_design_twitter(t *testing.T) {
 	// c1 := []string{"Twitter", "postTweet", "getNewsFeed",
 	// 	"follow", "postTweet", "getNewsFeed", "unfollow", "getNewsFeed"}
 	// c2 := [][]int{{-1}, {1, 5}, {1},
-	// 	{1, 2}, {2, 6}, {1}, {1, 2}, {1}}
-	c1 := []string{"Twitter", "postTweet", "getNewsFeed", "follow",
-		"getNewsFeed", "unfollow", "getNewsFeed"}
-	c2 := [][]int{{-1}, {1, 1}, {1}, {2, 1},
-		{2}, {2, 1}, {2}}
+	// // 	{1, 2}, {2, 6}, {1}, {1, 2}, {1}}
+	// c1 := []string{"Twitter", "postTweet", "getNewsFeed", "follow",
+	// 	"getNewsFeed", "unfollow", "getNewsFeed"}
+	// c2 := [][]int{{-1}, {1, 1}, {1}, {2, 1},
+	// 	{2}, {2, 1}, {2}}
+	// c1 := []string{"Twitter", "postTweet", "getNewsFeed", "follow", "getNewsFeed", "unfollow", "getNewsFeed"}
+	// c2 := [][]int{{-1}, {1, 1}, {1}, {2, 1}, {2}, {2, 1}, {2}}
+	// c1 := []string{"Twitter", "postTweet", "postTweet", "unfollow", "follow", "getNewsFeed"}
+	// c2 := [][]int{{-1}, {1, 4}, {2, 5}, {1, 2}, {1, 2}, {1}}
+	c1 := []string{"Twitter", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "postTweet", "getNewsFeed"}
+	c2 := [][]int{{-1}, {1, 5}, {1, 3}, {1, 101}, {1, 13}, {1, 10}, {1, 2}, {1, 94}, {1, 505}, {1, 333}, {1, 22}, {1, 11}, {1}}
 	var twi Twitter
 	for idx, command := range c1 {
 		switch command {
