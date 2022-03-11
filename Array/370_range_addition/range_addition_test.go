@@ -6,7 +6,6 @@ func getModifiedArray(length int, updates [][]int) []int {
 	//all 0 this time
 	nums := make([]int, length)
 	dif := make([]int, len(nums))
-
 	// dif[0] = nums[0]
 	// for i := 1; i < len(nums); i++ {
 	// 	dif[i] = nums[i] - nums[i-1]
