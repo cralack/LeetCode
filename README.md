@@ -1,2 +1,2 @@
 # LeetCode
-personal leetcode practice
+personal leetcode practice with https://labuladong.gitee.io/algo/
