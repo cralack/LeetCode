@@ -27,7 +27,7 @@ func (p *Solution) PickIndex() int {
 	if len(p.PreSum) == 0 {
 		return -1
 	}
-	rand.Seed(int64(time.Now().Nanosecond()))
+	//rand.Seed(int64(time.Now().Nanosecond()))
 	//在闭区间 [1, max] 中选择一个数字
 	//前缀和数组中 0 本质上是个占位符
 	tar := rand.Intn(p.Max) + 1
