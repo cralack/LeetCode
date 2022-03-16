@@ -1,7 +1,7 @@
 package GetPrime
 
+//get a prime array and max element <=n
 func PrimeArr(n int) []int {
-	//get a prime array and max element <=n
 	prime := make([]bool, n+1)
 	for i := 2; i <= n; i++ {
 		prime[i] = true
