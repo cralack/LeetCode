@@ -40,7 +40,7 @@ func (p *Solution) PickIndex() int {
 			lo = mi + 1
 		}
 	}
-	return tar
+	return lo - 1
 }
 
 /**
@@ -49,14 +49,14 @@ func (p *Solution) PickIndex() int {
  * param_1 := obj.PickIndex();
  */
 func Test_random_pick_with_weight(t *testing.T) {
-	arr := GetPrime.PrimeArr(10)
+	arr := GetPrime.PrimeArr(1e+5)
 	sol := Constructor(arr)
 	var waiter sync.WaitGroup
-	n := 10 //线程数
+	n := 15 //thread num
 
 	waiter = sync.WaitGroup{}
 	waiter.Add(n)
-	t.Logf("MAX nums:%d", sol.Max)
+	t.Logf("MAX nums:%d", len(sol.PreSum)-1)
 	for i := 0; i < n; i++ {
 		go func(idx int) {
 			t.Log(sol.PickIndex())
