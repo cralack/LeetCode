@@ -12,7 +12,6 @@ func min(a, b int) int {
 }
 
 func minDistance_DFS(word1 string, word2 string) int {
-
 	var dp func(i, j int) int
 	dp = func(i, j int) int {
 		//base case
@@ -31,7 +30,7 @@ func minDistance_DFS(word1 string, word2 string) int {
 	}
 	return dp(len(word1)-1, len(word2)-1)
 }
-func minDistance_MEMO(s1, s2 string) int {
+func minDistance_DP(s1, s2 string) int {
 	//init
 	m, n := len(s1), len(s2)
 	dp := make([][]int, m+1)
@@ -66,9 +65,28 @@ func Test_edit_distance(t *testing.T) {
 
 	s1 = "intention"
 	s2 = "execution"
-	t.Log(minDistance_MEMO(s1, s2))
+	t.Log(minDistance_DP(s1, s2))
 
 	s1 = "dinitrophenylhydrazine"
 	s2 = "benzalphenylhydrazone"
-	t.Log(minDistance_MEMO(s1, s2))
+	t.Log(minDistance_DP(s1, s2))
+}
+
+func Benchmark_minDistance(b *testing.B) {
+	s1 := "punishment"
+	s2 := "production"
+	b.Run("DFS", func(b *testing.B) {
+		b.ResetTimer()
+		for i := 0; i < b.N; i++ {
+			minDistance_DFS(s1, s2)
+		}
+		b.StopTimer()
+	})
+	b.Run("DP", func(b *testing.B) {
+		b.ResetTimer()
+		for i := 0; i < b.N; i++ {
+			minDistance_DP(s1, s2)
+		}
+		b.StopTimer()
+	})
 }
