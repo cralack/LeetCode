@@ -37,10 +37,12 @@ func minDistance_MEMO(s1, s2 string) int {
 	dp := make([][]int, m+1)
 	for i := range dp {
 		dp[i] = make([]int, n+1)
-		if i >= 1 {
-			dp[i][0] = i
-		}
 	}
+	//s2=="" s1->base case
+	for i := 1; i <= n; i++ {
+		dp[i][0] = i
+	}
+	//s1=="" s2->base case
 	for j := 1; j <= n; j++ {
 		dp[0][j] = j
 	}
@@ -55,7 +57,7 @@ func minDistance_MEMO(s1, s2 string) int {
 		}
 	}
 
-	return dp[m][n]
+	return dp[m][n] //O(n^2)
 }
 func Test_edit_distance(t *testing.T) {
 	s1 := "horse"
