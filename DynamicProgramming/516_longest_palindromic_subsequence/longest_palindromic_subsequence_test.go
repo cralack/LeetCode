@@ -5,32 +5,21 @@ import (
 )
 
 func longestPalindromeSubseq(s string) int {
-	max := func(a ...int) int {
-		res := a[0]
-		for _, v := range a[1:] {
-			if res < v {
-				res = v
-			}
-		}
-		return res
-	}
-	n := len(s)
-	dp := make([][]int, n)
-	for i := range dp {
-		dp[i] = make([]int, n)
-		dp[i][i] = 1
-	}
-	//i :end->start
-	for i := n - 1; i >= 0; i-- {
-		for j := i + 1; j < n; j++ {
+	dp := make([]int, len(s))
+	for i := range s {
+		rightOver := dp[i]
+		dp[i] = 1
+		for j := i - 1; j >= 0; j-- {
+			tmp := dp[j]
 			if s[i] == s[j] {
-				dp[i][j] = dp[i+1][j-1] + 2
-			} else {
-				dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+				dp[j] = rightOver + 2
+			} else if dp[j+1] > dp[j] {
+				dp[j] = dp[j+1]
 			}
+			rightOver = tmp
 		}
 	}
-	return dp[0][n-1]
+	return dp[0]
 }
 func Test_longest_palindromic_subsequence(t *testing.T) {
 	s := "bbbab"
