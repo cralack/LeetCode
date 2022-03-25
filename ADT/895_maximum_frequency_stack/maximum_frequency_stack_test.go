@@ -1,7 +1,7 @@
 package maximumfrequencystack
 
 import (
-	"Learning/WriteLog"
+	"Learning/LeetCode/WriteLog"
 	"strconv"
 	"strings"
 	"testing"
