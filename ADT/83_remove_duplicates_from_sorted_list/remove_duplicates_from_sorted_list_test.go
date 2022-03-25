@@ -1,7 +1,7 @@
 package removeduplicatesfromsortedlist
 
 import (
-	. "Learning/Leetcode/List/MyList"
+	. "Learning/LeetCode/List/MyList"
 	"testing"
 )
 
