@@ -1,7 +1,7 @@
 package lowestcommonancestorofabinarytree
 
 import (
-	. "Learning/Leetcode/BinaryTree/BinTree"
+	. "Learning/LeetCode/BinaryTree/BinTree"
 	"testing"
 )
 
