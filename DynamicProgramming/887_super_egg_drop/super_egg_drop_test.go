@@ -60,15 +60,17 @@ func superEggDrop_ite(k int, n int) int {
 	for i := range dp {
 		dp[i] = make([]int, n+1)
 	}
-	for i := 1; i <= n; i++ {
-		for j := 1; j <= k; j++ {
-			dp[j][i] = dp[j][i-1] + dp[j-1][i-1] + 1
-			if dp[j][i] >= n {
-				return i
-			}
+	m := 0
+	for dp[k][m] < n {
+		m++
+		for i := 1; i <= k; i++ {
+			//dp[i][m] -> i个鸡蛋测m次最多能测几层楼
+			dp[i][m] = dp[i][m-1] + //楼上的楼层数：鸡蛋没碎
+				dp[i-1][m-1] + //楼下的楼层数：鸡蛋碎了
+				1 //本层
 		}
 	}
-	return n
+	return m
 }
 func Test_super_egg_drop(t *testing.T) {
 	k, n := 1, 2
