@@ -62,3 +62,19 @@ func Test_4_keys_keyboard(t *testing.T) {
 	t.Log(maxA_rec(7))
 	t.Log(maxA_ite(10))
 }
+func Benchmark_4_keys_keyboard(b *testing.B) {
+	b.Run("ite", func(b *testing.B) {
+		b.ResetTimer()
+		for i := 0; i < b.N; i++ {
+			maxA_ite(10)
+		}
+		b.StopTimer()
+	})
+	b.Run("rec", func(b *testing.B) {
+		b.ResetTimer()
+		for i := 0; i < b.N; i++ {
+			maxA_rec(10)
+		}
+		b.StopTimer()
+	})
+}
