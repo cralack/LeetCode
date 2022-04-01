@@ -2,7 +2,7 @@ package implementstrstr
 
 import "testing"
 
-func strStr(haystack string, needle string) int {
+func strStr_2d(haystack string, needle string) int {
 	n, m := len(haystack), len(needle)
 	if m == 0 {
 		return 0
@@ -29,8 +29,38 @@ func strStr(haystack string, needle string) int {
 	}
 	return -1
 }
+func strStr_Next(haystack, needle string) int {
+	n, m := len(haystack), len(needle)
+	if m == 0 {
+		return 0
+	}
+	pi := make([]int, m)
+	for i, j := 1, 0; i < m; i++ {
+		for j > 0 && needle[i] != needle[j] {
+			j = pi[j-1]
+		}
+		if needle[i] == needle[j] {
+			j++
+		}
+		pi[i] = j
+	}
+	for i, j := 0, 0; i < n; i++ {
+		for j > 0 && haystack[i] != needle[j] {
+			j = pi[j-1]
+		}
+		if haystack[i] == needle[j] {
+			j++
+		}
+		if j == m {
+			return i - m + 1
+		}
+	}
+	return -1
+}
 func Test_implement_strstr(t *testing.T) {
-	t.Log(strStr("hello", "ll"))
-	t.Log(strStr("aaaaa", "bba"))
-	t.Log(strStr("", ""))
+	t.Log(strStr_Next("hello", "ll"))
+	t.Log(strStr_Next("aaaaa", "bba"))
+	t.Log(strStr_Next("000100001", "00001"))
+	t.Log(strStr_Next("mississippi", "issipi"))
+	t.Log(strStr_2d("", ""))
 }
