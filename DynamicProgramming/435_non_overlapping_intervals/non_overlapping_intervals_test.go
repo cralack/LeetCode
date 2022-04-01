@@ -13,8 +13,10 @@ func eraseOverlapIntervals(intervals [][]int) int {
 	sort.Slice(intervals, func(i, j int) bool {
 		return intervals[i][1] < intervals[j][1]
 	})
+	//Cnt(不相交区间),前一不相交区间end
 	cnt, x_end := 1, intervals[0][1]
 	for i := 1; i < n; i++ {
+		//若后一个start>=前一个end，则不相交区间+1
 		if intervals[i][0] >= x_end {
 			cnt++
 			x_end = intervals[i][1]
