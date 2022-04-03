@@ -2,8 +2,8 @@ package implementstrstr
 
 import "testing"
 
-func strStr_2d(haystack string, needle string) int {
-	n, m := len(haystack), len(needle)
+func strStr_2d(txt string, pat string) int {
+	n, m := len(txt), len(pat)
 	if m == 0 {
 		return 0
 	}
@@ -11,44 +11,44 @@ func strStr_2d(haystack string, needle string) int {
 	for i := range dp {
 		dp[i] = make([]int, 256)
 	}
-	dp[0][needle[0]] = 1
+	dp[0][pat[0]] = 1
 	x := 0
 	for j := 1; j < m; j++ {
 		for c := 0; c < 256; c++ {
 			dp[j][c] = dp[x][c]
 		}
-		dp[j][needle[j]] = j + 1
-		x = dp[x][needle[j]]
+		dp[j][pat[j]] = j + 1
+		x = dp[x][pat[j]]
 	}
 	j := 0
 	for i := 0; i < n; i++ {
-		j = dp[j][haystack[i]]
+		j = dp[j][txt[i]]
 		if j == m {
 			return i - m + 1
 		}
 	}
 	return -1
 }
-func strStr_Next(haystack, needle string) int {
-	n, m := len(haystack), len(needle)
+func strStr_Next(txt, pat string) int {
+	n, m := len(txt), len(pat)
 	if m == 0 {
 		return 0
 	}
 	pi := make([]int, m)
 	for i, j := 1, 0; i < m; i++ {
-		for j > 0 && needle[i] != needle[j] {
+		for j > 0 && pat[i] != pat[j] {
 			j = pi[j-1]
 		}
-		if needle[i] == needle[j] {
+		if pat[i] == pat[j] {
 			j++
 		}
 		pi[i] = j
 	}
 	for i, j := 0, 0; i < n; i++ {
-		for j > 0 && haystack[i] != needle[j] {
+		for j > 0 && txt[i] != pat[j] {
 			j = pi[j-1]
 		}
-		if haystack[i] == needle[j] {
+		if txt[i] == pat[j] {
 			j++
 		}
 		if j == m {
