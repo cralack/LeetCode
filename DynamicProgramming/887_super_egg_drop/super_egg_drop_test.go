@@ -56,17 +56,17 @@ func max(a ...int) int {
 	return res
 }
 func superEggDrop_ite(k int, n int) int {
-	dp := make([][]int, k+1)
+	dp := make([][]int, n+1)
 	for i := range dp {
-		dp[i] = make([]int, n+1)
+		dp[i] = make([]int, k+1)
 	}
 	m := 0
-	for dp[k][m] < n {
+	for dp[m][k] < n {
 		m++
 		for i := 1; i <= k; i++ {
-			//dp[i][m] -> i个鸡蛋测m次最多能测几层楼
-			dp[i][m] = dp[i][m-1] + //楼上的楼层数：鸡蛋没碎
-				dp[i-1][m-1] + //楼下的楼层数：鸡蛋碎了
+			//dp[m][i] -> i个鸡蛋测m次最多能测几层楼
+			dp[m][i] = dp[m-1][i] + //楼上的楼层数：鸡蛋没碎
+				dp[m-1][i-1] + //楼下的楼层数：鸡蛋碎了
 				1 //本层
 		}
 	}
@@ -76,7 +76,7 @@ func Test_super_egg_drop(t *testing.T) {
 	k, n := 1, 2
 	t.Log(superEggDrop_rec(k, n))
 	t.Log(superEggDrop_ite(2, 6))
-	t.Log(superEggDrop_ite(3, 14))
+	t.Log(superEggDrop_ite(4, 100))
 }
 
 func Benchmark_super_egg_drop(b *testing.B) {
