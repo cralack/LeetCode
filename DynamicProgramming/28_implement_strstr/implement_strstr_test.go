@@ -2,7 +2,7 @@ package implementstrstr
 
 import "testing"
 
-func strStr_2d(txt string, pat string) int {
+func strStr_2D_DP(txt string, pat string) int {
 	n, m := len(txt), len(pat)
 	if m == 0 {
 		return 0
@@ -29,38 +29,43 @@ func strStr_2d(txt string, pat string) int {
 	}
 	return -1
 }
-func strStr_Next(txt, pat string) int {
-	n, m := len(txt), len(pat)
-	if m == 0 {
-		return 0
-	}
-	pi := make([]int, m)
-	for i, j := 1, 0; i < m; i++ {
-		for j > 0 && pat[i] != pat[j] {
-			j = pi[j-1]
-		}
-		if pat[i] == pat[j] {
+func strStr_kmp(txt, pat string) int {
+	next := buildNext(pat) //构造next表
+	n, i := len(txt), 0    //文本串指针
+	m, j := len(pat), 0    //模式串指针
+	for j < m && i < n {   //自左向右，逐个比对
+		if 0 > j || txt[i] == pat[j] { //若匹配
+			i++ //则携手共进
 			j++
+		} else { //否则,pat右移,txt不回退
+			j = next[j]
 		}
-		pi[i] = j
 	}
-	for i, j := 0, 0; i < n; i++ {
-		for j > 0 && txt[i] != pat[j] {
-			j = pi[j-1]
-		}
-		if txt[i] == pat[j] {
-			j++
-		}
-		if j == m {
-			return i - m + 1
-		}
+	if j == m {
+		return i - j
 	}
 	return -1
 }
+func buildNext(pat string) []int {
+	m, j := len(pat), 0    //主串指针
+	next := make([]int, m) //next[]表
+	next[0] = -1
+	t := -1 //模式串指针(p[-1])通配符
+	for j < m-1 {
+		if 0 > t || pat[j] == pat[t] {
+			j++
+			t++
+			next[j] = t
+		} else {
+			t = next[t]
+		}
+	}
+	return next
+}
 func Test_implement_strstr(t *testing.T) {
-	t.Log(strStr_Next("hello", "ll"))
-	t.Log(strStr_Next("aaaaa", "bba"))
-	t.Log(strStr_Next("000100001", "00001"))
-	t.Log(strStr_Next("mississippi", "issipi"))
-	t.Log(strStr_2d("", ""))
+	t.Log(strStr_kmp("hello", "ll"))
+	t.Log(strStr_kmp("aaaaa", "bba"))
+	t.Log(strStr_kmp("000100001", "00001"))
+	t.Log(strStr_kmp("mississippi", "issipi"))
+	t.Log(strStr_2D_DP("", ""))
 }
