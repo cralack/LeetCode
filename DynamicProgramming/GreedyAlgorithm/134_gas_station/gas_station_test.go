@@ -33,4 +33,8 @@ func Test_gas_station(t *testing.T) {
 	gas = []int{2, 3, 4}
 	cost = []int{3, 4, 3}
 	t.Log(canCompleteCircuit(gas, cost))
+	gas = []int{4, 3, 1, 2, 7, 4}
+	cost = []int{1, 2, 7, 3, 2, 5}
+	t.Log(canCompleteCircuit(gas, cost))
+
 }
