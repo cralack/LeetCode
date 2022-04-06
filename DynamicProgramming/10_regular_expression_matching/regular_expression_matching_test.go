@@ -61,13 +61,13 @@ func isMatch_rec(txt string, pat string) bool {
 func isMatch_ite(txt, pat string) bool {
 	m, n := len(txt), len(pat)
 	match := func(i, j int) bool {
-		if i == 0 {
+		if i == 0 { //base case
 			return false
 		}
-		if pat[j-1] == '.' {
+		if pat[j-1] == '.' { // 通配
 			return true
 		}
-		return txt[i-1] == pat[j-1]
+		return txt[i-1] == pat[j-1] //字符匹配
 	}
 	//init
 	dp := make([][]bool, m+1)
@@ -78,12 +78,12 @@ func isMatch_ite(txt, pat string) bool {
 	dp[0][0] = true
 	for i := 0; i <= m; i++ {
 		for j := 1; j <= n; j++ {
-			if pat[j-1] == '*' {
+			if pat[j-1] == '*' { // 1.1 通配符匹配 0 次或多次
 				dp[i][j] = dp[i][j] || dp[i][j-2]
-				if match(i, j-1) {
+				if match(i, j-1) { //通配状态延续一次
 					dp[i][j] = dp[i][j] || dp[i-1][j]
 				}
-			} else if match(i, j) {
+			} else if match(i, j) { // 1.2 常规匹配 1 次
 				dp[i][j] = dp[i][j] || dp[i-1][j-1]
 			}
 		}
