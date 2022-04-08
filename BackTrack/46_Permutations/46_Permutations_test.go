@@ -27,6 +27,5 @@ func permute(nums []int) (res [][]int) {
 
 func TestPermutations(t *testing.T) {
 	nums := []int{1, 2, 3}
-	ans := permute(nums)
-	t.Log(ans)
+	t.Log(permute(nums))
 }
