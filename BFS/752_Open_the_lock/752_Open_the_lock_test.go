@@ -36,7 +36,7 @@ func openLock(deadends []string, target string) int {
 		}
 		return string(tmp)
 	}
-
+	// 因为知道终点在哪里,所以可以使用双向bfs
 	queue1 := make(map[string]bool)
 	queue2 := make(map[string]bool)
 	queue1[start] = true
