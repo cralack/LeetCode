@@ -10,14 +10,14 @@ func openLock(deadends []string, target string) int {
 	for _, str := range deadends {
 		visited[str] = true // 记录需要跳过的死亡密码
 	}
-	//特殊情况特殊讨论
+	// 特殊情况特殊讨论
 	if target == start {
 		return 0
 	}
 	if visited[start] || visited[target] {
 		return -1
 	}
-	// 将 s[j] 向上拨动一次
+	// 将第i个转盘锁向上拨动一次
 	plusOne := func(str string, i int) string {
 		tmp := []byte(str)
 		if tmp[i] == '9' {
@@ -26,7 +26,7 @@ func openLock(deadends []string, target string) int {
 			tmp[i]++
 		}
 		return string(tmp)
-	} // 将 s[i] 向下拨动一次
+	} // 将第i个转盘锁向下拨动一次
 	minusOne := func(str string, i int) string {
 		tmp := []byte(str)
 		if tmp[i] == '0' {
@@ -44,7 +44,7 @@ func openLock(deadends []string, target string) int {
 	step := 0
 
 	for len(queue1) > 0 && len(queue2) > 0 {
-		if len(queue1) > len(queue2) { //优先操作短队列
+		if len(queue1) > len(queue2) { //优先扩展短队列
 			queue1, queue2 = queue2, queue1
 		}
 		tmp := make(map[string]bool) //tmp保存接下来要扩展的节点
