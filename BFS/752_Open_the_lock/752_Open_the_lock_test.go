@@ -8,15 +8,16 @@ func openLock(deadends []string, target string) int {
 	const start = "0000"
 	visited := make(map[string]bool)
 	for _, str := range deadends {
-		visited[str] = true
+		visited[str] = true // 记录需要跳过的死亡密码
 	}
+	//特殊情况特殊讨论
 	if target == start {
 		return 0
 	}
 	if visited[start] || visited[target] {
 		return -1
 	}
-
+	// 将 s[j] 向上拨动一次
 	plusOne := func(str string, i int) string {
 		tmp := []byte(str)
 		if tmp[i] == '9' {
@@ -25,7 +26,7 @@ func openLock(deadends []string, target string) int {
 			tmp[i]++
 		}
 		return string(tmp)
-	}
+	} // 将 s[i] 向下拨动一次
 	minusOne := func(str string, i int) string {
 		tmp := []byte(str)
 		if tmp[i] == '0' {
@@ -43,20 +44,20 @@ func openLock(deadends []string, target string) int {
 	step := 0
 
 	for len(queue1) > 0 && len(queue2) > 0 {
-		if len(queue1) > len(queue2) {
+		if len(queue1) > len(queue2) { //优先操作短队列
 			queue1, queue2 = queue2, queue1
 		}
-		tmp := make(map[string]bool)
+		tmp := make(map[string]bool) //tmp保存接下来要扩展的节点
 
 		for cur := range queue1 {
 			if visited[cur] {
 				continue
 			}
-			if queue2[cur] {
+			if queue2[cur] { //两边有交集则停止
 				return step
 			}
 			visited[cur] = true
-
+			//对cur节点进行扩展
 			for i := 0; i < 4; i++ {
 				up := plusOne(cur, i)
 				if !visited[up] {
@@ -77,12 +78,15 @@ func openLock(deadends []string, target string) int {
 }
 
 func TestOpenTheLock(t *testing.T) {
-	deadends := [][]string{{"0201", "0101", "0102", "1212", "2002"}, {"8888"},
-		{"8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"}, {"0000"},
-		{"5557", "5553", "5575", "5535", "5755", "5355", "7555", "3555", "6655",
-			"6455", "4655", "4455", "5665", "5445", "5645", "5465", "5566", "5544",
-			"5564", "5546", "6565", "4545", "6545", "4565", "5656", "5454", "5654",
-			"5456", "6556", "4554", "4556", "6554"}}
+	deadends := [][]string{
+		{"0201", "0101", "0102", "1212", "2002"},
+		{"8888"},
+		{"8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"},
+		{"0000"},
+		{"5557", "5553", "5575", "5535", "5755", "5355", "7555", "3555",
+			"6655", "6455", "4655", "4455", "5665", "5445", "5645", "5465",
+			"5566", "5544", "5564", "5546", "6565", "4545", "6545", "4565",
+			"5656", "5454", "5654", "5456", "6556", "4554", "4556", "6554"}}
 	target := []string{"0202", "0009", "8888", "8888", "5555"}
 
 	for i, dead := range deadends {

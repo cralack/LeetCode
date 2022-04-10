@@ -33,8 +33,7 @@ func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
 	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
+	queue := []*TreeNode{root}
 	dep := 1
 	for len(queue) > 0 {
 		size := len(queue)
