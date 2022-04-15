@@ -15,8 +15,7 @@ func calculate(s string) int {
 		num := 0          // 记录算式中的数字
 		sign := byte('+') // 记录 num 前的符号，初始化为 +
 		for ; i < len(s); i++ {
-			idx := i
-			c := s[idx]
+			c := s[i]
 			// char := string(c)
 			// fmt.Println(char)
 			if isDigit(c) { // 如果是数字，连续读取到 num
