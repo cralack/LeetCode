@@ -2,25 +2,24 @@ package GetPrime
 
 //get a prime array and max element <=n
 func PrimeArr(n int) []int {
-	prime := make([]bool, n+1)
-	for i := 2; i <= n; i++ {
-		prime[i] = true
-	}
-
-	for i := 2; i <= n; i++ {
-		if prime[i] {
-			for j := 2 * i; j <= n; j += i {
-				prime[j] = false
+	notPrime := make([]bool, n)
+	for i := 2; i*i < n; i++ { //只需要遍历 [2,sqrt(n)]
+		if !notPrime[i] {
+			for j := i * i; j < n; j += i { //from i*i
+				notPrime[j] = true
 			}
 		}
 	}
 
-	ans := []int{}
-	for idx, val := range prime {
-		if val {
-			ans = append(ans, idx)
+	ans := make([]int, n/2)
+	cnt := 0
+	for i := 2; i < n; i++ {
+		if !notPrime[i] {
+			ans[cnt] = i
+			cnt++
 		}
 	}
+	ans = ans[:cnt]
 	return ans
 }
 
