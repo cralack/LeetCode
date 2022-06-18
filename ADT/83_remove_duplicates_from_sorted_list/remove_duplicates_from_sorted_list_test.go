@@ -22,8 +22,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 }
 func Test_remove_duplicates_from_sorted_list(t *testing.T) {
 	arr := []int{1, 1, 2, 3, 3}
-	head := &ListNode{}
-	head.Init(arr)
+	head := Init(arr)
 	deleteDuplicates(head)
 	head.Show()
 }

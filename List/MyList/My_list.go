@@ -1,4 +1,4 @@
-package Mylist1
+package Mylist
 
 import "fmt"
 
@@ -6,18 +6,15 @@ type ListNode struct {
 	Val  int
 	Next *ListNode
 }
-type Mlist interface {
-	Init()
-	Show()
-}
 
-func (head *ListNode) Init(arr []int) {
+func Init(arr []int) *ListNode {
+	head := &ListNode{Val: arr[0]}
 	cur := head
-	cur.Val = arr[0]
 	for i := 1; i < len(arr); i++ {
 		cur.Next = &ListNode{Val: arr[i]}
 		cur = cur.Next
 	}
+	return head
 }
 
 func (head *ListNode) Show() {

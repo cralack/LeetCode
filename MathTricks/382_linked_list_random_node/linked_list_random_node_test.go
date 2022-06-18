@@ -40,9 +40,8 @@ func (p *Solution) GetRandom() (ans int) {
  */
 func Test_linked_list_random_node(t *testing.T) {
 	arr := []int{1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10}
-	head := ListNode{}
-	head.Init(arr)
-	sol := Solution{Head: &head}
+	head := Init(arr)
+	sol := Solution{Head: head}
 	waiter := sync.WaitGroup{}
 	n := 20
 

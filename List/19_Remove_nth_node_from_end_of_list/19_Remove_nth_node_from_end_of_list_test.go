@@ -22,12 +22,11 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 }
 
 func TestRemoveNthNode(t *testing.T) {
-	heads := [][]int{{1, 2, 3, 4, 5}, {1}, {1, 2}}
+	arrs := [][]int{{1, 2, 3, 4, 5}, {1}, {1, 2}}
 	nn := []int{2, 1, 1}
 	lists := make([]*ListNode, 0)
-	for _, head := range heads {
-		tmp := new(ListNode)
-		tmp.Init(head)
+	for _, arr := range arrs {
+		tmp := Init(arr)
 		tmp.Show()
 		lists = append(lists, tmp)
 	}
