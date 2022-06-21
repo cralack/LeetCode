@@ -1,4 +1,4 @@
-package randompickwithblacklist
+package randompickwithblacklisthard
 
 import (
 	"math/rand"
@@ -63,7 +63,8 @@ func (p *Solution) Pick() int {
  * param_1 := obj.Pick();
  */
 func Test_random_pick_with_blacklist(t *testing.T) {
-	c1 := []string{"Solution", "pick", "pick", "pick", "pick", "pick", "pick", "pick"}
+	c1 := []string{"Solution", "pick", "pick", "pick",
+		"pick", "pick", "pick", "pick"}
 	n, blacklist := 7, []int{2, 3, 5}
 	var sol Solution
 	for _, c := range c1 {
