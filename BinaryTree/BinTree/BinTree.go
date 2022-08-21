@@ -54,30 +54,62 @@ func ByteInit(arr []byte) *TreeNode {
 	}
 	return root
 }
+
 func (root *TreeNode) Show() {
-	if root == nil {
-		fmt.Println("nil")
-		return
-	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
-	dep := 0
-	for len(queue) > 0 {
-		size := len(queue)
-		for i := 0; i < size; i++ {
-			cur := queue[0]
-			queue = queue[1:]
-			fmt.Printf("%d ", cur.Val)
-			if cur.Left != nil {
-				queue = append(queue, cur.Left)
-			}
-			if cur.Right != nil {
-				queue = append(queue, cur.Right)
-			}
+	matrix := printTree(root)
+	for i := range matrix {
+		for _, char := range matrix[i] {
+			fmt.Printf("%s", char)
 		}
-		dep++
-		fmt.Printf("\r\n")
+		fmt.Printf("\n")
 	}
+}
+
+func printTree(root *TreeNode) [][]string {
+	maxDep := -1
+	//get maxDep
+	var dfs_height func(*TreeNode, int)
+	dfs_height = func(cur *TreeNode, dep int) {
+		if cur == nil {
+			return
+		}
+		if dep > maxDep {
+			maxDep = dep
+		}
+		dfs_height(cur.Left, dep+1)
+		dfs_height(cur.Right, dep+1)
+	}
+	dfs_height(root, 0)
+	//init matrix
+	m, n := maxDep+1, pow(2, maxDep+1)-1
+	matrix := make([][]string, m)
+	for i := range matrix {
+		matrix[i] = make([]string, n)
+		for j := range matrix[i] {
+			matrix[i][j] = " "
+		}
+	}
+	//get matrix
+	var dfs_matrix func(*TreeNode, int, int)
+	dfs_matrix = func(cur *TreeNode, r, c int) {
+		if cur == nil {
+			return
+		}
+		matrix[r][c] = strconv.Itoa(cur.Val)
+
+		dfs_matrix(cur.Left, r+1, c-pow(2, maxDep-r-1))
+		dfs_matrix(cur.Right, r+1, c+pow(2, maxDep-r-1))
+	}
+	dfs_matrix(root, 0, (n-1)/2)
+
+	return matrix
+}
+func pow(x, n int) int {
+	ans := 1
+	for i := 0; i < n; i++ {
+		ans *= x
+	}
+	return ans
 }
 
 func (root *TreeNode) Find(n int) *TreeNode {
