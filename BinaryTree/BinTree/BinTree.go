@@ -63,6 +63,7 @@ func (root *TreeNode) Show() {
 		}
 		fmt.Printf("\n")
 	}
+	fmt.Println()
 }
 
 func printTree(root *TreeNode) [][]string {
