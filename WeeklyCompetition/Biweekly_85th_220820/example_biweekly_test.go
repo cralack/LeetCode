@@ -1,4 +1,4 @@
-package the_307
+package biweeklycompetition
 
 import (
 	"strings"
