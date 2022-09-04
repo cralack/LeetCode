@@ -1,4 +1,4 @@
-package the_306
+package weeklycompetition
 
 import (
 	"fmt"
