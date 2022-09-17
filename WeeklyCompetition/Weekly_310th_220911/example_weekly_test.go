@@ -1,4 +1,4 @@
-package weeklycompetition
+package weekly_contest
 
 import (
 	"container/heap"

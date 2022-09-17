@@ -1,4 +1,4 @@
-package biweeklycompetition
+package biweekly_contest
 
 import "testing"
 
