@@ -109,7 +109,50 @@ func Test_3rd(t *testing.T) {
 }
 
 /************ 4th test************/
+func sumPrefixScores(words []string) []int {
+	//define trie node
+	type node struct {
+		son   [26]*node
+		idx   []int
+		score int
+	}
 
+	//build trie
+	root := &node{}
+	for i, word := range words {
+		cur := root
+		for _, c := range word {
+			c -= 'a'
+			if cur.son[c] == nil {
+				cur.son[c] = &node{}
+			}
+			cur = cur.son[c]
+			cur.score++ // 更新所有前缀的分数
+		}
+		cur.idx = append(cur.idx, i)
+	}
+
+	//
+	ans := make([]int, len(words))
+	var dfs func(*node, int)
+	dfs = func(node *node, sum int) {
+		sum += node.score
+		for _, i := range node.idx {
+			ans[i] = sum
+		}
+		for _, child := range node.son {
+			if child != nil {
+				dfs(child, sum)
+			}
+		}
+	}
+
+	dfs(root, 0)
+	return ans
+}
 func Test_4th(t *testing.T) {
-
+	words := []string{"abc", "ab", "bc", "b"}
+	t.Log(sumPrefixScores(words))
+	words = []string{"abcd"}
+	t.Log(sumPrefixScores(words))
 }
