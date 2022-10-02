@@ -1,7 +1,7 @@
 package weekly_contest
 
 import (
-	"strconv"
+	"math/bits"
 	"testing"
 )
 
@@ -54,60 +54,78 @@ func Test_2nd(t *testing.T) {
 }
 
 /************ 3rd test************/
-func minimizeXor(num1 int, num2 int) int {
-	//cnt num2 bin.1
-	x := num2
-	cnt := 0
-	for x > 0 {
-		if x&1 == 1 {
-			cnt++
-		}
-		x >>= 1
+// func minimizeXor(num1 int, num2 int) int {
+// 	//cnt num2 bin.1
+// 	x := num2
+// 	cnt := 0
+// 	for x > 0 {
+// 		if x&1 == 1 {
+// 			cnt++
+// 		}
+// 		x >>= 1
+// 	}
+// 	//replace num1  big bin.1 → small bin.1
+// 	bn1 := convertToBin(num1)
+// 	ans := make([]int, 0)
+// 	for i := 0; i < len(bn1); i++ {
+// 		if bn1[i] == '1' && cnt > 0 {
+// 			ans = append(ans, 1)
+// 			cnt--
+// 		} else {
+// 			ans = append(ans, 0)
+// 		}
+// 	}
+// 	//if cnt still > 0
+// 	for i := len(ans) - 1; i >= 0 && cnt > 0; i-- {
+// 		if ans[i] == 0 {
+// 			ans[i] = 1
+// 			cnt--
+// 		}
+// 	}
+// 	for i := 0; i < cnt; i++ {
+// 		ans = append(ans, 1)
+// 	}
+// 	//turn bin to dec
+// 	x = 0
+// 	for i := 0; i < len(ans); i++ {
+// 		if ans[i] == 1 {
+// 			a := 1 << (len(ans) - i - 1)
+// 			x |= a
+// 		}
+// 	}
+// 	return x
+// }
+
+// // dec to bin
+//
+//	func convertToBin(num int) string {
+//		s := ""
+//		if num == 0 {
+//			return "0"
+//		}
+//		for ; num > 0; num /= 2 {
+//			lsb := num % 2
+//			s = strconv.Itoa(lsb) + s
+//		}
+//		return s
+//	}
+
+func minimizeXor(num1, num2 int) int {
+	cnt2 := bits.OnesCount(uint(num2))
+	if cnt2 >= bits.Len(uint(num1)) {
+		return 1<<cnt2 - 1
 	}
-	//replace num1  big bin.1 → small bin.1
-	bn1 := convertToBin(num1)
-	ans := make([]int, 0)
-	for i := 0; i < len(bn1); i++ {
-		if bn1[i] == '1' && cnt > 0 {
-			ans = append(ans, 1)
-			cnt--
-		} else {
-			ans = append(ans, 0)
-		}
+	cnt1 := bits.OnesCount(uint(num1))
+	for ; cnt2 < cnt1; cnt2++ {
+		num1 &= num1 - 1 // 1 变成 0
 	}
-	//if cnt still > 0
-	for i := len(ans) - 1; i >= 0 && cnt > 0; i-- {
-		if ans[i] == 0 {
-			ans[i] = 1
-			cnt--
-		}
+	for x := ^num1; cnt2 > cnt1; cnt2-- {
+		num1 |= x & -x // 0 变成 1
+		x &= x - 1
 	}
-	for i := 0; i < cnt; i++ {
-		ans = append(ans, 1)
-	}
-	//turn bin to dec
-	x = 0
-	for i := 0; i < len(ans); i++ {
-		if ans[i] == 1 {
-			a := 1 << (len(ans) - i - 1)
-			x |= a
-		}
-	}
-	return x
+	return num1
 }
 
-// dec to bin
-func convertToBin(num int) string {
-	s := ""
-	if num == 0 {
-		return "0"
-	}
-	for ; num > 0; num /= 2 {
-		lsb := num % 2
-		s = strconv.Itoa(lsb) + s
-	}
-	return s
-}
 func Test_3rd(t *testing.T) {
 	num1, num2 := 3, 5
 	t.Log(minimizeXor(num1, num2))
