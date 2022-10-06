@@ -33,10 +33,10 @@ func threeEqualParts(arr []int) []int {
 		}
 	}
 	n := len(arr)
-	//1后置0长度
+	//length:有效二进制数长度
 	length := n - third
 	if first+length <= second && second+length <= third {
-		i := 0
+		i := 0 //比较三段 arr[p:p+length]是否相等
 		for third+i < n {
 			if arr[first+i] != arr[second+i] || arr[first+i] != arr[third+i] {
 				return []int{-1, -1}
@@ -54,5 +54,7 @@ func Test_three_equal_parts(t *testing.T) {
 	arr = []int{1, 1, 0, 1, 1}
 	t.Log(threeEqualParts(arr))
 	arr = []int{1, 1, 0, 0, 1}
+	t.Log(threeEqualParts(arr))
+	arr = []int{0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1}
 	t.Log(threeEqualParts(arr))
 }
