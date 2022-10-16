@@ -3,37 +3,34 @@ package possiblebipartition
 import "testing"
 
 func possibleBipartition(n int, dislikes [][]int) bool {
-	graph := func() [][]int {
-		graph := make([][]int, n+1)
-		for _, edge := range dislikes {
-			// 「无向图」相当于「双向图」
-			// from, to := edge[0], edge[1]
-			graph[edge[0]] = append(graph[edge[0]], edge[1])
-			graph[edge[1]] = append(graph[edge[1]], edge[0])
-		}
-		return graph
-	}()
-
+	graph := make([][]int, n+1)
+	for _, edge := range dislikes {
+		from, to := edge[0], edge[1]
+		graph[from] = append(graph[from], to)
+		graph[to] = append(graph[to], from)
+	}
 	visited, color := make([]bool, n+1), make([]bool, n+1)
 	ok := true
-	var dfs func(vertex int)
-	dfs = func(vertex int) {
+
+	var dfs func(cur int)
+	dfs = func(cur int) {
 		if !ok {
 			return
 		}
-		visited[vertex] = true
-		for _, neighbor := range graph[vertex] {
-			if !visited[neighbor] {
-				color[neighbor] = !color[vertex]
-				dfs(neighbor)
+		visited[cur] = true
+		for _, next := range graph[cur] {
+			if !visited[next] {
+				color[next] = !color[cur]
+				dfs(next)
 			} else {
-				if color[neighbor] == color[vertex] {
+				if color[next] == color[cur] {
 					ok = false
 					return
 				}
 			}
 		}
 	}
+
 	for i := 1; i <= n; i++ {
 		if !visited[i] {
 			dfs(i)
@@ -44,17 +41,12 @@ func possibleBipartition(n int, dislikes [][]int) bool {
 }
 
 func possibleBipartition_BFS(n int, dislikes [][]int) bool {
-	graph := func() [][]int {
-		graph := make([][]int, n+1)
-		for _, edge := range dislikes {
-			// 「无向图」相当于「双向图」
-			// from, to := edge[0], edge[1]
-			graph[edge[0]] = append(graph[edge[0]], edge[1])
-			graph[edge[1]] = append(graph[edge[1]], edge[0])
-		}
-		return graph
-	}()
-
+	graph := make([][]int, n+1)
+	for _, edge := range dislikes {
+		from, to := edge[0], edge[1]
+		graph[from] = append(graph[from], to)
+		graph[to] = append(graph[to], from)
+	}
 	visited, color := make([]bool, n+1), make([]bool, n+1)
 	ok := true
 
@@ -62,15 +54,15 @@ func possibleBipartition_BFS(n int, dislikes [][]int) bool {
 		que := []int{start}
 		visited[start] = true
 		for len(que) > 0 && ok {
-			vertex := que[0]
+			cur := que[0]
 			que = que[1:]
-			for _, neighbor := range graph[vertex] {
-				if !visited[neighbor] {
-					color[neighbor] = !color[vertex]
-					visited[neighbor] = true
-					que = append(que, neighbor)
+			for _, next := range graph[cur] {
+				if !visited[next] {
+					color[next] = !color[cur]
+					visited[next] = true
+					que = append(que, next)
 				} else {
-					if color[vertex] == color[neighbor] {
+					if color[cur] == color[next] {
 						ok = false
 						return
 					}
