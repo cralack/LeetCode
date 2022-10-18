@@ -20,6 +20,9 @@ type TreeNode struct {
 }
 
 func Init(arr []int) *TreeNode {
+	if len(arr) == 0 {
+		return nil
+	}
 	root := &TreeNode{Val: arr[0]}
 	queque := []*TreeNode{root}
 	for i := 1; i < len(arr); i += 2 {
