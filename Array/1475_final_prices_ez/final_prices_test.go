@@ -1,7 +1,7 @@
 package finalpricesez
 
 import (
-	"Learning/LeetCode/GetPrime"
+	"LeetCode/GetPrime"
 	"math/rand"
 	"testing"
 )

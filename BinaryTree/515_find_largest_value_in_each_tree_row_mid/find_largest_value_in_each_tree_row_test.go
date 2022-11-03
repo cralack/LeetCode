@@ -1,7 +1,7 @@
 package findlargestvalueineachtreerowmid
 
 import (
-	. "Learning/LeetCode/BinaryTree/BinTree"
+	. "LeetCode/BinaryTree/BinTree"
 	"testing"
 )
 

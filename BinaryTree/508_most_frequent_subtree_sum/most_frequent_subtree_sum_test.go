@@ -1,7 +1,7 @@
 package mostfrequentsubtreesum
 
 import (
-	. "Learning/LeetCode/BinaryTree/BinTree"
+	. "LeetCode/BinaryTree/BinTree"
 	"testing"
 )
 

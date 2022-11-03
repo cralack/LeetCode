@@ -1,7 +1,7 @@
 package linkedlistrandomnode
 
 import (
-	. "Learning/LeetCode/List/MyList"
+	. "LeetCode/List/MyList"
 	"math/rand"
 	"sync"
 	"testing"

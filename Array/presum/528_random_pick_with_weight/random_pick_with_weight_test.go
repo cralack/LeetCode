@@ -1,7 +1,7 @@
 package randompickwithweight
 
 import (
-	"Learning/LeetCode/GetPrime"
+	"LeetCode/GetPrime"
 	"math/rand"
 	"sync"
 	"testing"

@@ -1,7 +1,7 @@
 package maximumfrequencystack
 
 import (
-	"Learning/LeetCode/WriteLog"
+	"LeetCode/WriteLog"
 	"strconv"
 	"strings"
 	"testing"
@@ -55,7 +55,7 @@ func (p *FreqStack) Pop() int {
 	return x.Val
 }
 
-//debug
+// debug
 func (p *FreqStack) log() string {
 	sb := &strings.Builder{}
 	for i := 1; i <= p.MaxFreq; i++ {
