@@ -1,3 +1,3 @@
 # LeetCode
 
-personal leetcode practice
+personal leetcode practice in golang
