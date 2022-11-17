@@ -1,4 +1,4 @@
-package numberofmatchingsubs
+package numberofmatchingsub
 
 import (
 	"testing"
