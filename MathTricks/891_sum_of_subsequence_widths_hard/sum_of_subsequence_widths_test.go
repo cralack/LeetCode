@@ -28,4 +28,6 @@ func Test_sum_of_subsequence_widths(t *testing.T) {
 	t.Log(sumSubseqWidths(nums))
 	nums = []int{2}
 	t.Log(sumSubseqWidths(nums))
+	nums = []int{1, 2, 3, 4, 5, 6, 7, 8}
+	t.Log(sumSubseqWidths(nums))
 }
