@@ -10,10 +10,10 @@ func minOperations(nums1 []int, nums2 []int) (ans int) {
 	}
 	// 数组元素和的差，我们要让这个差变为 0
 	dif := 0
-	for _, x := range nums1 {
+	for _, x := range nums2 {
 		dif += x
 	}
-	for _, x := range nums2 {
+	for _, x := range nums1 {
 		dif -= x
 	}
 	// 统一让 nums1 的数变大，nums2 的数变小
@@ -35,7 +35,7 @@ func minOperations(nums1 []int, nums2 []int) (ans int) {
 	for i := 5; ; i-- {
 		// 可以让 d 变为 0
 		if i*cnt[i] >= dif {
-			return ans + (dif+i-1)/i
+			return ans + (dif+i-1)/i //向上取整
 		}
 		// 需要所有最大变化量为 i 的数
 		ans += cnt[i]
