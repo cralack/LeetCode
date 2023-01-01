@@ -1,22 +1,18 @@
 package weekly_contest
 
 import (
-	"strconv"
+	"sort"
 	"testing"
 )
 
 /************ 1st test************/
-func countDigits(num int) int {
-	cnt := 0
-	tmp := num
-	for tmp > 0 {
-		cur := tmp % 10
-		tmp /= 10
-		if num%cur == 0 {
-			cnt++
+func countDigits(num int) (ans int) {
+	for cur := num; cur > 0; cur /= 10 {
+		if num%(cur%10) == 0 {
+			ans++
 		}
 	}
-	return cnt
+	return
 }
 func Test_1st(t *testing.T) {
 	num := 7
@@ -28,37 +24,22 @@ func Test_1st(t *testing.T) {
 }
 
 /************ 2nd test************/
-
 func distinctPrimeFactors(nums []int) int {
-	n := 1000
-	notPrime := make([]bool, n+1)
-	for i := 2; i*i <= n; i++ { //只需要遍历 [2,sqrt(n)]
-		if !notPrime[i] {
-			for j := i * i; j <= n; j += i { //from i*i
-				notPrime[j] = true
-			}
-		}
-	}
-	deparPrimeFactors := func(num int) (ans []int) {
-		for i := 2; i <= num; i++ {
-			if !notPrime[i] && num%i == 0 {
-				ans = append(ans, i)
-			}
-			for num%i == 0 {
-				num /= i
-			}
-		}
-		return
-	}
-
-	cnt := make(map[int]int, 0)
+	set := make(map[int]struct{}, 0)
 	for _, n := range nums {
-		primeFactors := deparPrimeFactors(n)
-		for _, f := range primeFactors {
-			cnt[f]++
+		//枚举n的质因数
+		for i := 2; i*i <= n; i++ {
+			if n%i == 0 {
+				set[i] = struct{}{}
+				for n /= i; n%i == 0; n /= i {
+				}
+			}
+		}
+		if n > 1 {
+			set[n] = struct{}{}
 		}
 	}
-	return len(cnt)
+	return len(set)
 }
 func Test_2nd(t *testing.T) {
 	nums := []int{2, 4, 3, 7, 10, 6}
@@ -68,35 +49,20 @@ func Test_2nd(t *testing.T) {
 }
 
 /************ 3rd test************/
-func minimumPartition(s string, k int) int {
-	n := len(s)
-	dp := make([]int, n+1)
-	for i := 1; i <= n; i++ {
-		//最大可能len
-		dp[i] = n + 1
-	}
-
-	for i := 1; i <= n; i++ {
-		for j := i - 1; j >= 0; j-- {
-			cur, _ := strconv.Atoi(s[j:i])
-			if cur <= k {
-				dp[i] = min(dp[i], dp[j]+1)
-			} else {
-				break
-			}
+func minimumPartition(s string, k int) (ans int) {
+	curNum := 0
+	for _, char := range s {
+		v := int(char - '0')
+		if v > k {
+			return -1
 		}
-
+		curNum = curNum*10 + v
+		if curNum > k {
+			ans++
+			curNum = v
+		}
 	}
-	if dp[n] == n+1 {
-		return -1
-	}
-	return dp[n]
-}
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	return ans + 1
 }
 func Test_3rd(t *testing.T) {
 	s := "165462"
@@ -108,40 +74,39 @@ func Test_3rd(t *testing.T) {
 }
 
 /************ 4th test************/
-func closestPrimes(left int, right int) (ans []int) {
-	n := right
-	notPrime := make([]bool, n+1)
-	primeArr := make([]int, 0, right-left)
-	for i := 2; i*i <= n; i++ { //只需要遍历 [2,sqrt(n)]
+const mx = 1000033
+
+var primes = make([]int, 0, mx)
+
+func init() {
+	notPrime := make([]bool, mx+1)
+	for i := 2; i <= mx; i++ {
 		if !notPrime[i] {
-			for j := i * i; j <= n; j += i { //from i*i
+			//预处理出primes
+			primes = append(primes, i)
+			for j := i * i; j <= mx; j += i {
 				notPrime[j] = true
 			}
 		}
 	}
-	for i := max(2, left); i <= right; i++ {
-		if !notPrime[i] {
-			primeArr = append(primeArr, i)
-		}
-	}
-	if len(primeArr) < 2 {
-		return []int{-1, -1}
-	}
-	dist := right - left + 1
-	for i := 1; i < len(primeArr); i++ {
-		cur, pre := primeArr[i], primeArr[i-1]
-		if cur-pre < dist {
-			dist = cur - pre
-			ans = []int{pre, cur}
+}
+
+func closestPrimes(left int, right int) (ans []int) {
+	ans = []int{-1, -1}
+	maxGap := right
+	for i := sort.SearchInts(primes, left); primes[i+1] <= right; i++ {
+		cur, pre := primes[i+1], primes[i]
+		gap := cur - pre
+		if gap < maxGap {
+			maxGap = gap
+			ans[0], ans[1] = pre, cur
+			//除了[2,3]其他都是[x,x+2]
+			if gap <= 2 {
+				break
+			}
 		}
 	}
 	return
-}
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
 func Test_4th(t *testing.T) {
 	left := 10
