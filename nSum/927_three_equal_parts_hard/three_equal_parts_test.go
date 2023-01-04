@@ -1,8 +1,6 @@
 package threeequalparts
 
-import (
-	"testing"
-)
+import "testing"
 
 func threeEqualParts(arr []int) []int {
 	cnt := 0
