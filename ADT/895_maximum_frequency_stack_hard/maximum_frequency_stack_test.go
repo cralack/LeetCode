@@ -4,79 +4,6 @@ import (
 	"testing"
 )
 
-//my code
-// type Node struct {
-// 	//可封装任何结构
-// 	Val int
-// }
-
-// type FreqStack struct {
-// 	MaxFreq int
-// 	Cnt     map[int]int
-// 	Cache   map[int][]*Node
-// }
-
-// func Constructor() FreqStack {
-// 	return FreqStack{
-// 		MaxFreq: 0,
-// 		Cnt:     make(map[int]int),
-// 		Cache:   make(map[int][]*Node),
-// 	}
-// }
-// func (p *FreqStack) Push(val int) {
-// 	//val.freq
-// 	p.Cnt[val]++
-// 	freq := p.Cnt[val]
-// 	//check is stack exist
-// 	if _, ok := p.Cache[freq]; !ok {
-// 		p.Cache[freq] = []*Node{}
-// 	}
-// 	//insert new node
-// 	tmp := &Node{Val: val}
-// 	p.Cache[freq] = append(p.Cache[freq], tmp)
-// 	//check maxFreq
-// 	if freq > p.MaxFreq {
-// 		p.MaxFreq = freq
-// 	}
-// }
-
-// func (p *FreqStack) Pop() int {
-// 	//pop
-// 	max_stack := p.Cache[p.MaxFreq]
-// 	x := max_stack[len(max_stack)-1]
-// 	p.Cache[p.MaxFreq] = max_stack[:len(max_stack)-1]
-// 	//check maxfreq
-// 	if len(p.Cache[p.MaxFreq]) == 0 {
-// 		p.MaxFreq--
-// 	}
-// 	p.Cnt[x.Val]--
-// 	return x.Val
-// }
-
-// // debug
-//
-//	func (p *FreqStack) log() string {
-//		sb := &strings.Builder{}
-//		for i := 1; i <= p.MaxFreq; i++ {
-//			sb.WriteString(strconv.Itoa(i))
-//			sb.WriteString(":head->")
-//			// cur := p.Cache[i][0]
-//			// for cur != p.Cache[i].Tail {
-//			// 	cur = cur.Next
-//			// 	if cur != p.Cache[i].Tail {
-//			// 		sb.WriteString(strconv.Itoa(cur.Val))
-//			// 		sb.WriteString("->")
-//			// 	}
-//			// }
-//			for _, no := range p.Cache[i] {
-//				sb.WriteString(strconv.Itoa(no.Val))
-//				sb.WriteString("->")
-//			}
-//			sb.WriteString("tail\n")
-//		}
-//		return sb.String()
-//	}
-
 // graceful code
 type FreqStack struct {
 	cnt    map[int]int
@@ -136,8 +63,6 @@ func Test_maximum_frequency_stack(t *testing.T) {
 		case "pop":
 			stack.Pop()
 		}
-		//WriteLog.WriteFile("max_freq_stack", stack.log())
-		// fmt.Println("\r")
 	}
 }
 
