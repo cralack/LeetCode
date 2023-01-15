@@ -52,10 +52,10 @@ func countGood(nums []int, k int) (ans int64) {
 	cnt := make(map[int]int, 0)
 	pair := 0
 	n := len(nums)
-	left, right := 0, 0
-	for ; right < n; right++ {
-		pair += cnt[nums[right]]
-		cnt[nums[right]]++
+	left := 0
+	for right, num := range nums {
+		pair += cnt[num]
+		cnt[num]++
 		for pair >= k {
 			ans += int64(n - right)
 			cnt[nums[left]]--
