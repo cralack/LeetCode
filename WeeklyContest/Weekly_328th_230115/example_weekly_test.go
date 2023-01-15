@@ -25,20 +25,43 @@ func Test_1st(t *testing.T) {
 }
 
 /************ 2nd test************/
-func rangeAddQueries(n int, queries [][]int) [][]int {
-	matrix := make([][]int, n)
-	for i := range matrix {
-		matrix[i] = make([]int, n)
+func rangeAddQueries(n int, queries [][]int) (ans [][]int) {
+	//二维差分解法
+	m := n
+
+	// 二维差分模板
+	diff := make([][]int, n+1)
+	for i := range diff {
+		diff[i] = make([]int, m+1)
 	}
-	for _, query := range queries {
-		row1, col1, row2, col2 := query[0], query[1], query[2], query[3]
-		for i := row1; i <= row2; i++ {
-			for j := col1; j <= col2; j++ {
-				matrix[i][j]++
-			}
+	//本题中x为1
+	update := func(r1, c1, r2, c2, x int) {
+		diff[r1][c1] += x
+		diff[r1][c2+1] -= x
+		diff[r2+1][c1] -= x
+		diff[r2+1][c2+1] += x //前面一共减了两次x,这里再补一个x
+	}
+	for _, q := range queries {
+		update(q[0], q[1], q[2], q[3], 1)
+	}
+
+	// 用二维前缀和复原
+	ans = make([][]int, n+1)
+	ans[0] = make([]int, m+1)
+	for i := 0; i < n; i++ {
+		ans[i+1] = make([]int, m+1)
+		for j := 0; j < m; j++ {
+			ans[i+1][j+1] = ans[i+1][j] + ans[i][j+1] - ans[i][j] +
+				diff[i][j]
 		}
 	}
-	return matrix
+
+	//shrink
+	ans = ans[1:]
+	for i, row := range ans {
+		ans[i] = row[1:]
+	}
+	return
 }
 func Test_2nd(t *testing.T) {
 	queries, n := [][]int{{1, 1, 2, 2}, {0, 0, 1, 1}}, 3
