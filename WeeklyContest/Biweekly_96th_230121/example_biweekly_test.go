@@ -1,6 +1,7 @@
 package biweekly_contest
 
 import (
+	"container/heap"
 	"sort"
 	"testing"
 )
@@ -80,23 +81,57 @@ type node struct {
 	x, y int
 }
 
+// 优先级队列实现
+type IntHeap []int
+
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] > h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+
+func (h *IntHeap) Push(x interface{}) {
+	*h = append(*h, x.(int))
+}
+
+func (h *IntHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
+}
+
 func maxScore(nums1 []int, nums2 []int, k int) (ans int64) {
 	n := len(nums1)
 	arr := make([]node, n)
 	for i := 0; i < n; i++ {
 		arr[i] = node{nums1[i], nums2[i]}
 	}
+	//nums1与nums2绑定后按nums2从大到小排序
 	sort.Slice(arr, func(i, j int) bool {
-		return arr[i].y < arr[j].y
+		return arr[i].y > arr[j].y
 	})
 
-	preSum := make([]int, n+1)
-	for i := 0; i < n; i++ {
-		preSum[i+1] = preSum[i] + arr[i].x
+	//先把排序后 nums1 前 K 个元素加入小根堆，并计算它们的和
+	sum := 0
+	pq := &IntHeap{}
+	for i := 0; i < k; i++ {
+		sum += arr[i].x
+		heap.Push(pq, arr[i].x)
 	}
-	for i := n - k; i >= 0; i-- {
-		score := (preSum[i+k] - preSum[i]) * arr[i].y
-		ans = max(ans, int64(score))
+	//计算初始答案
+	ans = int64(sum * arr[k-1].y)
+
+	//枚举 nums2 中的最小值
+	for i := k; i < n; i++ {
+		//小根堆新加入一个 nums1 中的数,如果当前元素大于堆顶
+		//就替换堆顶,这样可以让堆中元素之和变大
+		sum += arr[i].x
+		heap.Push(pq, arr[i].x)
+		//要去掉最小的数，使得小根堆的大小等于 K
+		cur := heap.Pop(pq).(int)
+		sum -= cur
+		//更新当前答案
+		ans = max(ans, int64(arr[i].y*sum))
 	}
 	return ans
 }
