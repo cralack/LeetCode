@@ -92,29 +92,39 @@ func Test_3rd(t *testing.T) {
 
 /************ 4th test************/
 func countQuadruplets(nums []int) (ans int64) {
-	//不限制1<=nums[i]<=n的话可能需要单调栈来进行预处理
-	//需要知道k右边有多少个比nums[j]大的数
-	//		j左边有多少个比nums[k]小的数
 	n := len(nums)
-	//预处理great[k][x]定义成在k右边的比x大的数的个数
-	great := make([][]int, n)
-	great[n-1] = make([]int, n+1)
-	//倒序枚举k
-	for k := n - 2; k >= 2; k-- {
-		great[k] = append([]int(nil), great[k+1]...)
-		for x := nums[k+1] - 1; x > 0; x-- {
-			great[k][x]++ // x < nums[k+1]，对于 x，大于它的数的个数 +1
+	// less[i][j] 表示 [0, j] 范围内比 nums[i] 小的数有多少个，其中 j < i
+	less := make([][]int, n)
+	for i := 1; i < n; i++ {
+		less[i] = make([]int, n)
+		for j := 0; j < i; j++ {
+			if j > 0 {
+				less[i][j] = less[i][j-1]
+			}
+			if nums[j] < nums[i] {
+				less[i][j]++
+			}
 		}
 	}
-	//预处理less[x]定义成在j左边的比x小的数的个数
-	less := make([]int, n+1)
-	for j := 1; j < n-2; j++ {
-		for x := nums[j-1] + 1; x <= n; x++ {
-			less[x]++ // x > nums[j-1]，对于 x，小于它的数的个数 +1
+	// great[i][j] 表示 [j, n) 范围内比 nums[i] 大的数有多少个，其中 i < j
+	great := make([][]int, n-1)
+	for i := 0; i < n-1; i++ {
+		great[i] = make([]int, n)
+		for j := n - 1; j > i; j-- {
+			if j < n-1 {
+				great[i][j] = great[i][j+1]
+			}
+			if nums[i] < nums[j] {
+				great[i][j]++
+			}
 		}
+	}
+
+	// 枚举中间两个数, 保证 j < k 并且 nums[k] < nums[j]
+	for j := 1; j < n-2; j++ {
 		for k := j + 1; k < n-1; k++ {
-			if nums[j] > nums[k] {
-				ans += int64(less[nums[k]] * great[k][nums[j]])
+			if nums[k] < nums[j] {
+				ans += int64(less[k][j-1] * great[j][k+1])
 			}
 		}
 	}
