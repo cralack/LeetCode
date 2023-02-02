@@ -1,15 +1,17 @@
-package Mysort
+package goSort
 
 import "testing"
 
 /****    冒泡排序    ****/
+
+// basic algorithm
 func buble_sort_basic(arr []int) []int {
 	for i := 0; i < len(arr)-1; i++ {
 		// 每轮循环，通过依次向右比较两个数，将本轮循环中最大的数放到最右
 		for j := 1; j < len(arr)-i; j++ {
 			// 若左大于右则交换，并将swapped置为true
 			if arr[j-1] > arr[j] {
-				arr[j-1], arr[j] = arr[j], arr[j-1]
+				swap(arr, j-1, i)
 			}
 		}
 	}
@@ -26,7 +28,7 @@ func buble_sort_v1(arr []int) []int {
 		for j := 1; j < len(arr)-i; j++ {
 			// 若左大于右则交换，并将swapped置为true
 			if arr[j-1] > arr[j] {
-				arr[j-1], arr[j] = arr[j], arr[j-1]
+				swap(arr, j-1, i)
 				swaped = true
 			}
 		}
@@ -47,7 +49,7 @@ func buble_sort_v2(arr []int) []int {
 		// 每一轮 i 只需要考察到 lastSwappedIdx 前一位
 		for i := 0; i < lastSwappedIdx; i++ {
 			if arr[i] > arr[i+1] {
-				arr[i], arr[i+1] = arr[i+1], arr[i]
+				swap(arr, i, i+1)
 				curSwappedIdx = i
 			}
 		}
@@ -58,25 +60,27 @@ func buble_sort_v2(arr []int) []int {
 }
 
 func Benchmark_buble_sort(b *testing.B) {
-	arr := Knuth_shuffle(MaxN)
+	if TestArr == nil {
+		TestArr = Knuth_shuffle(MaxN)
+	}
 	b.Run("basic", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			buble_sort_basic(append([]int{}, arr...))
+			buble_sort_basic(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
 	b.Run("提前结束优化", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			buble_sort_v1(append([]int{}, arr...))
+			buble_sort_v1(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
 	b.Run("冒泡界优化", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			buble_sort_v2(append([]int{}, arr...))
+			buble_sort_v2(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})

@@ -1,4 +1,4 @@
-package Mysort
+package goSort
 
 import "testing"
 
@@ -15,7 +15,7 @@ func selection_sort_v1(arr []int) []int {
 				minIdx = j
 			}
 		}
-		arr[i], arr[minIdx] = arr[minIdx], arr[i]
+		swap(arr, i, minIdx)
 	}
 	return arr
 }
@@ -39,14 +39,14 @@ func selection_sort_v2(arr []int) []int {
 			break
 		}
 		//<--min
-		arr[i], arr[minIdx] = arr[minIdx], arr[i]
+		swap(arr, i, minIdx)
 		//在交换i和minIdx时，有可能出现i即maxIdx的情况(特例1)
 		//由于先将minIdx与i(maxIdx)进行了交换,此时需要修改maxIdx为minIdx
 		if maxIdx == i {
 			maxIdx = minIdx
 		}
 		//max-->
-		arr[n-1-i], arr[maxIdx] = arr[maxIdx], arr[n-1-i]
+		swap(arr, n-1-i, maxIdx)
 	}
 	return arr
 }
@@ -58,18 +58,20 @@ func Test_selcetion_v2(t *testing.T) {
 	t.Log(selection_sort_v2(arr))
 }
 func Benchmark_selection_sort(b *testing.B) {
-	arr := Knuth_shuffle(MaxN)
-	b.Run("单元选择排序", func(b *testing.B) {
+	if TestArr == nil {
+		TestArr = Knuth_shuffle(MaxN)
+	}
+	b.Run("单元选排", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			selection_sort_v1(append([]int{}, arr...))
+			selection_sort_v1(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
-	b.Run("双元选择排序", func(b *testing.B) {
+	b.Run("双元选排", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			selection_sort_v2(append([]int{}, arr...))
+			selection_sort_v2(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})

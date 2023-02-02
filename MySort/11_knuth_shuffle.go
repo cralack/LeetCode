@@ -1,4 +1,4 @@
-package Mysort
+package goSort
 
 import (
 	"math/rand"

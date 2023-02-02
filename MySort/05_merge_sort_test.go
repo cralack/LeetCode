@@ -1,8 +1,8 @@
-package Mysort
+package goSort
 
 import "testing"
 
-// /****    归并排序    ****/
+/****    归并排序    ****/
 
 // 自顶向下非原地归并
 func merge_sort_v1(nums []int) []int {
@@ -69,7 +69,7 @@ func merge_sort_v2(nums []int) []int {
 // 原地翻转
 func reverse(arr []int, left, right int) {
 	for ; left < right; left, right = left+1, right-1 {
-		arr[left], arr[right] = arr[right], arr[left]
+		swap(arr, left, right)
 	}
 }
 
@@ -80,7 +80,7 @@ func exchange(arr []int, left, mid, right int) {
 	reverse(arr, left, right)
 }
 
-// 原地归并（手摇算法）
+// 原地归并(手摇算法)
 func merge_no_Extra_Space(arr []int, left, right, mid int) {
 	i, j := left, mid+1 //#1
 	for i <= mid && j <= right {
@@ -109,12 +109,6 @@ func merge_sort_v3(arr []int) []int {
 	}
 	return arr
 }
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
 
 // 自底向上原地
 func merge_sort_v4(arr []int) []int {
@@ -130,34 +124,37 @@ func merge_sort_v4(arr []int) []int {
 	}
 	return arr
 }
+
 func Benchmark_merge_sort(b *testing.B) {
-	arr := Knuth_shuffle(MaxN)
-	b.Run("自顶向下非原地", func(b *testing.B) {
+	if TestArr == nil {
+		TestArr = Knuth_shuffle(MaxN)
+	}
+	b.Run("T2B非原地", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			merge_sort_v1(append([]int{}, arr...))
+			merge_sort_v1(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
-	b.Run("自顶向下原地", func(b *testing.B) {
+	// b.Run("T2b原地", func(b *testing.B) {
+	// 	b.ResetTimer()
+	// 	for i := 0; i < b.N; i++ {
+	// 		merge_sort_v2(append([]int{}, TestArr...))
+	// 	}
+	// 	b.StopTimer()
+	// })
+	b.Run("B2T非原地", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			merge_sort_v2(append([]int{}, arr...))
+			merge_sort_v3(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
-	b.Run("自底向上非原地", func(b *testing.B) {
-		b.ResetTimer()
-		for i := 0; i < b.N; i++ {
-			merge_sort_v3(append([]int{}, arr...))
-		}
-		b.StopTimer()
-	})
-	b.Run("自底向上原地", func(b *testing.B) {
-		b.ResetTimer()
-		for i := 0; i < b.N; i++ {
-			merge_sort_v4(append([]int{}, arr...))
-		}
-		b.StopTimer()
-	})
+	// b.Run("B2T原地", func(b *testing.B) {
+	// 	b.ResetTimer()
+	// 	for i := 0; i < b.N; i++ {
+	// 		merge_sort_v4(append([]int{}, TestArr...))
+	// 	}
+	// 	b.StopTimer()
+	// })
 }

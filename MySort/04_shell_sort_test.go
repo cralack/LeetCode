@@ -1,4 +1,4 @@
-package Mysort
+package goSort
 
 import (
 	"math"
@@ -106,32 +106,34 @@ func shell_sort_v4(arr []int) []int {
 	return arr
 }
 func Benchmark_shell_sort(b *testing.B) {
-	arr := Knuth_shuffle(MaxN)
-	b.Run("Shell增量 2^k", func(b *testing.B) {
+	if TestArr == nil {
+		TestArr = Knuth_shuffle(MaxN)
+	}
+	b.Run("Shell增量", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			shell_sort_v1(append([]int{}, arr...))
+			shell_sort_v1(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
-	b.Run("Hibbard增量 2^k-1", func(b *testing.B) {
+	// b.Run("Hibbard增量", func(b *testing.B) {
+	// 	b.ResetTimer()
+	// 	for i := 0; i < b.N; i++ {
+	// 		shell_sort_v2(append([]int{}, TestArr...))
+	// 	}
+	// 	b.StopTimer()
+	// })
+	b.Run("Knuth增量", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			shell_sort_v2(append([]int{}, arr...))
+			shell_sort_v3(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
-	b.Run("Knuth增量 3^k-1", func(b *testing.B) {
+	b.Run("Sedgewick增量", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			shell_sort_v3(append([]int{}, arr...))
-		}
-		b.StopTimer()
-	})
-	b.Run("Sedgewick增量 4^k + 3* 2^(k-1)", func(b *testing.B) {
-		b.ResetTimer()
-		for i := 0; i < b.N; i++ {
-			shell_sort_v4(append([]int{}, arr...))
+			shell_sort_v4(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})

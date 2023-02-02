@@ -1,4 +1,4 @@
-package Mysort
+package goSort
 
 import (
 	"sort"
@@ -51,18 +51,20 @@ func insertion_sort_v2(arr []int) []int {
 	return arr
 }
 func Benchmark_insertion_sort(b *testing.B) {
-	arr := Knuth_shuffle(MaxN)
-	b.Run("简单插入排序", func(b *testing.B) {
+	if TestArr == nil {
+		TestArr = Knuth_shuffle(MaxN)
+	}
+	b.Run("简单插排", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			insertion_sort_v1(append([]int{}, arr...))
+			insertion_sort_v1(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
-	b.Run("折半插入排序", func(b *testing.B) {
+	b.Run("折半插排", func(b *testing.B) {
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			insertion_sort_v2(append([]int{}, arr...))
+			insertion_sort_v2(append([]int{}, TestArr...))
 		}
 		b.StopTimer()
 	})
