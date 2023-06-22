@@ -1,7 +1,7 @@
 package deepestleavessummid
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"testing"
 )
 

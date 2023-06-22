@@ -1,7 +1,7 @@
 package longestunivaluepathmid
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"testing"
 )
 

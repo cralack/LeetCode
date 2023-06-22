@@ -1,7 +1,7 @@
 package serializeanddeserializebinarytree
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"strconv"
 	"strings"
 	"testing"

@@ -1,7 +1,7 @@
 package printbinarytreemid
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"strconv"
 	"testing"
 )

@@ -1,7 +1,7 @@
 package findmodeinbinarysearchtree
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"testing"
 )
 

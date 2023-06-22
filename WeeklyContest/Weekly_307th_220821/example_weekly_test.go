@@ -1,7 +1,7 @@
 package weekly_contest
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"container/heap"
 	"sort"
 	"testing"

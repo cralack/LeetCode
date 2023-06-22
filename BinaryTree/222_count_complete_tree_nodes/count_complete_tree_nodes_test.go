@@ -1,7 +1,7 @@
 package countcompletetreenodes
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"fmt"
 	"math"
 	"testing"

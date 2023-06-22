@@ -8,7 +8,7 @@ import (
 
 /*
 import (
-	. "Leetcode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"testing"
 )
 */

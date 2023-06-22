@@ -1,7 +1,7 @@
 package linkedlistcycle
 
 import (
-	. "LeetCode/List/MyList"
+	. "LeetCode/util/MyList"
 	"testing"
 )
 

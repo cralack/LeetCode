@@ -1,7 +1,7 @@
 package nextgreaternodeinlinkedlist
 
 import (
-	. "LeetCode/List/MyList"
+	. "LeetCode/util/MyList"
 	"testing"
 )
 

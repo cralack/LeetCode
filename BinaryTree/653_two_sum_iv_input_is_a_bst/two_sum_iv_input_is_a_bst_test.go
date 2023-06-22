@@ -1,7 +1,7 @@
 package twosumivinputisabst
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"testing"
 )
 

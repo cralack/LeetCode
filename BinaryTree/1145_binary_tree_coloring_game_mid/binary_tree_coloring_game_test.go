@@ -1,7 +1,7 @@
 package binarytreecoloringgame
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
+	. "LeetCode/util/BinTree"
 	"math/rand"
 	"testing"
 )

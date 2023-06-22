@@ -1,8 +1,8 @@
 package maximumbinarytreemid
 
 import (
-	. "LeetCode/BinaryTree/BinTree"
-	"LeetCode/GetPrime"
+	"LeetCode//util/GetPrime"
+	. "LeetCode/util/BinTree"
 	"math/rand"
 	"testing"
 )

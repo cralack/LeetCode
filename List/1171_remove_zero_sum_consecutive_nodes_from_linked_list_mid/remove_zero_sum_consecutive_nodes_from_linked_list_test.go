@@ -1,7 +1,7 @@
 package removezerosumconsecutivenodes
 
 import (
-	. "LeetCode/List/MyList"
+	. "LeetCode/util/MyList"
 	"testing"
 )
 

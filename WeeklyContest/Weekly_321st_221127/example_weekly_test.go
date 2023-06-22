@@ -1,7 +1,7 @@
 package weekly_contest
 
 import (
-	. "LeetCode/List/MyList"
+	. "LeetCode/util/MyList"
 	"math"
 	"testing"
 )

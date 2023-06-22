@@ -1,7 +1,7 @@
 package removenthnodefromendoflist
 
 import (
-	. "LeetCode/List/MyList"
+	. "LeetCode/util/MyList"
 	"testing"
 )
 
