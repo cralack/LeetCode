@@ -18,23 +18,23 @@ func minMutation(start string, end string, bank []string) int {
 	q1[start] = true
 	q2[end] = true
 	for len(q1) > 0 && len(q2) > 0 {
-		//优先操作短队列
+		// 优先操作短队列
 		if len(q1) > len(q2) {
 			q1, q2 = q2, q1
 		}
-		//tmp保存接下来要扩展的节点
+		// tmp保存接下来要扩展的节点
 		tmp := make(map[string]bool, 0)
-		//遍历q1
+		// 遍历q1
 		for cur := range q1 {
 			if visited[cur] == true {
 				continue
 			}
 			visited[cur] = true
-			//两边有交集则停止
+			// 两边有交集则停止
 			if q2[cur] == true {
 				return step
 			}
-			//当前dna能突变的范围
+			// 当前dna能突变的范围
 			next := make([]string, 0, 3*8)
 			for i := 0; i < 8; i++ {
 				next = append(next, mutate(cur, i)...)
@@ -54,13 +54,13 @@ func minMutation(start string, end string, bank []string) int {
 	return -1
 }
 
-//枚举tar上idx位置发生突变会出现的dna
+// 枚举tar上idx位置发生突变会出现的dna
 func mutate(tar string, idx int) []string {
 	res := make([]string, 0, 3)
 	c := tar[idx]
 	arr := []byte{'A', 'C', 'G', 'T'}
 	for _, char := range arr {
-		if c == char { //跳过tar
+		if c == char { // 跳过tar
 			continue
 		} else {
 			tmp := make([]byte, len(tar))

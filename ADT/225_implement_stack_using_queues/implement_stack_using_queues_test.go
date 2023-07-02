@@ -28,7 +28,7 @@ func (s *MyStack) Pop() int {
 
 func (s *MyStack) Top() int {
 	for len(s.MainQue) > 1 {
-		//sub.Push(main.Pop)
+		// sub.Push(main.Pop)
 		s.SubQue = append(s.SubQue, s.MainQue[0])
 		s.MainQue = s.MainQue[1:]
 	}

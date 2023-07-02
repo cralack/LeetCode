@@ -1,8 +1,9 @@
 package mergeinbetweenlinkedlists
 
 import (
-	. "LeetCode/util/MyList"
 	"testing"
+
+	. "LeetCode/util/MyList"
 )
 
 /**

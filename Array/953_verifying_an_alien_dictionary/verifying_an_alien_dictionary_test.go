@@ -11,7 +11,7 @@ func isAlienSorted(words []string, order string) bool {
 	}
 	for i := 0; i < len(words)-1; i++ {
 		for j := 0; j < len(words[i]); j++ {
-			if j == len(words[i+1]) { //len(w1)<len(w2)
+			if j == len(words[i+1]) { // len(w1)<len(w2)
 				return false
 			}
 			if diff := dic[string(words[i][j])] - dic[string(words[i+1][j])]; diff > 0 {

@@ -1,12 +1,13 @@
 package lowestcommonancestorofabinarytree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-	//base case
+	// base case
 	if root == nil {
 		return nil
 	}
@@ -15,15 +16,15 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	}
 	left := lowestCommonAncestor(root.Left, p, q)
 	right := lowestCommonAncestor(root.Right, p, q)
-	//case 1
+	// case 1
 	if left != nil && right != nil {
 		return root
 	}
-	//case 2
+	// case 2
 	if left == nil && right == nil {
 		return nil
 	}
-	//case 3
+	// case 3
 	if left == nil {
 		return right
 	}

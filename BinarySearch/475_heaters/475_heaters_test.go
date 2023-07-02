@@ -28,9 +28,9 @@ func findRadius(houses []int, heaters []int) int {
 
 	for _, house := range houses {
 		dis := abs(house - heaters[j])
-		//j！=last heaters
+		// j！=last heaters
 		for j+1 < len(heaters) &&
-			//house到左heater不小于到右heater距离
+			// house到左heater不小于到右heater距离
 			abs(house-heaters[j]) >= abs(house-heaters[j+1]) {
 			j++
 			if abs(house-heaters[j]) < dis {

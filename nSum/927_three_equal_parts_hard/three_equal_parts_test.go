@@ -17,7 +17,7 @@ func threeEqualParts(arr []int) []int {
 	}
 	tar := cnt / 3
 	first, second, third, cur := 0, 0, 0, 0
-	//三指针对齐至对应1倍数位置
+	// 三指针对齐至对应1倍数位置
 	for i, x := range arr {
 		if x == 1 {
 			if cur == 0 {
@@ -31,10 +31,10 @@ func threeEqualParts(arr []int) []int {
 		}
 	}
 	n := len(arr)
-	//length:有效二进制数长度
+	// length:有效二进制数长度
 	length := n - third
 	if first+length <= second && second+length <= third {
-		i := 0 //比较三段 arr[p:p+length]是否相等
+		i := 0 // 比较三段 arr[p:p+length]是否相等
 		for third+i < n {
 			if arr[first+i] != arr[second+i] || arr[first+i] != arr[third+i] {
 				return []int{-1, -1}

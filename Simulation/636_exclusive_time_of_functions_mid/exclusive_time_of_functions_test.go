@@ -13,7 +13,7 @@ type App struct {
 
 func exclusiveTime(n int, logs []string) []int {
 	ans := make([]int, n)
-	stack := []App{} //存入app的id以及操作时间
+	stack := []App{} // 存入app的id以及操作时间
 	for _, log := range logs {
 		ana := strings.Split(log, ":")
 		curId, _ := strconv.Atoi(ana[0])
@@ -23,8 +23,8 @@ func exclusiveTime(n int, logs []string) []int {
 			if len(stack) > 0 {
 				ans[stack[len(stack)-1].Id] +=
 					timeStamp - stack[len(stack)-1].TimeStamp
-				//always rewrite by pop↓
-				//stack[len(stack)-1].TimeStamp = timeStamp
+				// always rewrite by pop↓
+				// stack[len(stack)-1].TimeStamp = timeStamp
 			}
 			stack = append(stack, App{curId, timeStamp})
 		} else {

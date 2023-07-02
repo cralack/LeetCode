@@ -105,7 +105,7 @@ func Test_3rd(t *testing.T) {
 
 /************ 4th test************/
 func numberOfGoodPaths(vals []int, edges [][]int) (ans int) {
-	//todo
+	// todo
 
 	return
 }

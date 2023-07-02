@@ -8,9 +8,9 @@ func maxChunksToSorted(arr []int) int {
 	stack := []int{}
 	for _, val := range arr {
 		if len(stack) == 0 || stack[len(stack)-1] <= val {
-			stack = append(stack, val) //单调递增入栈
+			stack = append(stack, val) // 单调递增入栈
 		} else {
-			max := stack[len(stack)-1] //pop
+			max := stack[len(stack)-1] // pop
 			stack = stack[:len(stack)-1]
 			for len(stack) > 0 && stack[len(stack)-1] > val {
 				stack = stack[:len(stack)-1]
@@ -25,9 +25,9 @@ func maxChunksToSorted_v2(arr []int) int {
 	stack := make([]int, 0, len(arr))
 	for _, val := range arr {
 		if len(stack) == 0 || stack[len(stack)-1] <= val {
-			stack = append(stack, val) //单调递增入栈
+			stack = append(stack, val) // 单调递增入栈
 		} else {
-			max := stack[len(stack)-1] //pop
+			max := stack[len(stack)-1] // pop
 			stack = stack[:len(stack)-1]
 			for len(stack) > 0 && stack[len(stack)-1] > val {
 				stack = stack[:len(stack)-1]

@@ -11,7 +11,7 @@ func Benchmark_sort(b *testing.B) {
 	if TestArr == nil {
 		TestArr = Knuth_shuffle(MaxN)
 	}
-	//init test arr
+	// init test arr
 	TestArr = Knuth_shuffle(MaxN)
 
 	b.Run("01.冒泡排序", func(b *testing.B) {

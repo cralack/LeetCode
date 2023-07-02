@@ -44,20 +44,20 @@ func openLock(deadends []string, target string) int {
 	step := 0
 
 	for len(queue1) > 0 && len(queue2) > 0 {
-		if len(queue1) > len(queue2) { //优先扩展短队列
+		if len(queue1) > len(queue2) { // 优先扩展短队列
 			queue1, queue2 = queue2, queue1
 		}
-		tmp := make(map[string]bool) //tmp保存接下来要扩展的节点
+		tmp := make(map[string]bool) // tmp保存接下来要扩展的节点
 
 		for cur := range queue1 {
 			if visited[cur] {
 				continue
 			}
-			if queue2[cur] { //两边有交集则停止
+			if queue2[cur] { // 两边有交集则停止
 				return step
 			}
 			visited[cur] = true
-			//对cur节点进行扩展
+			// 对cur节点进行扩展
 			for i := 0; i < 4; i++ {
 				up := plusOne(cur, i)
 				if !visited[up] {

@@ -7,9 +7,9 @@ import "testing"
 // 即全局倒置的数量>=局部倒置的数量
 func isIdealPermutation(nums []int) bool {
 	mx := 0
-	//枚举nums[i]，其中 2<=i<=n-1
+	// 枚举nums[i]，其中 2<=i<=n-1
 	for i := 2; i < len(nums); i++ {
-		//非相邻数字是否满足递增
+		// 非相邻数字是否满足递增
 		mx = max(mx, nums[i-2])
 		if mx > nums[i] {
 			return false

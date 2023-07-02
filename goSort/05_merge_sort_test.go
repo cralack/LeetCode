@@ -6,7 +6,7 @@ import "testing"
 
 // 自顶向下非原地归并
 func merge_sort_v1(nums []int) []int {
-	//mergeSort 递归方法
+	// mergeSort 递归方法
 	var mergeSort func([]int, []int, int, int)
 	mergeSort = func(arr, tmpArr []int, left, right int) {
 		if left < right {
@@ -52,7 +52,7 @@ func merge_Extra_Space(arr, tmpArr []int, left, right, mid int) {
 
 // 自顶向下原地归并
 func merge_sort_v2(nums []int) []int {
-	//mergeSort 递归方法
+	// mergeSort 递归方法
 	var mergeSort func([]int, int, int)
 	mergeSort = func(arr []int, left, right int) {
 		if left < right {
@@ -82,15 +82,15 @@ func exchange(arr []int, left, mid, right int) {
 
 // 原地归并(手摇算法)
 func merge_no_Extra_Space(arr []int, left, right, mid int) {
-	i, j := left, mid+1 //#1
+	i, j := left, mid+1 // #1
 	for i <= mid && j <= right {
-		for ; i < j && arr[i] <= arr[j]; i++ { //#2
+		for ; i < j && arr[i] <= arr[j]; i++ { // #2
 		}
-		index := j //#3
-		//#4注意是arr[j]<arr[i]，即找到j使得arr[j]为第一个大于等于arr[i]值
+		index := j // #3
+		// #4注意是arr[j]<arr[i]，即找到j使得arr[j]为第一个大于等于arr[i]值
 		for ; j <= right && arr[j] < arr[i]; j++ {
 		}
-		exchange(arr, i, index-1, j-1) //#5
+		exchange(arr, i, index-1, j-1) // #5
 	}
 }
 

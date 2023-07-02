@@ -30,17 +30,17 @@ func (p *RandomizedSet) Remove(val int) bool {
 	if _, ok := p.Val2idx[val]; !ok {
 		return false
 	}
-	//val-idx
+	// val-idx
 	idx := p.Val2idx[val]
-	//end_idx
+	// end_idx
 	end_idx := len(p.Cache) - 1
-	//swap idx
+	// swap idx
 	p.Val2idx[p.Cache[end_idx]] = idx
-	//remove from Val2idx
+	// remove from Val2idx
 	delete(p.Val2idx, val)
-	//swap
+	// swap
 	p.Cache[idx], p.Cache[end_idx] = p.Cache[end_idx], p.Cache[idx]
-	//remove frome cache
+	// remove frome cache
 	p.Cache = p.Cache[:len(p.Cache)-1]
 	return true
 }

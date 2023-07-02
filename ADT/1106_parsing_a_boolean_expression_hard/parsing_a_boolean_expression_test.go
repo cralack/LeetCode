@@ -16,7 +16,7 @@ func parseBoolExpr(expression string) bool {
 		case ')':
 			op := opStk.Pop()
 			cur := ' '
-			//连续计算一个括号内
+			// 连续计算一个括号内
 			for !numStk.IsEmpty() && numStk.Peak() != '-' {
 				top := numStk.Pop()
 				if cur == ' ' {
@@ -30,7 +30,7 @@ func parseBoolExpr(expression string) bool {
 			} else if op == '!' {
 				cur = 't'
 			}
-			numStk.Pop() //取出'-'
+			numStk.Pop() // 取出'-'
 			numStk.Push(cur)
 		}
 	}

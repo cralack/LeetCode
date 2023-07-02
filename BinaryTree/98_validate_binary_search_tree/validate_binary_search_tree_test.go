@@ -1,8 +1,9 @@
 package validatebinarysearchtree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func isValidBST(root *TreeNode) bool {

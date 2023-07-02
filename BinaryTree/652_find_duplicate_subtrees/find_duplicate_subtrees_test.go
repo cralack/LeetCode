@@ -79,7 +79,7 @@ func Test_find_duplicate_subtrees(t *testing.T) {
 	// arr := []int{2, 1, 1}
 	arr := []int{2, 2, 2, 3, -1, 3, -1}
 	root := Init(arr)
-	//root.Show()
+	// root.Show()
 	ans := findDuplicateSubtrees(root)
 	for _, v := range ans {
 		v.Show()

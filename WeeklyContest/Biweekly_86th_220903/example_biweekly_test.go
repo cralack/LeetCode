@@ -106,7 +106,7 @@ func maximumRobots(chargeTimes []int, runningCosts []int, budget int) (ans int) 
 		x, y int
 	}
 	n := len(chargeTimes)
-	que := []pair{} //单调队列维护 max(chargeTimes)
+	que := []pair{} // 单调队列维护 max(chargeTimes)
 	sum := 0
 
 	for right, left := 0, 0; right < n; right++ {
@@ -114,22 +114,22 @@ func maximumRobots(chargeTimes []int, runningCosts []int, budget int) (ans int) 
 			left = right
 		}
 
-		//末尾元素的chargeTimes小于新进元素
+		// 末尾元素的chargeTimes小于新进元素
 		for len(que) > 0 && que[len(que)-1].x <= chargeTimes[right] {
-			que = que[:len(que)-1] //popback
+			que = que[:len(que)-1] // popback
 		}
 		que = append(que, pair{chargeTimes[right], right})
 		sum += runningCosts[right]
 
-		//增大区间直到费用超标
+		// 增大区间直到费用超标
 		for len(que) > 0 && que[0].x+(right-left+1)*sum > budget {
 			if left == que[0].y {
-				que = que[1:] //popfront
+				que = que[1:] // popfront
 			}
 			sum -= runningCosts[left]
 			left++
 		}
-		//更新最大区间宽度
+		// 更新最大区间宽度
 		if len(que) > 0 && ans < right-left+1 {
 			ans = right - left + 1
 		}

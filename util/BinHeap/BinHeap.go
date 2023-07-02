@@ -6,9 +6,9 @@ type Node struct {
 	Val int
 }
 type BinHeap struct {
-	//大顶堆 Less(){return i<j}
+	// 大顶堆 Less(){return i<j}
 	Size, Cap int
-	Heap      []*Node //start from 1
+	Heap      []*Node // start from 1
 }
 
 func (b *BinHeap) parent(root int) int { return root / 2 }
@@ -75,7 +75,7 @@ func (b *BinHeap) Show() {
 	i := 1
 	h := 1
 	for ; 1<<h <= b.Size; h++ {
-		//fmt.Printf("h:%d 1<<h:%d", h, 1<<h)
+		// fmt.Printf("h:%d 1<<h:%d", h, 1<<h)
 		n := (b.Size - i) / 2
 		for j := 0; j < n; j++ {
 			fmt.Printf("\t")

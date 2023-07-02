@@ -8,7 +8,7 @@ import (
 func maxAverageRatio(classes [][]int, extraStudents int) (ans float64) {
 	pq := make(cheap, 0)
 	n := len(classes)
-	//initi pq
+	// initi pq
 	for _, cla := range classes {
 		p, t := cla[0], cla[1]
 		heap.Push(&pq, class{
@@ -17,7 +17,7 @@ func maxAverageRatio(classes [][]int, extraStudents int) (ans float64) {
 			rate:  float64(p+1)/float64(t+1) - float64(p)/float64(t),
 		})
 	}
-	//handle extraStu
+	// handle extraStu
 	for i := 0; i < extraStudents; i++ {
 		cur := heap.Pop(&pq).(class)
 		cur.pass++
@@ -26,7 +26,7 @@ func maxAverageRatio(classes [][]int, extraStudents int) (ans float64) {
 			float64(cur.pass)/float64(cur.total)
 		heap.Push(&pq, cur)
 	}
-	//get ans
+	// get ans
 	for pq.Len() > 0 {
 		cur := heap.Pop(&pq).(class)
 		ans += float64(cur.pass) / float64(cur.total)

@@ -3,7 +3,7 @@ package rangeaddition
 import "testing"
 
 func getModifiedArray(length int, updates [][]int) []int {
-	//all 0 this time
+	// all 0 this time
 	nums := make([]int, length)
 	dif := make([]int, len(nums))
 	// dif[0] = nums[0]

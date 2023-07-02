@@ -19,17 +19,17 @@ func minimumMoves(g [][]int) int {
 		que = nil
 		for _, cur := range tmp {
 			for _, d := range dirs {
-				//next Node
+				// next Node
 				x, y, s := cur.x+d.x, cur.y+d.y, cur.s^d.s
 				// 蛇头坐标
 				x2, y2 := x+s, y+(s^1)
-				//蛇头在graph内且vis[蛇尾]==false
+				// 蛇头在graph内且vis[蛇尾]==false
 				if x2 < n && y2 < n && !vis[x][y][s] &&
-					//蛇身不能在障碍物上
+					// 蛇身不能在障碍物上
 					g[x][y] == 0 && g[x2][y2] == 0 &&
-					//无需旋转 || 旋转所需空间[x+1][y+1]无障碍
+					// 无需旋转 || 旋转所需空间[x+1][y+1]无障碍
 					(d.s == 0 || g[x+1][y+1] == 0) {
-					//终点特判
+					// 终点特判
 					if x == n-1 && y == n-2 { // 此时蛇头一定在 (n-1,n-1)
 						return step
 					}

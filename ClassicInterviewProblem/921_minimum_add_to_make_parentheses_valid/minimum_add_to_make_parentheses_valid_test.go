@@ -3,7 +3,7 @@ package minimumaddtomakeparenthesesvalid
 import "testing"
 
 func minAddToMakeValid(s string) int {
-	needLeft, needRight := 0, 0 //对左右括号的需求量
+	needLeft, needRight := 0, 0 // 对左右括号的需求量
 	for _, c := range s {
 		if c == '(' { // 对右括号的需求 + 1
 			needRight++

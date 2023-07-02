@@ -8,9 +8,9 @@ import (
 func jobScheduling(startTime []int, endTime []int, profit []int) int {
 	n := len(startTime)
 	jobs := make([]job, 0, n)
-	for i := 0; i < n; i++ { //对job进行封装
+	for i := 0; i < n; i++ { // 对job进行封装
 		jobs = append(jobs, job{startTime[i], endTime[i], profit[i]})
-	} //按end升序排列jobs
+	} // 按end升序排列jobs
 	sort.Slice(jobs, func(i, j int) bool {
 		return jobs[i].end < jobs[j].end
 	})

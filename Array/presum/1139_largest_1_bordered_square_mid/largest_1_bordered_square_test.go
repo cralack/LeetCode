@@ -18,12 +18,12 @@ func largest1BorderedSquare(grid [][]int) int {
 			colSum[j][i+1] = colSum[j][i] + x // 每列的前缀和
 		}
 	}
-	//枚举正方形最大边长d
+	// 枚举正方形最大边长d
 	for d := min(m, n); d > 0; d-- {
-		//枚举正方形左上角坐标(i,j)
+		// 枚举正方形左上角坐标(i,j)
 		for i := 0; i <= m-d; i++ {
 			for j := 0; j <= n-d; j++ {
-				//判断当前正方形边长是否成立
+				// 判断当前正方形边长是否成立
 				if rowSum[i][j+d]-rowSum[i][j] == d && // 上边
 					colSum[j][i+d]-colSum[j][i] == d && // 左边
 					rowSum[i+d-1][j+d]-rowSum[i+d-1][j] == d && // 下边

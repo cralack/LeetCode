@@ -8,18 +8,18 @@ func countSubarrays(nums []int, k int) int {
 	mp[0] = 1
 	preSum, res := 0, 0
 	for i := 0; i < n; i++ {
-		if nums[i] == k { //与k相等的数字为x
+		if nums[i] == k { // 与k相等的数字为x
 			preSum += x
-		} else if nums[i] < k { //记比k小的数字为-1
+		} else if nums[i] < k { // 记比k小的数字为-1
 			preSum--
-		} else { //记比k大的数字为1
+		} else { // 记比k大的数字为1
 			preSum++
 		}
-		//数组长度为奇数：子数组和为x
+		// 数组长度为奇数：子数组和为x
 		if val, has := mp[preSum-x]; has {
 			res += val
 		}
-		////数组长度为偶数：子数组和为x+1
+		// //数组长度为偶数：子数组和为x+1
 		if val, has := mp[preSum-x-1]; has {
 			res += val
 		}

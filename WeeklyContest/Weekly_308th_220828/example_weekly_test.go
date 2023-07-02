@@ -59,7 +59,7 @@ func Test_2nd(t *testing.T) {
 
 /************ 3rd test************/
 func garbageCollection(garbage []string, travel []int) (ans int) {
-	rightBound := make([]int, 3) //M,P,G  last idx
+	rightBound := make([]int, 3) // M,P,G  last idx
 	for i, gar := range garbage {
 		ans += len(gar)
 		for _, c := range gar {

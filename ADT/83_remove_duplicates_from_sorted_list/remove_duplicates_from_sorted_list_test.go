@@ -1,8 +1,9 @@
 package removeduplicatesfromsortedlist
 
 import (
-	. "LeetCode/util/MyList"
 	"testing"
+
+	. "LeetCode/util/MyList"
 )
 
 func deleteDuplicates(head *ListNode) *ListNode {

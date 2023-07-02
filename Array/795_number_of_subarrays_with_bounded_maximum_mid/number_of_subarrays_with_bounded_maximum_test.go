@@ -3,7 +3,7 @@ package numberofsubarray
 import "testing"
 
 func numSubarrayBoundedMax(nums []int, left, right int) (ans int) {
-	//双指针
+	// 双指针
 	i0, i1 := -1, -1
 	for i, x := range nums {
 		if x > right {
@@ -11,7 +11,7 @@ func numSubarrayBoundedMax(nums []int, left, right int) (ans int) {
 		}
 		if x >= left {
 			i1 = i
-		}//贡献度
+		} // 贡献度
 		ans += i1 - i0
 	}
 	return

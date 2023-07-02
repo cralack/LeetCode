@@ -74,7 +74,7 @@ func (root *Node) Show() {
 // 	return root
 // }
 
-//level-traverse
+// level-traverse
 func connect(root *Node) *Node {
 	if root == nil {
 		return root

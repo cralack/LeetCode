@@ -20,7 +20,7 @@ func solveNQueens(n int) (res [][]string) {
 	var trackback func(int, [][]bool)
 	trackback = func(row int, board [][]bool) {
 		if row == n {
-			//generate board result
+			// generate board result
 			tmp := []string{}
 			for i := 0; i < n; i++ {
 				row := make([]byte, n)
@@ -55,19 +55,19 @@ func solveNQueens(n int) (res [][]string) {
 func isValid(row, col int, board [][]bool) bool {
 	n := len(board)
 
-	//check upside
+	// check upside
 	for i := row; i >= 0; i-- {
 		if board[i][col] == true {
 			return false
 		}
 	}
-	//check up-right side
+	// check up-right side
 	for i, j := row, col; 0 <= i && j < n; i, j = i-1, j+1 {
 		if board[i][j] == true {
 			return false
 		}
 	}
-	//check up-left side
+	// check up-left side
 	for i, j := row, col; 0 <= i && 0 <= j; i, j = i-1, j-1 {
 		if board[i][j] == true {
 			return false

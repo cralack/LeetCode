@@ -1,8 +1,9 @@
 package removenthnodefromendoflist
 
 import (
-	. "LeetCode/util/MyList"
 	"testing"
+
+	. "LeetCode/util/MyList"
 )
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {

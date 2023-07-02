@@ -28,8 +28,8 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 	var s Stack
 	res := make([]int, len(nums2))
 	pos := make(map[int]int, len(nums2))
-	//O(n2)
-	//反向压入栈
+	// O(n2)
+	// 反向压入栈
 	for i := len(nums2) - 1; i >= 0; i-- {
 		// 判定个子高矮
 		for !s.Empty() && s.Peek() <= nums2[i] {
@@ -42,11 +42,11 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 		} else {
 			res[i] = s.Peek()
 		}
-		//针对此题对n2记录答案位置
+		// 针对此题对n2记录答案位置
 		pos[nums2[i]] = i
 		s.Push(nums2[i])
 	}
-	//O(n1)
+	// O(n1)
 	ans := make([]int, len(nums1))
 	for idx, val := range nums1 {
 		ans[idx] = res[pos[val]]

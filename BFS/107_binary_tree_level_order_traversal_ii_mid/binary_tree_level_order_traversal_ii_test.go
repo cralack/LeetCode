@@ -1,8 +1,9 @@
 package binarytreelevelordertraversalii
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -19,7 +20,7 @@ func levelOrderBottom(root *TreeNode) (ans [][]int) {
 	}
 	que := []*TreeNode{root}
 	dep := 0
-	//bfs
+	// bfs
 	for len(que) > 0 {
 		n := len(que)
 		if len(ans) == dep {
@@ -38,7 +39,7 @@ func levelOrderBottom(root *TreeNode) (ans [][]int) {
 		}
 		dep++
 	}
-	//reverse
+	// reverse
 	for left, right := 0, len(ans)-1; left < right; left, right = left+1, right-1 {
 		ans[left], ans[right] = ans[right], ans[left]
 	}

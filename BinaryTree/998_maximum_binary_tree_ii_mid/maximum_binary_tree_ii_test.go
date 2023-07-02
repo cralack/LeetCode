@@ -1,8 +1,9 @@
 package maximumbinarytreeiimid
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

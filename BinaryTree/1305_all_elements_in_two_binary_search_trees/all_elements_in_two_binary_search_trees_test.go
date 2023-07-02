@@ -1,8 +1,9 @@
 package allelementsintwobinarysearchtrees
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

@@ -13,7 +13,7 @@ func findLUSlength(strs []string) int {
 				flag = isSubsequence(str1, str2)
 			}
 		}
-		//str1不是其他任意字符串的子序列
+		// str1不是其他任意字符串的子序列
 		if !flag && len(str1) > maxLen {
 			maxLen = len(str1)
 		}

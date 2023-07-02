@@ -12,10 +12,10 @@ func superEggDrop_rec(k int, n int) int {
 		for j := range memo[i] {
 			memo[i][j] = -777
 		}
-	} //K个鸡蛋,N层楼最差需要试错几次
+	} // K个鸡蛋,N层楼最差需要试错几次
 	var dp func(k, n int) int
 	dp = func(k, n int) int {
-		//base case
+		// base case
 		if n == 0 {
 			return 0
 		}
@@ -64,10 +64,10 @@ func superEggDrop_ite(k int, n int) int {
 	for dp[m][k] < n {
 		m++
 		for i := 1; i <= k; i++ {
-			//dp[m][i] -> i个鸡蛋测m次最多能测几层楼
-			dp[m][i] = dp[m-1][i] + //楼上的楼层数：鸡蛋没碎
-				dp[m-1][i-1] + //楼下的楼层数：鸡蛋碎了
-				1 //本层
+			// dp[m][i] -> i个鸡蛋测m次最多能测几层楼
+			dp[m][i] = dp[m-1][i] + // 楼上的楼层数：鸡蛋没碎
+				dp[m-1][i-1] + // 楼下的楼层数：鸡蛋碎了
+				1 // 本层
 		}
 	}
 	return m

@@ -1,10 +1,11 @@
 package serializeanddeserializebinarytree
 
 import (
-	. "LeetCode/util/BinTree"
 	"strconv"
 	"strings"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 type Codec struct {
@@ -20,7 +21,7 @@ func (cod *Codec) serialize(root *TreeNode) string {
 	res := &strings.Builder{}
 	queue := []*TreeNode{root}
 	for len(queue) > 0 {
-		//stack.pop
+		// stack.pop
 		cur := queue[0]
 		queue = queue[1:]
 		if cur != nil {

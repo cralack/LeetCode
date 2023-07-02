@@ -7,7 +7,7 @@ func canCompleteCircuit(gas []int, cost []int) int {
 	sum, minsum := 0, 0
 	start := 0
 	for i := range gas {
-		//假设累加值最低点为起点
+		// 假设累加值最低点为起点
 		sum += gas[i] - cost[i]
 		if sum < minsum {
 			// 经过第 i 个站点后，使 sum 到达新低

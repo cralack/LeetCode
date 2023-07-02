@@ -1,8 +1,9 @@
 package maximumsumbstinbinarytree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func maxSumBST(root *TreeNode) int {
@@ -30,7 +31,7 @@ func maxSumBST(root *TreeNode) int {
 	// 函数返回 []int{ isBST, min, max, sum}
 	var traverse func(node *TreeNode) []int
 	traverse = func(node *TreeNode) []int {
-		//base case
+		// base case
 		if node == nil {
 			return []int{1, MAX_value, MIN_value, 0}
 		}
@@ -39,9 +40,9 @@ func maxSumBST(root *TreeNode) int {
 		right := traverse(node.Right)
 		/******* 后序遍历位置 *******/
 		res := [4]int{}
-		//左右子树都是BST
+		// 左右子树都是BST
 		if left[isBST] == 1 && right[isBST] == 1 &&
-			//左子树max < node.Val < 右子树min
+			// 左子树max < node.Val < 右子树min
 			left[max] < node.Val && node.Val < right[min] {
 			// 以 node 为根的二叉树是 BST
 			res[isBST] = 1

@@ -34,8 +34,8 @@ func stoneGame(piles []int) bool {
 	res := dp[0][n-1]
 	return res.First-res.Second > 0
 
-	//只要先手，必胜
-	//return true
+	// 只要先手，必胜
+	// return true
 }
 func Test_stone_game(t *testing.T) {
 	piles := []int{5, 3, 4, 5}

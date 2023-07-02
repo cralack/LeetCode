@@ -14,13 +14,13 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 		}
 		return res
 	}
-	//init
+	// init
 	n, m := len(text1), len(text2)
 	dp := make([][]int, n+1)
 	for i := range dp {
 		dp[i] = make([]int, m+1)
 	}
-	//dp
+	// dp
 	for i := 1; i <= n; i++ {
 		for j := 1; j <= m; j++ {
 			if text1[i-1] == text2[j-1] {
@@ -33,13 +33,13 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	return dp[n][m]
 }
 func Test_longest_common_subsequence(t *testing.T) {
-	text1 := "abcde" //ace
+	text1 := "abcde" // ace
 	text2 := "ace"
 	t.Log(longestCommonSubsequence(text1, text2))
-	text1 = "zabcde" //ace
+	text1 = "zabcde" // ace
 	text2 = "acez"
 	t.Log(longestCommonSubsequence(text1, text2))
-	text1 = "psnw" //s
+	text1 = "psnw" // s
 	text2 = "vozsh"
 	t.Log(longestCommonSubsequence(text1, text2))
 

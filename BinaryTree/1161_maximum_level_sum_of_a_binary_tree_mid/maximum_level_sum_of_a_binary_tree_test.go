@@ -1,8 +1,9 @@
 package maximumlevelsumofabinarytreemid
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

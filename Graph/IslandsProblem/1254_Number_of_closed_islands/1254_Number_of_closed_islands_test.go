@@ -4,12 +4,12 @@ import "testing"
 
 func closedIsland(grid [][]int) int {
 	m, n := len(grid), len(grid[0])
-	//flodfill up/down side
+	// flodfill up/down side
 	for j := 0; j < n; j++ {
 		dfs(0, j, grid)
 		dfs(m-1, j, grid)
 	}
-	//flodfill left/right side
+	// flodfill left/right side
 	for i := 0; i < m; i++ {
 		dfs(i, 0, grid)
 		dfs(i, n-1, grid)

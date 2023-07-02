@@ -1,10 +1,11 @@
 package weekly_contest
 
 import (
-	. "LeetCode/util/BinTree"
 	"container/heap"
 	"sort"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /************ 1st test************/
@@ -59,8 +60,8 @@ func largestPalindromic(num string) string {
 	var str1, str2 []byte
 	// 求回文串两边对应的部分
 	for i := 9; i >= 0; i-- {
-		//已经枚举到了 0，但是之前从来没有加入过别的数字。
-		//此时加入 0 将会导致前导 0，因此直接结束。
+		// 已经枚举到了 0，但是之前从来没有加入过别的数字。
+		// 此时加入 0 将会导致前导 0，因此直接结束。
 		if i == 0 && len(str1) == 0 {
 			break
 		}
@@ -71,7 +72,7 @@ func largestPalindromic(num string) string {
 		}
 		cnt[i] -= t * 2
 	}
-	//reverse
+	// reverse
 	n := len(str1)
 	str2 = make([]byte, n)
 	for i := 0; i < n; i++ {
@@ -105,7 +106,7 @@ func amountOfTime(root *TreeNode, start int) int {
 	var mx = 0
 	var arr [][]int
 
-	//求树中最大值mx,确定arr边界
+	// 求树中最大值mx,确定arr边界
 	var dfs1 func(*TreeNode)
 	dfs1 = func(cur *TreeNode) {
 		if cur == nil {
@@ -115,7 +116,7 @@ func amountOfTime(root *TreeNode, start int) int {
 		dfs1(cur.Left)
 		dfs1(cur.Right)
 	}
-	//构建无根树(邻接矩阵)
+	// 构建无根树(邻接矩阵)
 	var dfs2 func(*TreeNode)
 	dfs2 = func(cur *TreeNode) {
 		if cur.Left != nil {

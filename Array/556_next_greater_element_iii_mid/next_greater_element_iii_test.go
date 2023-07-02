@@ -13,7 +13,7 @@ func nextGreaterElement(n int) int {
 	}
 	n = len(arr)
 	idx := -1
-	//find out first ↗
+	// find out first ↗
 	for i := 0; i < n-1 && idx == -1; i++ {
 		if arr[i+1] < arr[i] {
 			idx = i + 1
@@ -29,14 +29,14 @@ func nextGreaterElement(n int) int {
 			break
 		}
 	}
-	//reverse
+	// reverse
 	l, r := 0, idx-1
 	for l < r {
 		arr[l], arr[r] = arr[r], arr[l]
 		l++
 		r--
 	}
-	//arr to int
+	// arr to int
 	ans := 0
 	for i := n - 1; i >= 0; i-- {
 		ans = ans*10 + arr[i]

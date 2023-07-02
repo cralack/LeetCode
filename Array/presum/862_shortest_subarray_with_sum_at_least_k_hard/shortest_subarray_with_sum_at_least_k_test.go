@@ -11,14 +11,14 @@ func shortestSubarray(nums []int, k int) (ans int) {
 	for i, n := range nums {
 		preSum[i+1] = preSum[i] + n
 	}
-	que := make([]int, 0) //存放idx
+	que := make([]int, 0) // 存放idx
 	for i, curSum := range preSum {
-		//满足curSum-preSum[head]>=k的情况下收缩队首
+		// 满足curSum-preSum[head]>=k的情况下收缩队首
 		for len(que) > 0 && curSum-preSum[que[0]] >= k {
 			ans = min(ans, i-que[0])
 			que = que[1:]
 		}
-		//保持单调递增
+		// 保持单调递增
 		for len(que) > 0 && preSum[que[len(que)-1]] >= curSum {
 			que = que[:len(que)-1]
 		}

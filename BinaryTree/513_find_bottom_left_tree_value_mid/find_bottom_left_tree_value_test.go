@@ -1,8 +1,9 @@
 package findbottomlefttreevaluemid
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -16,17 +17,17 @@ import (
 func findBottomLeftValue(root *TreeNode) (ans int) {
 	queue := []*TreeNode{root}
 	for len(queue) > 0 {
-		cur := queue[0] //pop
+		cur := queue[0] // pop
 		queue = queue[1:]
-		//先把非空右子节点放入队列
+		// 先把非空右子节点放入队列
 		if cur.Right != nil {
 			queue = append(queue, cur.Right)
 		}
-		//再把非空左子节点放入队列
+		// 再把非空左子节点放入队列
 		if cur.Left != nil {
 			queue = append(queue, cur.Left)
 		}
-		//保证从右到左遍历
+		// 保证从右到左遍历
 		ans = cur.Val
 	}
 	return

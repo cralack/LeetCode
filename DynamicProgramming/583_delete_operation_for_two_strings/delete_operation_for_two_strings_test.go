@@ -18,7 +18,7 @@ func maxDistance(word1 string, word2 string) int {
 		dp[i] = make([]int, m+1)
 	}
 
-	//len(lcs)
+	// len(lcs)
 	for i := 1; i <= n; i++ {
 		for j := 1; j <= m; j++ {
 			if word1[i-1] == word2[j-1] {

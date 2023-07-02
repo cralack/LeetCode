@@ -7,13 +7,13 @@ func findDiagonalOrder(mat [][]int) []int {
 	ans := make([]int, 0, m*n)
 	i, j := 0, 0
 	for lim := 0; lim < m+n-1; lim++ {
-		if lim%2 == 0 { //↗
+		if lim%2 == 0 { // ↗
 			i = min(lim, m-1)
 			j = lim - i
 			for ; 0 <= i && j < n; i, j = i-1, j+1 {
 				ans = append(ans, mat[i][j])
 			}
-		} else { //↙
+		} else { // ↙
 			j = min(lim, n-1)
 			i = lim - j
 			for ; 0 <= j && i < m; i, j = i+1, j-1 {

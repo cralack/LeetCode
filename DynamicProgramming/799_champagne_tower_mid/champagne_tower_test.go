@@ -5,7 +5,7 @@ import (
 )
 
 func champagneTower(poured int, query_row int, query_glass int) float64 {
-	//定义dp[i][j]为第i行第j列杯子所经过的水的流量（而不是最终剩余的水量）
+	// 定义dp[i][j]为第i行第j列杯子所经过的水的流量（而不是最终剩余的水量）
 	dp := make([][]float64, query_row+3)
 	for i := range dp {
 		dp[i] = make([]float64, i+1)

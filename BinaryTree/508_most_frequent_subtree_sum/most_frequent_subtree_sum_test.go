@@ -1,8 +1,9 @@
 package mostfrequentsubtreesum
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

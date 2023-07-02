@@ -71,7 +71,7 @@ func (root *TreeNode) Show() {
 
 func printTree(root *TreeNode) [][]string {
 	maxDep := -1
-	//get maxDep
+	// get maxDep
 	var dfs_height func(*TreeNode, int)
 	dfs_height = func(cur *TreeNode, dep int) {
 		if cur == nil {
@@ -84,7 +84,7 @@ func printTree(root *TreeNode) [][]string {
 		dfs_height(cur.Right, dep+1)
 	}
 	dfs_height(root, 0)
-	//init matrix
+	// init matrix
 	m, n := maxDep+1, pow(2, maxDep+1)-1
 	matrix := make([][]string, m)
 	for i := range matrix {
@@ -93,7 +93,7 @@ func printTree(root *TreeNode) [][]string {
 			matrix[i][j] = " "
 		}
 	}
-	//get matrix
+	// get matrix
 	var dfs_matrix func(*TreeNode, int, int)
 	dfs_matrix = func(cur *TreeNode, r, c int) {
 		if cur == nil {

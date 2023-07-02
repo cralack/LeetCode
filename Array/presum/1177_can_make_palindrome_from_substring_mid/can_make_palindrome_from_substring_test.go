@@ -6,7 +6,7 @@ import (
 )
 
 func canMakePaliQueries(s string, queries [][]int) []bool {
-	//sum[i]保存s[0~i]各个字母出现次数的奇偶性
+	// sum[i]保存s[0~i]各个字母出现次数的奇偶性
 	sum := make([]uint32, len(s)+1) // 节省一半空间
 	for i, c := range s {
 		bit := uint32(1) << (c - 'a')
@@ -16,7 +16,7 @@ func canMakePaliQueries(s string, queries [][]int) []bool {
 	ans := make([]bool, len(queries))
 	for i, q := range queries {
 		left, right, k := q[0], q[1], q[2]
-		//s[left~right]出现奇数次字母的个数
+		// s[left~right]出现奇数次字母的个数
 		m := bits.OnesCount32(sum[right+1] ^ sum[left])
 		ans[i] = m/2 <= k
 	}

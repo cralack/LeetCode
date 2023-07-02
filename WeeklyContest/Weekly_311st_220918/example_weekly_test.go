@@ -1,8 +1,9 @@
 package weekly_contest
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /************ 1st test************/
@@ -99,7 +100,7 @@ func popback(arr []int) []int {
 }
 
 func Test_3rd(t *testing.T) {
-	//t.Log(pow(4))
+	// t.Log(pow(4))
 	root := Init([]int{2, 3, 5, 8, 13, 21, 34})
 	root = reverseOddLevels(root)
 	root.Show()
@@ -110,14 +111,14 @@ func Test_3rd(t *testing.T) {
 
 /************ 4th test************/
 func sumPrefixScores(words []string) []int {
-	//define trie node
+	// define trie node
 	type node struct {
 		son   [26]*node
 		idx   []int
 		score int
 	}
 
-	//build trie
+	// build trie
 	root := &node{}
 	for i, word := range words {
 		cur := root

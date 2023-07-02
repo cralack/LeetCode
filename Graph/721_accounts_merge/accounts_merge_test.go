@@ -11,7 +11,7 @@ func accountsMerge(accounts [][]string) (ans [][]string) {
 	for _, acaccount := range accounts {
 		name := acaccount[0]
 		for _, mail := range acaccount[1:] {
-			if _, has := mail2index[mail]; !has { //避免mail重复登记
+			if _, has := mail2index[mail]; !has { // 避免mail重复登记
 				mail2index[mail] = len(mail2index)
 				mail2name[mail] = name
 			}

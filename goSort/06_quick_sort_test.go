@@ -29,7 +29,7 @@ func partition(arr []int, left, right int) int {
 func quick_sort_v1(arr []int) []int {
 	var quick_sort func(int, int)
 	quick_sort = func(left, right int) {
-		//若left==right，表示此时arr只有一个元素，即为基准情形，完成递归
+		// 若left==right，表示此时arr只有一个元素，即为基准情形，完成递归
 		if left < right {
 			p := partition(arr, left, right)
 			quick_sort(left, p-1)

@@ -14,7 +14,7 @@ func mincostToHireWorkers(quality, wage []int, k int) float64 {
 		h[i] = i
 	}
 	sort.Slice(h, func(i, j int) bool {
-		a, b := h[i], h[j] //idx
+		a, b := h[i], h[j] // idx
 		return quality[a]*wage[b] > quality[b]*wage[a]
 	})
 	totalq := 0

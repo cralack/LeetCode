@@ -4,8 +4,8 @@ import "testing"
 
 func countNicePairs(nums []int) (ans int) {
 	const mod int = 1e9 + 7
-	//if nums[i]+rev(nums[j])=nums[j]+rev(nums[i])
-	//so nums[i]-rev(nums[i])==nums[j]-rev(nums[j])
+	// if nums[i]+rev(nums[j])=nums[j]+rev(nums[i])
+	// so nums[i]-rev(nums[i])==nums[j]-rev(nums[j])
 	cnt := make(map[int]int, len(nums))
 	for _, n := range nums {
 		cur := n - rev(n)

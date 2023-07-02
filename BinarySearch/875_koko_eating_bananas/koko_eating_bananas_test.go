@@ -6,27 +6,27 @@ import (
 
 func minEatingSpeed(piles []int, h int) int {
 	lo, hi := 1, 0
-	//init lo,hi
+	// init lo,hi
 	for _, pile := range piles {
 		if hi < pile {
 			hi = pile
 		}
 	}
 
-	for lo < hi { //O(logn)
+	for lo < hi { // O(logn)
 		mi := lo + (hi-lo)>>1
-		if possible(piles, mi, h) { //k值还不够小
+		if possible(piles, mi, h) { // k值还不够小
 			hi = mi
 		} else {
 			lo = mi + 1
 		}
 	}
-	return lo //O(n+nlogn)
+	return lo // O(n+nlogn)
 }
 func possible(piles []int, k, h int) bool {
-	time := 0 //O(n)
+	time := 0 // O(n)
 	for _, pile := range piles {
-		time += (pile-1)/k + 1 //向上取整
+		time += (pile-1)/k + 1 // 向上取整
 		if time > h {
 			return false
 		}

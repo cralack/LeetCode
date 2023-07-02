@@ -6,7 +6,7 @@ import (
 
 func oneEditAway(first string, second string) bool {
 	n, m := len(first), len(second)
-	if n < m { //keep len(first)>len(second)
+	if n < m { // keep len(first)>len(second)
 		return oneEditAway(second, first)
 	}
 	if n-m > 1 {

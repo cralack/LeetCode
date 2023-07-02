@@ -65,7 +65,7 @@ func fractionAddition(expression string) string {
 	return fra2str(ans)
 }
 func Test_fraction_addition_and_subtraction(t *testing.T) {
-	//t.Log(gcd(12, 52))
+	// t.Log(gcd(12, 52))
 	expression := "-1/2+1/2"
 	t.Log(fractionAddition(expression))
 	expression = "-1/2+1/2+1/3"

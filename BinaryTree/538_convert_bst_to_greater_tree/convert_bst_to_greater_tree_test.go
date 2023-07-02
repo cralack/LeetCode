@@ -51,7 +51,7 @@ func (root *TreeNode) Show() {
 	}
 }
 
-//中序遍历递归写法
+// 中序遍历递归写法
 func ConvertBST(root *TreeNode) *TreeNode {
 	sum := 0
 	var traverse func(root *TreeNode)
@@ -68,7 +68,7 @@ func ConvertBST(root *TreeNode) *TreeNode {
 	return root
 }
 
-//中序遍历迭代写法
+// 中序遍历迭代写法
 func ConverToBST(root *TreeNode) *TreeNode {
 	curMax := 0
 	stack := []*TreeNode{}

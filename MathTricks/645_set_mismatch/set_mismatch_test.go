@@ -5,7 +5,7 @@ import (
 )
 
 func findErrorNums(nums []int) []int {
-	//也可以使用hash表遍历两遍得出cnt
+	// 也可以使用hash表遍历两遍得出cnt
 	abs := func(a int) int {
 		if a < 0 {
 			return -a

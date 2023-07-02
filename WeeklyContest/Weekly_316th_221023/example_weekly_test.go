@@ -32,15 +32,15 @@ func time2idx(time string) (ans int) {
 func Test_1st(t *testing.T) {
 	event1 := []string{"01:15", "02:00"}
 	event2 := []string{"02:00", "03:00"}
-	t.Log(haveConflict(event1, event2)) //t
+	t.Log(haveConflict(event1, event2)) // t
 
 	event1 = []string{"01:00", "02:00"}
 	event2 = []string{"01:20", "03:00"}
-	t.Log(haveConflict(event1, event2)) //t
+	t.Log(haveConflict(event1, event2)) // t
 
 	event1 = []string{"10:00", "11:00"}
 	event2 = []string{"14:00", "15:00"}
-	t.Log(haveConflict(event1, event2)) //f
+	t.Log(haveConflict(event1, event2)) // f
 }
 
 /************ 2nd test************/
@@ -128,16 +128,16 @@ func Test_3rd(t *testing.T) {
 func makeSimilar(nums []int, target []int) (ans int64) {
 	sort.Ints(nums)
 	sort.Ints(target)
-	js := [2]int{} //奇偶组指针
+	js := [2]int{} // 奇偶组指针
 	for _, x := range nums {
-		p := x % 2 //x奇偶性
+		p := x % 2 // x奇偶性
 		for target[js[p]]%2 != p {
 			js[p]++
 		}
-		ans += int64(abs(x - target[js[p]])) //当前匹配组差值
+		ans += int64(abs(x - target[js[p]])) // 当前匹配组差值
 		js[p]++
 	}
-	return ans / 4 //每组操作+2,-2能获得4差值
+	return ans / 4 // 每组操作+2,-2能获得4差值
 }
 func Test_4th(t *testing.T) {
 	nums := []int{8, 12, 6}

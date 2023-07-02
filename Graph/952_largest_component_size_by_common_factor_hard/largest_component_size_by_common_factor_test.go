@@ -62,31 +62,31 @@ import (
 // func largestComponentSize(nums []int) (ans int) {
 // 	uf := Constructor(nums)
 
-// 	for _, num := range nums {
-// 		quotient := num
-// 		k := len(uf.primes)
-// 		for j := 0; j < k && uf.primes[j]*uf.primes[j] <= quotient; j++ {
-// 			if quotient%uf.primes[j] == 0 {
-// 				uf.union(num, uf.primes[j])
-// 			}
-// 			for quotient%uf.primes[j] == 0 {
-// 				quotient /= uf.primes[j]
-// 			}
-// 		}
-// 		if quotient > 1 {
-// 			uf.union(quotient, num)
-// 		}
-// 	}
-// 	cnt := make([]int, n)
-// 	ans = 0
-// 	for _, num := range nums {
-// 		cnt[uf.find(num)]++
-// 		if ans < cnt[uf.find(num)] {
-// 			ans = cnt[uf.find(num)]
-// 		}
-// 	}
-// 	return
-// }
+//		for _, num := range nums {
+//			quotient := num
+//			k := len(uf.primes)
+//			for j := 0; j < k && uf.primes[j]*uf.primes[j] <= quotient; j++ {
+//				if quotient%uf.primes[j] == 0 {
+//					uf.union(num, uf.primes[j])
+//				}
+//				for quotient%uf.primes[j] == 0 {
+//					quotient /= uf.primes[j]
+//				}
+//			}
+//			if quotient > 1 {
+//				uf.union(quotient, num)
+//			}
+//		}
+//		cnt := make([]int, n)
+//		ans = 0
+//		for _, num := range nums {
+//			cnt[uf.find(num)]++
+//			if ans < cnt[uf.find(num)] {
+//				ans = cnt[uf.find(num)]
+//			}
+//		}
+//		return
+//	}
 const mx int = 80
 
 var pf [mx + 1][]int32
@@ -131,7 +131,7 @@ func largestComponentSize(nums []int) int {
 	return int(ans)
 }
 func Test_largest_component_size_by_common_factor(t *testing.T) {
-	//t.Log(getPrimeArr(30))
+	// t.Log(getPrimeArr(30))
 	nums := []int{4, 6, 15, 35}
 	t.Log(largestComponentSize(nums))
 	nums = []int{20, 50, 9, 63}

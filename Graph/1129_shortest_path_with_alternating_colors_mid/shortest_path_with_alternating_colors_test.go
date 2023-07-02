@@ -3,12 +3,12 @@ package shortestpath
 import "testing"
 
 const (
-	red  = iota //0
-	blue        //1
+	red  = iota // 0
+	blue        // 1
 )
 
 func shortestAlternatingPaths(n int, redEdges [][]int, blueEdges [][]int) (ans []int) {
-	//build graph
+	// build graph
 	graph := make([][][]int, 2)
 	for i := range graph {
 		graph[i] = make([][]int, n)
@@ -21,18 +21,18 @@ func shortestAlternatingPaths(n int, redEdges [][]int, blueEdges [][]int) (ans [
 		from, to := bE[0], bE[1]
 		graph[blue][from] = append(graph[blue][from], to)
 	}
-	//init val
+	// init val
 	vis := make([][2]bool, n)
 	ans = make([]int, n)
 	for i := range ans {
 		ans[i] = -1
 	}
-	//define node & que
+	// define node & que
 	type node struct{ idx, color int }
 	que := []node{}
 	que = append(que, node{0, 0}, node{0, 1})
 	step := 0
-	//BFS
+	// BFS
 	for len(que) > 0 {
 		for k := len(que); k > 0; k-- {
 			cur := que[0]
@@ -42,7 +42,7 @@ func shortestAlternatingPaths(n int, redEdges [][]int, blueEdges [][]int) (ans [
 				ans[idx] = step
 			}
 			vis[idx][color] = true
-			color ^= 1 //颜色取反
+			color ^= 1 // 颜色取反
 			for _, next := range graph[color][idx] {
 				if !vis[next][color] {
 					que = append(que, node{next, color})

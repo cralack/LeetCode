@@ -4,7 +4,7 @@ import "testing"
 
 func nthMagicalNumber(n int, a int, b int) int {
 	const mod int = 1e9 + 7
-	//最小公倍数= (a*b)/gcd(a,b)
+	// 最小公倍数= (a*b)/gcd(a,b)
 	lcm := a * b / gcd(a, b)
 	left, right := min(a, b), min(a, b)*n
 	for left < right {

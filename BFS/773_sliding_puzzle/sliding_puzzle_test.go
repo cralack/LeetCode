@@ -23,20 +23,20 @@ func slidingPuzzle(board [][]int) int {
 	step := 0
 
 	for len(que1) > 0 && len(que2) > 0 {
-		if len(que1) > len(que2) { //优先扩展短队列
+		if len(que1) > len(que2) { // 优先扩展短队列
 			que1, que2 = que2, que1
-		} //tmp保存接下来要扩展的节点
+		} // tmp保存接下来要扩展的节点
 		tmp := make(map[string]bool, 0)
 
 		for cur := range que1 {
 			if visited[cur] {
 				continue
 			}
-			if que2[cur] { //两边有交集则直接返回答案
+			if que2[cur] { // 两边有交集则直接返回答案
 				return step
 			}
 			visited[cur] = true
-			//对cur节点进行扩展
+			// 对cur节点进行扩展
 			next := getNeighbor(cur)
 			for _, neighbor := range next {
 				if !visited[neighbor] {

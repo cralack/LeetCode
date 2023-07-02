@@ -21,9 +21,9 @@ func movesToChessboard(board [][]int) (ans int) {
 
 	bitRow := make(map[int]int, 0)
 	bitCol := make(map[int]int, 0)
-	//假设起始的行分别为row[0],row[1]
+	// 假设起始的行分别为row[0],row[1]
 	row := make([]int, 0, 2)
-	//起始的列分别为col[0],col[1]
+	// 起始的列分别为col[0],col[1]
 	col := make([]int, 0, 2)
 	for i := 0; i < n; i++ {
 		a, b := 0, 0
@@ -44,13 +44,13 @@ func movesToChessboard(board [][]int) (ans int) {
 			col = append(col, b)
 		}
 	}
-	//交换行和交换列均不会影响行的种类数量和列的种类数量
-	//则若起始棋盘的行/列种类数不为 22，必然无法构造出合法棋盘
+	// 交换行和交换列均不会影响行的种类数量和列的种类数量
+	// 则若起始棋盘的行/列种类数不为 22，必然无法构造出合法棋盘
 	if len(row) != 2 || len(col) != 2 {
 		return -1
 	}
 	mask := (1 << n) - 1 // n个1
-	//两者异或结果为必然为mask
+	// 两者异或结果为必然为mask
 	if row[0]^row[1] != mask || col[0]^col[1] != mask {
 		return -1
 	}

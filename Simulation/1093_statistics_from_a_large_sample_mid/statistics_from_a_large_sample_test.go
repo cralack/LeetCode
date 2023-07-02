@@ -22,7 +22,7 @@ func sampleStats(count []int) []float64 {
 		}
 	}
 
-	//find median
+	// find median
 	find := func(idx int) int {
 		for i, c := 0, 0; ; i++ {
 			c += count[i]

@@ -15,7 +15,7 @@ func numMatchingSubseq_v1(s string, words []string) (ans int) {
 		m, idx := len(word), -1
 		for i := 0; i < m && ok; i++ {
 			curDic := dic[word[i]]
-			//binSearch
+			// binSearch
 			left, right := 0, len(curDic)-1
 			var mid int
 			for left < right {
@@ -27,7 +27,7 @@ func numMatchingSubseq_v1(s string, words []string) (ans int) {
 				}
 			}
 			// 如果当前字符在原串不存在 || 当前下标满足递增要求，
-			//e.g. 当前匹配 "abc", a在原串index = 4, b在原串的index = 2 ，不符合题意
+			// e.g. 当前匹配 "abc", a在原串index = 4, b在原串的index = 2 ，不符合题意
 			if right < 0 || curDic[right] <= idx {
 				ok = false
 			} else { // 匹配正确，下标递增

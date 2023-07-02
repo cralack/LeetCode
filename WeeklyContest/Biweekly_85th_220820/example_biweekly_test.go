@@ -35,10 +35,10 @@ func minimumRecolors(blocks string, k int) int {
 func Test_minimum_recolors_to_get_k_consecutive_black_blocks(t *testing.T) {
 	blocks := "WBBWWBBWBW"
 	k := 7
-	t.Log(minimumRecolors(blocks, k)) //Output:3
+	t.Log(minimumRecolors(blocks, k)) // Output:3
 	blocks = "WBWBBBW"
 	k = 2
-	t.Log(minimumRecolors(blocks, k)) //Output:0
+	t.Log(minimumRecolors(blocks, k)) // Output:0
 }
 
 /************ 2nd test************/
@@ -52,9 +52,9 @@ func secondsToRemoveOccurrences(s string) int {
 }
 func Test_time_needed_to_rearrange_a_binary_string(t *testing.T) {
 	s := "0110101"
-	t.Log(secondsToRemoveOccurrences(s)) //Output:4
+	t.Log(secondsToRemoveOccurrences(s)) // Output:4
 	s = "11100"
-	t.Log(secondsToRemoveOccurrences(s)) //Output:0
+	t.Log(secondsToRemoveOccurrences(s)) // Output:0
 }
 
 /************ 3rd test************/

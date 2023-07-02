@@ -64,7 +64,7 @@ func TestListNode(t *testing.T) {
 	arr := [...]int{1, 4, 3, 2, 5, 2}
 	mylist := &List{}
 	mylist.Init(arr[:])
-	//mylist.Show()
+	// mylist.Show()
 	patition(mylist.Head, 3)
-	//mylist.Show()
+	// mylist.Show()
 }

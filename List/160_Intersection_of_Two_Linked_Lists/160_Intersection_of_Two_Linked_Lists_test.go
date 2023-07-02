@@ -30,7 +30,7 @@ func (head *ListNode) Show() {
 
 func getIntersectionNode(headA, headB *ListNode) *ListNode {
 	p1, p2 := headA, headB
-	//拼接后对齐
+	// 拼接后对齐
 	for p1 != p2 {
 		if p1 == nil {
 			p1 = headB

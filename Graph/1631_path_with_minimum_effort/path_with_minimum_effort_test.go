@@ -66,8 +66,8 @@ func minimumEffortPath(heights [][]int) int {
 			if m <= nx || nx < 0 || n <= ny || ny < 0 {
 				continue
 			}
-			//一整条路径耗费的体力值是路径上相邻格子之间
-			//高度差 绝对值 的 最大值 决定的。
+			// 一整条路径耗费的体力值是路径上相邻格子之间
+			// 高度差 绝对值 的 最大值 决定的。
 			nextCost := max(costTo[cur.x][cur.y],
 				abs(heights[cur.x][cur.y]-heights[nx][ny]))
 			if costTo[nx][ny] > nextCost {

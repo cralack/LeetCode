@@ -1,8 +1,9 @@
 package univaluedbinarytree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func isUnivalTree(root *TreeNode) bool {

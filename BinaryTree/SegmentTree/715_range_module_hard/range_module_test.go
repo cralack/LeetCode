@@ -87,7 +87,7 @@ func (node *SegmentNode) pushdown() {
 	node.Add = false
 }*/
 
-//红黑树解法
+// 红黑树解法
 type RangeModule struct {
 	*redblacktree.Tree
 }

@@ -1,11 +1,12 @@
 package randompickwithweight
 
 import (
-	"LeetCode/util/GetPrime"
 	"math/rand"
 	"sync"
 	"testing"
 	"time"
+
+	"LeetCode/util/GetPrime"
 )
 
 type Solution struct {
@@ -27,9 +28,9 @@ func (p *Solution) PickIndex() int {
 	if len(p.PreSum) == 0 {
 		return -1
 	}
-	//rand.Seed(int64(time.Now().Nanosecond()))
-	//在闭区间 [1, max] 中选择一个数字
-	//前缀和数组中 0 本质上是个占位符
+	// rand.Seed(int64(time.Now().Nanosecond()))
+	// 在闭区间 [1, max] 中选择一个数字
+	// 前缀和数组中 0 本质上是个占位符
 	tar := rand.Intn(p.Max) + 1
 	lo, hi := 0, len(p.PreSum)
 	for lo < hi {
@@ -52,7 +53,7 @@ func Test_random_pick_with_weight(t *testing.T) {
 	arr := GetPrime.PrimeArr(1e+5)
 	sol := Constructor(arr)
 	var waiter sync.WaitGroup
-	n := 15 //thread num
+	n := 15 // thread num
 
 	waiter = sync.WaitGroup{}
 	waiter.Add(n)

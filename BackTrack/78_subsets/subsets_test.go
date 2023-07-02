@@ -8,7 +8,7 @@ func subsets(nums []int) (res [][]int) {
 	path := make([]int, 0)
 	var dfs func(start int)
 	dfs = func(start int) {
-		//前序遍历
+		// 前序遍历
 		tmp := make([]int, len(path))
 		copy(tmp, path)
 		res = append(res, tmp)

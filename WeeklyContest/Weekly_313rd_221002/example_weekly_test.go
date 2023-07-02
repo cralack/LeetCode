@@ -7,7 +7,7 @@ import (
 
 /************ 1st test************/
 func commonFactors(a int, b int) (ans int) {
-	if a < b { //keep a>b
+	if a < b { // keep a>b
 		return commonFactors(b, a)
 	}
 	for i := 1; i <= b; i++ {
@@ -29,9 +29,9 @@ func maxSum(grid [][]int) (ans int) {
 	m, n := len(grid), len(grid[0])
 	for i := 1; i < m-1; i++ {
 		for j := 1; j < n-1; j++ {
-			sum := grid[i][j]                                     //core
-			sum += grid[i-1][j-1] + grid[i-1][j] + grid[i-1][j+1] //top line
-			sum += grid[i+1][j-1] + grid[i+1][j] + grid[i+1][j+1] //botom line
+			sum := grid[i][j]                                     // core
+			sum += grid[i-1][j-1] + grid[i-1][j] + grid[i-1][j+1] // top line
+			sum += grid[i+1][j-1] + grid[i+1][j] + grid[i+1][j+1] // botom line
 			if ans < sum {
 				ans = sum
 			}

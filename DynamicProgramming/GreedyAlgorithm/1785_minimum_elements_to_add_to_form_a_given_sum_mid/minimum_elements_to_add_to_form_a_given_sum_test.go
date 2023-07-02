@@ -11,7 +11,7 @@ func minElements(nums []int, limit int, goal int) (ans int) {
 	if tar < 0 {
 		tar = -tar
 	}
-	//向上取整
+	// 向上取整
 	return (tar + limit - 1) / limit
 }
 

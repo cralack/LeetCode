@@ -81,11 +81,11 @@ func (lfu *LFUCache) Get(key int) int {
 }
 
 func (lfu *LFUCache) Put(key int, value int) {
-	//already exist
+	// already exist
 	if v, ok := lfu.KeyToNode[key]; ok {
 		v.Val = value
 		lfu.IncreaseFreq(v)
-		//del minfreq node
+		// del minfreq node
 	} else if lfu.Cap == 0 {
 		return
 	} else {

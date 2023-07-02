@@ -1,8 +1,9 @@
 package twosumivinputisabst
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -41,7 +42,7 @@ func findTarget_BFS(root *TreeNode, k int) bool {
 	vis := make(map[int]bool, 0)
 	que := []*TreeNode{root}
 	for len(que) > 0 {
-		//pop
+		// pop
 		cur := que[0]
 		que = que[1:]
 		if _, ok := vis[k-cur.Val]; ok {

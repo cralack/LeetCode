@@ -10,9 +10,9 @@ func canFormArray(arr []int, pieces [][]int) bool {
 	valid, n := 0, len(arr)
 	for _, piece := range pieces {
 		for i := 0; i < len(piece); i++ {
-			//piece第一个元素有对应的idx
+			// piece第一个元素有对应的idx
 			if _, has := idx[piece[i]]; has && i == 0 ||
-				//piece后续的元素能idx+1
+				// piece后续的元素能idx+1
 				i > 0 && (idx[piece[i]] == idx[piece[i-1]]+1) {
 				valid++
 			} else {

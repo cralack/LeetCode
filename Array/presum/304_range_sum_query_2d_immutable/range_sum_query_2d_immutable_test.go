@@ -9,7 +9,7 @@ type NumMatrix struct {
 }
 
 func Constructor(matrix [][]int) NumMatrix {
-	//构造 一次O(mn)
+	// 构造 一次O(mn)
 	row, col := len(matrix), len(matrix[0])
 	dp := make([][]int, row+1)
 	dp[0] = make([]int, col+1)
@@ -17,7 +17,7 @@ func Constructor(matrix [][]int) NumMatrix {
 	for i, nums := range matrix {
 		dp[i+1] = make([]int, col+1)
 		for j, v := range nums {
-			//上左两排base,dp[i+1][j+1]=上+左-左上+本
+			// 上左两排base,dp[i+1][j+1]=上+左-左上+本
 			dp[i+1][j+1] = dp[i][j+1] + dp[i+1][j] - dp[i][j] + v
 		}
 	}
@@ -25,7 +25,7 @@ func Constructor(matrix [][]int) NumMatrix {
 }
 
 func (p *NumMatrix) SumRegion(row1 int, col1 int, row2 int, col2 int) int {
-	//O(1)
+	// O(1)
 	res := p.DPtable[row2+1][col2+1] - p.DPtable[row2+1][col1] -
 		p.DPtable[row1][col2+1] + p.DPtable[row1][col1]
 	return res

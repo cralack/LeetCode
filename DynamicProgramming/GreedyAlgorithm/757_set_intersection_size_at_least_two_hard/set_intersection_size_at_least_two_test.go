@@ -18,7 +18,7 @@ func intersectionSizeTwo(intervals [][]int) (ans int) {
 		// 如果区间左端点也在当前最大元素的右边
 		// 说明需要从该区间添加两个新点(可以理解为递归，前面的不再起作用)
 		if interval[0] > b {
-			//贪心取最大的两个点
+			// 贪心取最大的两个点
 			a = interval[1] - 1
 			b = interval[1]
 			ans += 2

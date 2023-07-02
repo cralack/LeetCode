@@ -74,5 +74,5 @@ func Test_flatten_binary_tree_to_linked_list(t *testing.T) {
 	root := Init(arr)
 	root.Show()
 	flatten(root)
-	//root.Show()
+	// root.Show()
 }

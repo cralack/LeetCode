@@ -30,14 +30,14 @@ func strStr_2D_DP(txt string, pat string) int {
 	return -1
 }
 func strStr_kmp(txt, pat string) int {
-	next := buildNext(pat) //构造next表
-	n, i := len(txt), 0    //文本串指针
-	m, j := len(pat), 0    //模式串指针
-	for j < m && i < n {   //自左向右，逐个比对
-		if 0 > j || txt[i] == pat[j] { //若匹配
-			i++ //则携手共进
+	next := buildNext(pat) // 构造next表
+	n, i := len(txt), 0    // 文本串指针
+	m, j := len(pat), 0    // 模式串指针
+	for j < m && i < n {   // 自左向右，逐个比对
+		if 0 > j || txt[i] == pat[j] { // 若匹配
+			i++ // 则携手共进
 			j++
-		} else { //否则,pat右移,txt不回退
+		} else { // 否则,pat右移,txt不回退
 			j = next[j]
 		}
 	}
@@ -47,10 +47,10 @@ func strStr_kmp(txt, pat string) int {
 	return -1
 }
 func buildNext(pat string) []int {
-	m, j := len(pat), 0    //主串指针
-	next := make([]int, m) //next[]表
+	m, j := len(pat), 0    // 主串指针
+	next := make([]int, m) // next[]表
 	next[0] = -1
-	t := -1 //模式串指针(p[-1])通配符
+	t := -1 // 模式串指针(p[-1])通配符
 	for j < m-1 {
 		if 0 > t || pat[j] == pat[t] {
 			j++

@@ -1,8 +1,9 @@
 package linkedlistcomponents
 
 import (
-	. "LeetCode/util/MyList"
 	"testing"
+
+	. "LeetCode/util/MyList"
 )
 
 /**

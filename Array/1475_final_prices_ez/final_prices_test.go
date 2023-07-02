@@ -1,9 +1,10 @@
 package finalpricesez
 
 import (
-	"LeetCode/util/GetPrime"
 	"math/rand"
 	"testing"
+
+	"LeetCode/util/GetPrime"
 )
 
 func finalPrices(prices []int) []int {

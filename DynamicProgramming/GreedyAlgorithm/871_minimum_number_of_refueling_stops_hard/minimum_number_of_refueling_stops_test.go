@@ -44,7 +44,7 @@ func minRefuelStops_DP(target int, startFuel int, stations [][]int) int {
 		}
 	}*/
 
-	//一维空间压缩
+	// 一维空间压缩
 	dp := make([]int, n+1)
 	dp[0] = startFuel
 	for i := 1; i <= n; i++ {
@@ -64,7 +64,7 @@ func minRefuelStops_DP(target int, startFuel int, stations [][]int) int {
 	return -1
 }
 
-//greedy algorithm + priority queue
+// greedy algorithm + priority queue
 func minRefuelStops_greedy(target int, startFuel int, stations [][]int) (ans int) {
 	pq := &IntHeap{}
 	for cur, idx, fuel := 0, 0, startFuel; cur < target; {
@@ -84,7 +84,7 @@ func minRefuelStops_greedy(target int, startFuel int, stations [][]int) (ans int
 	return
 }
 
-//PriorityQueue实现
+// PriorityQueue实现
 type IntHeap []int
 
 func (h IntHeap) Len() int           { return len(h) }
@@ -102,7 +102,7 @@ func (h *IntHeap) Push(x interface{}) {
 }
 
 func minRefuelStops(target int, startFuel int, stations [][]int) int {
-	//按油量多少降序排列
+	// 按油量多少降序排列
 	sort.Slice(stations, func(i, j int) bool {
 		if stations[i][1] == stations[j][1] {
 			return stations[i][0] < stations[j][0]
@@ -110,9 +110,9 @@ func minRefuelStops(target int, startFuel int, stations [][]int) int {
 		return stations[i][1] > stations[j][1]
 	})
 	n, res := len(stations), 0
-	//遍历油站
+	// 遍历油站
 	for i := 0; i < n && startFuel < target; i++ {
-		//油站未被使用(标0)&&当前油量足够到达
+		// 油站未被使用(标0)&&当前油量足够到达
 		if 0 < stations[i][0] && stations[i][0] <= startFuel {
 			startFuel += stations[i][1]
 			stations[i][0] = 0
@@ -121,7 +121,7 @@ func minRefuelStops(target int, startFuel int, stations [][]int) int {
 		}
 	}
 	if startFuel < target {
-		//用光所有汽油后
+		// 用光所有汽油后
 		return -1
 	}
 	return res

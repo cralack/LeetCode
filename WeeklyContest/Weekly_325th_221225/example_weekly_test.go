@@ -11,7 +11,7 @@ func closetTarget(words []string, target string, startIndex int) (ans int) {
 	ans = n
 	for i, w := range words {
 		if w == target {
-			//用正向反向的距离更新ans
+			// 用正向反向的距离更新ans
 			ans = min(ans, min((startIndex+n-i)%n, (i-startIndex+n)%n))
 		}
 	}
@@ -50,7 +50,7 @@ func Test_1st(t *testing.T) {
 func takeCharacters(s string, k int) (ans int) {
 	n := len(s)
 	c, j := [3]int{}, n
-	//从右往左取到第j个字符
+	// 从右往左取到第j个字符
 	for c[0] < k || c[1] < k || c[2] < k {
 		if j == 0 {
 			return -1
@@ -60,7 +60,7 @@ func takeCharacters(s string, k int) (ans int) {
 	}
 	// 左侧没有取字符
 	ans = n - j
-	//枚举从左侧取到第i个字符
+	// 枚举从左侧取到第i个字符
 	for i := 0; i < n && j < n; i++ {
 		c[s[i]-'a']++
 		// 维护 j 的最大下标
@@ -100,13 +100,13 @@ func maximumTastiness(price []int, k int) int {
 				pre = cur
 			}
 		}
-		//不满足条件 diff取大了
+		// 不满足条件 diff取大了
 		if cnt < k {
 			right = diff
-		} else { //diff取小了
+		} else { // diff取小了
 			left = diff + 1
 		}
-	} //二分出不满足条件的最小值
+	} // 二分出不满足条件的最小值
 	return left - 1
 }
 func Test_3rd(t *testing.T) {

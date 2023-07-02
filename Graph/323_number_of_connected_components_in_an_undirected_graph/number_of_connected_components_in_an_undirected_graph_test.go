@@ -5,17 +5,17 @@ import (
 )
 
 func countComponents(n int, edges [][]int) int {
-	//节点 x 的节点是 parent[x]
+	// 节点 x 的节点是 parent[x]
 	parent := make([]int, n)
 	cnt, size := n, make([]int, n)
 	for i := range parent {
-		//父节点指针初始指向自己
+		// 父节点指针初始指向自己
 		parent[i] = i
 		size[i] = 1
 	}
 	find := func(a int) int {
 		for parent[a] != a {
-			//每次向树根遍历的同时，顺手将树高缩短了
+			// 每次向树根遍历的同时，顺手将树高缩短了
 			parent[a] = parent[parent[a]]
 			a = parent[a]
 		}
@@ -42,8 +42,8 @@ func countComponents(n int, edges [][]int) int {
 	return cnt
 }
 func Test_number_of_connected_components_in_an_undirected_graph(t *testing.T) {
-	n, edges := 5, [][]int{{0, 1}, {1, 2}, {2, 3}, {3, 4}} //ans=1
+	n, edges := 5, [][]int{{0, 1}, {1, 2}, {2, 3}, {3, 4}} // ans=1
 	t.Log(countComponents(n, edges))
-	n, edges = 5, [][]int{{0, 1}, {1, 2}, {3, 4}} //ans=2
+	n, edges = 5, [][]int{{0, 1}, {1, 2}, {3, 4}} // ans=2
 	t.Log(countComponents(n, edges))
 }

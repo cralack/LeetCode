@@ -20,9 +20,9 @@ func buble_sort_basic(arr []int) []int {
 
 // 提前结束优化
 func buble_sort_v1(arr []int) []int {
-	//n-1轮次执行，当前n-1个元素排好后，最后一个元素无需执行
+	// n-1轮次执行，当前n-1个元素排好后，最后一个元素无需执行
 	for i := 0; i < len(arr)-1; i++ {
-		//本轮执行是否有交换
+		// 本轮执行是否有交换
 		swaped := false
 		// 每轮循环，通过依次向右比较两个数，将本轮循环中最大的数放到最右
 		for j := 1; j < len(arr)-i; j++ {
@@ -53,7 +53,7 @@ func buble_sort_v2(arr []int) []int {
 				curSwappedIdx = i
 			}
 		}
-		//若当前轮次未发生交换，则lastSwappedIdx=0，则在下一次while判断时退出
+		// 若当前轮次未发生交换，则lastSwappedIdx=0，则在下一次while判断时退出
 		lastSwappedIdx = curSwappedIdx
 	}
 	return arr

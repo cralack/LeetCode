@@ -23,7 +23,7 @@ func DFS(i, j int, board [][]byte) bool {
 		return DFS(i, j+1, board)
 	}
 	for n := byte('1'); n <= '9'; n++ {
-		//跳过非法数字
+		// 跳过非法数字
 		if !isValid(i, j, n, board) {
 			continue
 		}
@@ -38,15 +38,15 @@ func DFS(i, j int, board [][]byte) bool {
 }
 func isValid(row, col int, n byte, board [][]byte) bool {
 	for i := 0; i < 9; i++ {
-		//check row
+		// check row
 		if board[row][i] == n {
 			return false
 		}
-		//check col
+		// check col
 		if board[i][col] == n {
 			return false
 		}
-		//check nine square
+		// check nine square
 		if board[row/3*3+i/3][col/3*3+i%3] == n {
 			return false
 		}
@@ -77,7 +77,7 @@ func Test_sudoku_solver(t *testing.T) {
 	solveSudoku(board)
 	show(board)
 
-	//empty board for sudoku cheat
+	// empty board for sudoku cheat
 	// board := [][]byte{
 	// 	//1    2    3    4    5    6    7    8    9
 	// 	{'.', '.', '.', '.', '.', '.', '.', '.', '.'}, //1

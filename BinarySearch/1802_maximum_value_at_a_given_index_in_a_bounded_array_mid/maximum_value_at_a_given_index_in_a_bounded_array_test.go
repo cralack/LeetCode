@@ -6,14 +6,14 @@ import (
 )
 
 func maxValue(n int, index int, maxSum int) int {
-	//假设山顶nums[index]==x
-	//在index左侧的数组元素从x-1每次递减1,最小到1
-	//在index及右侧的数组元素从x也是每次递减1,最小到1
+	// 假设山顶nums[index]==x
+	// 在index左侧的数组元素从x-1每次递减1,最小到1
+	// 在index及右侧的数组元素从x也是每次递减1,最小到1
 	sum := func(x, cnt int) int {
 		if x >= cnt {
-			//左侧元素之和
+			// 左侧元素之和
 			return (x + x - cnt + 1) * cnt / 2
-		} //右侧元素之和
+		} // 右侧元素之和
 		return (x+1)*x/2 + cnt - x
 	}
 	return sort.Search(maxSum, func(mid int) bool {

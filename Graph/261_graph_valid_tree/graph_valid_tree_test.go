@@ -39,13 +39,13 @@ func validTree(edges [][]int, n int) bool {
 	for _, edge := range edges {
 		u, v := edge[0], edge[1]
 		if connected(u, v) {
-			//对于添加的这条边 如果该边的两个节点本来就在同一连通分量里
+			// 对于添加的这条边 如果该边的两个节点本来就在同一连通分量里
 			// 那么添加这条边会产生环 直接false
 			return false
 		}
 		union(u, v)
 	}
-	//连通图数量>1则不成独树
+	// 连通图数量>1则不成独树
 	return cnt == 1
 }
 func Test_graph_valid_tree(t *testing.T) {

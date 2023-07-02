@@ -1,8 +1,9 @@
 package linkedlistcycle
 
 import (
-	. "LeetCode/util/MyList"
 	"testing"
+
+	. "LeetCode/util/MyList"
 )
 
 func hasCycle(head *ListNode) bool {

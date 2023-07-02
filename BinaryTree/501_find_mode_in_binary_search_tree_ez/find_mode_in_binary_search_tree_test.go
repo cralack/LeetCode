@@ -1,8 +1,9 @@
 package findmodeinbinarysearchtree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -18,13 +19,13 @@ func findMode(root *TreeNode) (res []int) {
 	base := 0
 	var dfs func(*TreeNode)
 	dfs = func(cur *TreeNode) {
-		//base case
+		// base case
 		if cur == nil {
 			return
 		}
 
 		dfs(cur.Left)
-		//inorder
+		// inorder
 		if cur.Val == base {
 			cnt++
 		} else {
@@ -42,7 +43,7 @@ func findMode(root *TreeNode) (res []int) {
 	}
 
 	dfs(root)
-	return //O(n)
+	return // O(n)
 }
 
 func findMode_v2(root *TreeNode) (res []int) {

@@ -4,16 +4,16 @@ import (
 	"testing"
 )
 
-//dfs
+// dfs
 func canFinish(numCourses int, prerequisites [][]int) bool {
-	//raw data to graph
+	// raw data to graph
 	graph := func() [][]int {
 		graph := make([][]int, numCourses)
 		for i := 0; i < numCourses; i++ {
 			graph[i] = []int{}
 		}
 		for _, edge := range prerequisites {
-			//修完课程 from 才能修课程 to
+			// 修完课程 from 才能修课程 to
 			from, to := edge[1], edge[0]
 			graph[from] = append(graph[from], to)
 		}
@@ -22,7 +22,7 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 	visited := make([]bool, numCourses)
 	onPath := make([]bool, numCourses)
 	hasCycle := false
-	//DFS 遍历
+	// DFS 遍历
 	var traverse func(s int)
 	traverse = func(s int) {
 		if onPath[s] {
@@ -52,7 +52,7 @@ func canFinish_BFS(numCourses int, prerequisites [][]int) bool {
 			graph[i] = []int{}
 		}
 		for _, edge := range prerequisites {
-			//修完课程 from 才能修课程 to
+			// 修完课程 from 才能修课程 to
 			from, to := edge[1], edge[0]
 			graph[from] = append(graph[from], to)
 		}
@@ -61,7 +61,7 @@ func canFinish_BFS(numCourses int, prerequisites [][]int) bool {
 	indgree := make([]int, numCourses)
 	for _, edge := range prerequisites {
 		to := edge[0]
-		//节点 to 的入度加一
+		// 节点 to 的入度加一
 		indgree[to]++
 	}
 	que := []int{}

@@ -14,13 +14,13 @@ func Solve(board [][]byte) {
 	parent := make([]int, row*col+1)
 	cnt, size := row*col, make([]int, row*col+1)
 	for i := range parent {
-		//父节点指针初始指向自己
+		// 父节点指针初始指向自己
 		parent[i] = i
 		size[i] = 1
 	}
 	find := func(a int) int {
 		for parent[a] != a {
-			//每次向树根遍历的同时，顺手将树高缩短了
+			// 每次向树根遍历的同时，顺手将树高缩短了
 			parent[a] = parent[parent[a]]
 			a = parent[a]
 		}
@@ -65,8 +65,8 @@ func Solve(board [][]byte) {
 	}
 	// 方向数组 d 是上下左右搜索的常用手法
 	d := [][]int{{1, 0}, {0, 1}, {0, -1}, {-1, 0}}
-	for i := 1; i < row-1; i++ { //刨掉首列末列
-		for j := 1; j < col-1; j++ { //首行末行
+	for i := 1; i < row-1; i++ { // 刨掉首列末列
+		for j := 1; j < col-1; j++ { // 首行末行
 			if board[i][j] == 'O' {
 				for k := 0; k < 4; k++ {
 					x, y := i+d[k][0], j+d[k][1]

@@ -1,8 +1,9 @@
 package addonerowtotreemid
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

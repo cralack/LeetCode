@@ -1,10 +1,11 @@
 package serializeanddeserializebst
 
 import (
-	. "LeetCode/util/BinTree"
 	"strconv"
 	"strings"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

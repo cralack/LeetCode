@@ -22,14 +22,14 @@ func Constructor(rects [][]int) Solution {
 
 func (s *Solution) Pick() []int {
 	k := rand.Intn(s.sum[len(s.sum)-1])
-	//在排序的整数切片中搜索 k 并返回 Search 指定的索引。
+	// 在排序的整数切片中搜索 k 并返回 Search 指定的索引。
 	rectIndex := sort.SearchInts(s.sum, k+1) - 1
 	r := s.rects[rectIndex]
 	a, b, y := r[0], r[1], r[3]
-	//随机点数对应当前rect中第n点
+	// 随机点数对应当前rect中第n点
 	// 当前rect中每行有y-b+1列
-	da := (k - s.sum[rectIndex]) / (y - b + 1) //x在当前rect中第da行
-	db := (k - s.sum[rectIndex]) % (y - b + 1) //x在当前rect中第db列
+	da := (k - s.sum[rectIndex]) / (y - b + 1) // x在当前rect中第da行
+	db := (k - s.sum[rectIndex]) % (y - b + 1) // x在当前rect中第db列
 	return []int{a + da, b + db}
 }
 

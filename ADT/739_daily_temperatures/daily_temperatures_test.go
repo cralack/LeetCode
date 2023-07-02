@@ -27,7 +27,7 @@ func (s *Stack) Peek() int {
 func dailyTemperatures(temperatures []int) []int {
 	n := len(temperatures)
 	res := make([]int, n)
-	//stack存放索引
+	// stack存放索引
 	var s Stack
 	for i := n - 1; i >= 0; i-- {
 		for !s.Empty() && temperatures[s.Peek()] <= temperatures[i] {

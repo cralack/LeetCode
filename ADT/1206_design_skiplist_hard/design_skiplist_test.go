@@ -20,22 +20,22 @@ func Constructor() Skiplist {
 }
 
 func (this *Skiplist) Find(target int, Prevs []*SkipNode) {
-	//找出target在跳表中每一层的Prev节点并储存于Prevs数组中
+	// 找出target在跳表中每一层的Prev节点并储存于Prevs数组中
 	cur := this.Head
-	for i := this.Level - 1; i >= 0; i-- { //向下遍历
-		for cur.Next[i] != nil && cur.Next[i].Val < target { //严格<target
+	for i := this.Level - 1; i >= 0; i-- { // 向下遍历
+		for cur.Next[i] != nil && cur.Next[i].Val < target { // 严格<target
 			cur = cur.Next[i]
 		}
 		Prevs[i] = cur
-	} //查找效率 O(logN)
+	} // 查找效率 O(logN)
 }
 
 func (this *Skiplist) Search(target int) bool {
 	Prevs := make([]*SkipNode, this.Level)
 	this.Find(target, Prevs)
 
-	//先判最底层 <target 的节点后继不为nil
-	//后判 val==target
+	// 先判最底层 <target 的节点后继不为nil
+	// 后判 val==target
 	return Prevs[0].Next[0] != nil && Prevs[0].Next[0].Val == target
 }
 
@@ -44,10 +44,10 @@ func (this *Skiplist) Add(target int) {
 	this.Find(target, Prevs)
 
 	node := &SkipNode{Val: target, Next: make([]*SkipNode, this.Level)}
-	for i := 0; i < this.Level; i++ { //由底向上
-		node.Next[i] = Prevs[i].Next[i] //连接target节点与跳表每层
+	for i := 0; i < this.Level; i++ { // 由底向上
+		node.Next[i] = Prevs[i].Next[i] // 连接target节点与跳表每层
 		Prevs[i].Next[i] = node
-		if rand.Intn(2) == 0 { //(1/2)^level概率被提取到上层
+		if rand.Intn(2) == 0 { // (1/2)^level概率被提取到上层
 			break
 		}
 	}
@@ -57,12 +57,12 @@ func (this *Skiplist) Erase(target int) bool {
 	Prevs := make([]*SkipNode, this.Level)
 	this.Find(target, Prevs)
 
-	node := Prevs[0].Next[0]               //待删节点
-	if node == nil || node.Val != target { //判空
+	node := Prevs[0].Next[0]               // 待删节点
+	if node == nil || node.Val != target { // 判空
 		return false
 	}
 	for i := 0; i < this.Level && Prevs[i].Next[i] == node; i++ {
-		Prevs[i].Next[i] = node.Next[i] //由下至上逐层断链
+		Prevs[i].Next[i] = node.Next[i] // 由下至上逐层断链
 	}
 	return true
 }

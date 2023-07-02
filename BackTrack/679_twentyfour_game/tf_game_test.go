@@ -14,12 +14,12 @@ func permuteUnique(cards []int) (res [][]int) {
 	used := make([]bool, len(cards))
 	var dfs func()
 	dfs = func() {
-		//base case
+		// base case
 		if len(path) == len(cards) {
 			tmp := make([]int, len(cards))
 			copy(tmp, path)
 			res = append(res, tmp)
-			//fmt.Println(tmp)
+			// fmt.Println(tmp)
 			return
 		}
 		for i := 0; i < len(cards); i++ {
@@ -50,7 +50,7 @@ func judgePoint24(cards []int) bool {
 	dfs = func(num int, nums []int) {
 		if num == 24 && len(path) == 7 {
 
-			//fmt.Println(string(path))
+			// fmt.Println(string(path))
 
 			flag = true
 			return

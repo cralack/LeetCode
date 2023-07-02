@@ -3,10 +3,10 @@ package consecutivenumberssum
 import "testing"
 
 func consecutiveNumbersSum_slidewindow(n int) int {
-	//TLE
+	// TLE
 	sum, cnt := 0, 0
 	left, right := 1, 1
-	for right <= n+1 { //sum=[left,right)
+	for right <= n+1 { // sum=[left,right)
 		if sum < n {
 			sum += right
 			right++

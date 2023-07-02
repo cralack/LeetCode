@@ -3,8 +3,8 @@ package robotboundedincircle
 import "testing"
 
 func isRobotBounded(instructions string) bool {
-	//机器人回到了原点，或者机器人的方向与初始方向不同，那么机器人一定会进入循环
-	dir := [][]int{{0, 1}, {1, 0}, {0, -1}, {-1, 0}} //N,E,S,W
+	// 机器人回到了原点，或者机器人的方向与初始方向不同，那么机器人一定会进入循环
+	dir := [][]int{{0, 1}, {1, 0}, {0, -1}, {-1, 0}} // N,E,S,W
 	d := 0
 	x, y := 0, 0
 	for _, cmd := range instructions {

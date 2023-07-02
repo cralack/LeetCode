@@ -66,8 +66,8 @@ func TestAddTwoNumbers(t *testing.T) {
 	arr2 := []int{9, 9, 9, 9}
 	l1.Init(arr1)
 	l2.Init(arr2)
-	//l1.Show()
-	//l2.Show()
+	// l1.Show()
+	// l2.Show()
 	ret := AddTwoNumbers(l1, l2)
 	ret.Show()
 }

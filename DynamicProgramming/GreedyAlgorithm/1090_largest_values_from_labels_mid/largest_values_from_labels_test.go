@@ -6,7 +6,7 @@ import (
 )
 
 func largestValsFromLabels(values []int, labels []int, numWanted int, useLimit int) (ans int) {
-	//zip
+	// zip
 	type pair struct {
 		val, lab int
 	}
@@ -14,11 +14,11 @@ func largestValsFromLabels(values []int, labels []int, numWanted int, useLimit i
 	for i := range values {
 		pairs[i] = pair{values[i], labels[i]}
 	}
-	//sort↘
+	// sort↘
 	sort.Slice(pairs, func(i, j int) bool {
 		return pairs[i].val > pairs[j].val
 	})
-	//greed
+	// greed
 	dic := make(map[int]int)
 	for i := 0; i < len(values); i++ {
 		if c := dic[pairs[i].lab]; c < useLimit && numWanted > 0 {

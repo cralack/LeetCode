@@ -33,7 +33,7 @@ func dfs(grid [][]int, i, j int, dir byte, buf *bytes.Buffer) {
 	tmp := []byte{}
 	tmp = append(tmp, dir, ',')
 	buf.WriteString(string(tmp))
-	//fmt.Printf("%x\n", unsafe.Pointer(&buf))
+	// fmt.Printf("%x\n", unsafe.Pointer(&buf))
 
 	dfs(grid, i+1, j, 'd', buf)
 	dfs(grid, i-1, j, 'u', buf)
@@ -43,7 +43,7 @@ func dfs(grid [][]int, i, j int, dir byte, buf *bytes.Buffer) {
 	tmp2 := []byte{}
 	tmp2 = append(tmp2, '_', dir, ',')
 	buf.WriteString(string(tmp2))
-	//fmt.Printf("%x\n", unsafe.Pointer(&buf))
+	// fmt.Printf("%x\n", unsafe.Pointer(&buf))
 }
 
 func TestNumberOfDistinctIslands(t *testing.T) {

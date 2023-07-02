@@ -6,12 +6,12 @@ import (
 )
 
 func distanceLimitedPathsExist(n int, edgeList [][]int, queries [][]int) (ans []bool) {
-	//所有边按照边权从小到大排序
+	// 所有边按照边权从小到大排序
 	sort.Slice(edgeList, func(i, j int) bool {
 		return edgeList[i][2] < edgeList[j][2]
 	})
 
-	//并查集框架
+	// 并查集框架
 	parent := make([]int, n)
 	for i := 0; i < n; i++ {
 		parent[i] = i
@@ -32,7 +32,7 @@ func distanceLimitedPathsExist(n int, edgeList [][]int, queries [][]int) (ans []
 
 	m := len(queries)
 	ans = make([]bool, m)
-	//将边权排序后对应ans的序列
+	// 将边权排序后对应ans的序列
 	qid := make([]int, m)
 	for i := range qid {
 		qid[i] = i
@@ -42,9 +42,9 @@ func distanceLimitedPathsExist(n int, edgeList [][]int, queries [][]int) (ans []
 	})
 	j := 0
 	for _, i := range qid {
-		//对于每个查询,利用并查集的查询操作判断两点是否连通
+		// 对于每个查询,利用并查集的查询操作判断两点是否连通
 		qa, qb, limit := queries[i][0], queries[i][1], queries[i][2]
-		//将边权严格小于 limit 的所有边加入并查集
+		// 将边权严格小于 limit 的所有边加入并查集
 		for j < len(edgeList) && edgeList[j][2] < limit {
 			u, v := edgeList[j][0], edgeList[j][1]
 			union(u, v)

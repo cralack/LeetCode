@@ -1,8 +1,9 @@
 package deepestleavessummid
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -17,10 +18,10 @@ func deepestLeavesSum(root *TreeNode) int {
 	sum, maxDep := 0, 0
 	var dfs func(*TreeNode, int)
 	dfs = func(cur *TreeNode, dep int) {
-		if cur == nil { //base case
+		if cur == nil { // base case
 			return
 		}
-		if maxDep < dep { //抵达更深一层
+		if maxDep < dep { // 抵达更深一层
 			maxDep = dep
 			sum = cur.Val
 		} else if maxDep == dep {

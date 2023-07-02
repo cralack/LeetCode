@@ -46,7 +46,7 @@ func Test_2nd(t *testing.T) {
 	n = 1e9
 	t.Log(monkeyMove(n))
 	n = 500000003
-	t.Log(monkeyMove(n)) //1,000,000,006
+	t.Log(monkeyMove(n)) // 1,000,000,006
 }
 
 /************ 3rd test************/
@@ -65,18 +65,18 @@ func min(a, b int) int {
 }
 
 func putMarbles(wt []int, k int) (ans int64) {
-	//将序列分成k段，也就是说要找到(k−1)个分割点
-	//每个分割点的价格是分割点左右元素之和
+	// 将序列分成k段，也就是说要找到(k−1)个分割点
+	// 每个分割点的价格是分割点左右元素之和
 	for i, w := range wt[1:] {
 		wt[i] += w
 	}
 	wt = wt[:len(wt)-1]
 	sort.Ints(wt)
-	//后k个大数
+	// 后k个大数
 	for _, w := range wt[len(wt)-k+1:] {
 		ans += int64(w)
 	}
-	//前k-1个小数
+	// 前k-1个小数
 	for _, w := range wt[:k-1] {
 		ans -= int64(w)
 	}

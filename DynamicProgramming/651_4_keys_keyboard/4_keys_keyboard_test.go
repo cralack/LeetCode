@@ -16,23 +16,23 @@ func maxA_rec(n int) int {
 
 	var dp func(n, a_num, copy int) int
 	dp = func(n, a_num, copy int) int {
-		//base case
+		// base case
 		if n <= 0 {
 			return a_num
-		} //memo
+		} // memo
 		if val, ok := memo[n][a_num][copy]; ok {
 			return val
 		}
-		//if memo need create
+		// if memo need create
 		if _, ok := memo[n]; !ok {
 			memo[n] = make(map[int]map[int]int)
 		}
 		if _, ok := memo[n][a_num]; !ok {
 			memo[n][a_num] = make(map[int]int)
 		}
-		memo[n][a_num][copy] = max(dp(n-1, a_num+1, copy), //A
-			dp(n-1, a_num+copy, copy), //C-V
-			dp(n-2, a_num, a_num))     //C-A C-C
+		memo[n][a_num][copy] = max(dp(n-1, a_num+1, copy), // A
+			dp(n-1, a_num+copy, copy), // C-V
+			dp(n-2, a_num, a_num))     // C-A C-C
 		return memo[n][a_num][copy]
 	}
 	res := dp(n, 0, 0)
@@ -48,7 +48,7 @@ func maxA_ite(n int) int {
 	}
 	dp := make([]int, n+1)
 	for i := 1; i <= n; i++ {
-		//按a
+		// 按a
 		dp[i] = dp[i-1] + 1
 		for j := 2; j < i; j++ {
 			dp[i] = max(dp[i], dp[j-2]*(i-j+1))

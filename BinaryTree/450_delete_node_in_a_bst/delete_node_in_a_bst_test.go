@@ -1,8 +1,9 @@
 package deletenodeinabst
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func deleteNode(root *TreeNode, key int) *TreeNode {
@@ -11,22 +12,22 @@ func deleteNode(root *TreeNode, key int) *TreeNode {
 	}
 
 	if root.Val == key {
-		//case 1 & 2(无分支或单分支):
+		// case 1 & 2(无分支或单分支):
 		if root.Left == nil {
 			return root.Right
 		}
 		if root.Right == nil {
 			return root.Left
 		}
-		//case 3(双分支):
-		//找到root直接后继,即右子树的最左支
+		// case 3(双分支):
+		// 找到root直接后继,即右子树的最左支
 		succ := root.Right
 		for succ.Left != nil {
 			succ = succ.Left
 		}
-		//先从右子树删除succ
+		// 先从右子树删除succ
 		root.Right = deleteNode(root.Right, succ.Val)
-		//将root替换为succ
+		// 将root替换为succ
 		succ.Left = root.Left
 		succ.Right = root.Right
 		root = succ

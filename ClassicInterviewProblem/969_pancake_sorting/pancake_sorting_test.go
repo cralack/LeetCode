@@ -10,7 +10,7 @@ func pancakeSort(arr []int) []int {
 	return res
 }
 func sort(cakes []int, n int) {
-	if n == 1 { //base case
+	if n == 1 { // base case
 		return
 	}
 	maxCake, maxCakeIdx := 0, 0

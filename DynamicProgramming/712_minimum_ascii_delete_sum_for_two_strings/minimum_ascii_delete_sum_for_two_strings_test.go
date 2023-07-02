@@ -12,7 +12,7 @@ func minimumDeleteSum(s1 string, s2 string) int {
 		}
 		return res
 	}
-	//init
+	// init
 	m, n := len(s1), len(s2)
 	dp := make([][]int, m+1)
 	for i := range dp {

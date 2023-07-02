@@ -12,12 +12,12 @@ func permuteUnique(nums []int) (res [][]int) {
 	used := make([]bool, len(nums))
 	var dfs func()
 	dfs = func() {
-		//base case
+		// base case
 		if len(path) == len(nums) {
 			tmp := make([]int, len(nums))
 			copy(tmp, path)
 			res = append(res, tmp)
-			//fmt.Println(tmp)
+			// fmt.Println(tmp)
 			return
 		}
 		for i := 0; i < len(nums); i++ {

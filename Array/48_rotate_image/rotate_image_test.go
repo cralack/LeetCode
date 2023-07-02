@@ -4,13 +4,13 @@ import "testing"
 
 func rotate(matrix [][]int) {
 	n := len(matrix)
-	//沿对角线镜像
+	// 沿对角线镜像
 	for i := 0; i < n; i++ {
 		for j := i; j < n; j++ {
 			matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 		}
 	}
-	//reverse
+	// reverse
 	for i := 0; i < n; i++ {
 		for j := 0; j < n/2; j++ {
 			matrix[i][j], matrix[i][n-j-1] = matrix[i][n-j-1], matrix[i][j]

@@ -35,7 +35,7 @@ func minOperations(nums1 []int, nums2 []int) (ans int) {
 	for i := 5; ; i-- {
 		// 可以让 d 变为 0
 		if i*cnt[i] >= dif {
-			return ans + (dif+i-1)/i //向上取整
+			return ans + (dif+i-1)/i // 向上取整
 		}
 		// 需要所有最大变化量为 i 的数
 		ans += cnt[i]

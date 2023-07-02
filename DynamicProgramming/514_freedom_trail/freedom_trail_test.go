@@ -23,7 +23,7 @@ func findRotateSteps_ite(ring string, key string) int {
 	}
 	m, n := len(ring), len(key)
 	char2idx := make(map[byte][]int, 0)
-	//dp=[m+1][n+1]int
+	// dp=[m+1][n+1]int
 	dp := make([][]int, m)
 	for i := range dp {
 		dp[i] = make([]int, n+1)
@@ -33,7 +33,7 @@ func findRotateSteps_ite(ring string, key string) int {
 		c := ring[i]
 		char2idx[c] = append(char2idx[c], i)
 	}
-	for j := n - 1; j >= 0; j-- { //前面的结果要依赖后面的结果
+	for j := n - 1; j >= 0; j-- { // 前面的结果要依赖后面的结果
 		for i := 0; i < m; i++ {
 			c := key[j]
 			result := math.MaxInt32
@@ -41,7 +41,7 @@ func findRotateSteps_ite(ring string, key string) int {
 				dist1 := abs(idx - i)
 				dist2 := m - dist1 // 逆时针转动
 				step := min(dist1, dist2)
-				//结果是 从 之前的指针位置转动到现在的位置 的最小值
+				// 结果是 从 之前的指针位置转动到现在的位置 的最小值
 				result = min(result, step+1+dp[idx][j+1])
 			}
 			dp[i][j] = result

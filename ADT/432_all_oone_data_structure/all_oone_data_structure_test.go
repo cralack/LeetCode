@@ -44,10 +44,10 @@ func (p *AllOne) DelNode(tar *Node) {
 
 func (p *AllOne) Inc(key string) {
 	cnt, ok := p.Cnt[key]
-	//key exist
+	// key exist
 	if ok {
 		oldNode := p.Cnt2Node[cnt]
-		//need create new node
+		// need create new node
 		if oldNode.Next.Cnt != cnt+1 {
 			p.AddNode(oldNode, &Node{Cnt: cnt + 1, Keys: make(map[string]bool)})
 		}
@@ -62,8 +62,8 @@ func (p *AllOne) Inc(key string) {
 		}
 		return
 	}
-	//key doesnt exist
-	//cnt1 node doesnt exist
+	// key doesnt exist
+	// cnt1 node doesnt exist
 	if p.Head.Next.Cnt != 1 {
 		cur := p.Head
 		p.AddNode(cur, &Node{
@@ -79,9 +79,9 @@ func (p *AllOne) Inc(key string) {
 func (p *AllOne) Dec(key string) {
 	cnt := p.Cnt[key]
 	oldNode := p.Cnt2Node[cnt]
-	//check prev node
+	// check prev node
 	if cnt != 1 {
-		//need create prev node
+		// need create prev node
 		if oldNode.Prev.Cnt != cnt-1 {
 			p.AddNode(oldNode.Prev, &Node{Cnt: cnt - 1, Keys: make(map[string]bool)})
 		}

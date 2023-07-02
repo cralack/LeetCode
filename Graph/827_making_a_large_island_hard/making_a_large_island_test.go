@@ -8,33 +8,33 @@ var parent []int
 var size []int
 
 func largestIsland(grid [][]int) (ans int) {
-	//init var
+	// init var
 	n := len(grid)
-	parent = make([]int, n*n+1) //offset i*n+j+1
+	parent = make([]int, n*n+1) // offset i*n+j+1
 	size = make([]int, n*n+1)
 	dirs := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}
 
-	//init arr
+	// init arr
 	for i := 1; i <= n*n; i++ {
 		parent[i] = i
 		size[i] = 1
 	}
 
-	//traverse grid
+	// traverse grid
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
 			if grid[i][j] == 0 {
 				continue
 			}
 			for _, dir := range dirs {
-				//nextNode:(x,y)
+				// nextNode:(x,y)
 				x := i + dir[0]
 				y := j + dir[1]
 				if n <= x || x < 0 || n <= y || y < 0 ||
 					grid[x][y] == 0 {
 					continue
 				}
-				union(i*n+j+1, x*n+y+1) //curNode == 1 && nextNode == 1
+				union(i*n+j+1, x*n+y+1) // curNode == 1 && nextNode == 1
 			}
 		}
 	}
@@ -46,14 +46,14 @@ func largestIsland(grid [][]int) (ans int) {
 				tot := 1
 				set := make(map[int]bool, 0)
 				for _, dir := range dirs {
-					//nextNode:(x,y)
+					// nextNode:(x,y)
 					x := i + dir[0]
 					y := j + dir[1]
 					if n <= x || x < 0 || n <= y || y < 0 ||
 						grid[x][y] == 0 {
 						continue
 					}
-					//未遍历到则tot+=size[nextNode]
+					// 未遍历到则tot+=size[nextNode]
 					root := find(x*n + y + 1)
 					if _, has := set[root]; has {
 						continue

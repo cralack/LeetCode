@@ -28,7 +28,7 @@ func Constructor(arr [][]int) *Node {
 	for _, ele := range arr {
 		if ele[0] == -1 {
 			continue
-		} //pop
+		} // pop
 		cur := que[0]
 		que = que[1:]
 		if cur == nil {

@@ -30,9 +30,9 @@ type MedianFinder struct {
 
 func Constructor() MedianFinder {
 	return MedianFinder{
-		//小顶堆存大数(正数)
+		// 小顶堆存大数(正数)
 		smallQue: &Heap{},
-		//大顶堆存小数(负数)
+		// 大顶堆存小数(负数)
 		largeQue: &Heap{},
 	}
 }
@@ -41,7 +41,7 @@ func (p *MedianFinder) AddNum(num int) {
 	if p.smallQue.Len() >= p.largeQue.Len() {
 		heap.Push(p.smallQue, num)
 		heap.Push(p.largeQue, -heap.Pop(p.smallQue).(int))
-	} else { //p.smallQue.Len() < p.largeQue.Len()
+	} else { // p.smallQue.Len() < p.largeQue.Len()
 		heap.Push(p.largeQue, -num)
 		heap.Push(p.smallQue, -heap.Pop(p.largeQue).(int))
 	}

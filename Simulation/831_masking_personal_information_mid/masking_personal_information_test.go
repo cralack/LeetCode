@@ -7,7 +7,7 @@ import (
 
 func maskPII(tar string) string {
 	if idx := strings.Index(tar, "@"); idx != -1 {
-		//s is mail add
+		// s is mail add
 		ans := make([]byte, 0, 2*len(tar))
 		ans = append(ans, toLower(tar[0]))
 		ans = append(ans, []byte("*****")...)
@@ -16,7 +16,7 @@ func maskPII(tar string) string {
 		}
 		return string(ans)
 	} else {
-		//s is phone num
+		// s is phone num
 		num := make([]byte, 0, len(tar))
 		for _, c := range tar {
 			if '0' <= c && c <= '9' {

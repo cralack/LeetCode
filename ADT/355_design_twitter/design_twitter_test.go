@@ -55,13 +55,13 @@ func (t *Twitter) NewUser(uid int) *User {
 }
 
 func (t *Twitter) PostTweet(userId int, tweetId int) {
-	//发推用户不存在就新建个用户
+	// 发推用户不存在就新建个用户
 	if _, ok := t.UserList[userId]; !ok {
 		t.UserList[userId] = t.NewUser(userId)
 	}
-	//loc user
+	// loc user
 	user := t.UserList[userId]
-	//new tweet
+	// new tweet
 	tmp_tweet := &Tweet{
 		TweetId:  tweetId,
 		PostTime: t.TimeStamp,
@@ -73,14 +73,14 @@ func (t *Twitter) PostTweet(userId int, tweetId int) {
 
 func (t *Twitter) GetNewsFeed(userId int) []int {
 	res := []int{}
-	//刷推用户不存在
+	// 刷推用户不存在
 	if _, ok := t.UserList[userId]; !ok {
 		return res
 	}
-	//loc user
+	// loc user
 	user := t.UserList[userId]
 
-	//检索当前用户新闻推送中最近 10 条推文的 ID
+	// 检索当前用户新闻推送中最近 10 条推文的 ID
 	pq := &PQ{}
 	for _, fol := range user.Followed {
 		if fol.Posted == nil {
@@ -102,12 +102,12 @@ func (t *Twitter) GetNewsFeed(userId int) []int {
 }
 
 func (t *Twitter) Follow(followerId int, followeeId int) {
-	//check user1
+	// check user1
 	if _, ok := t.UserList[followerId]; !ok {
 		t.UserList[followerId] = t.NewUser(followerId)
 	}
 	follower := t.UserList[followerId]
-	//check user2
+	// check user2
 	if _, ok := t.UserList[followeeId]; !ok {
 		t.UserList[followeeId] = t.NewUser(followeeId)
 	}

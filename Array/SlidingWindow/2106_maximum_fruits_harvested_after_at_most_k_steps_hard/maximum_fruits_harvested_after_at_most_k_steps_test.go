@@ -19,13 +19,13 @@ func maxTotalFruits(fruits [][]int, startPos int, k int) (ans int) {
 	ans = sum
 	for ; right < n && fruits[right][0] <= startPos+k; right++ {
 		sum += fruits[right][1]
-		//先右后左距离: (fruits[right][0]−startPos)+(fruits[right][0]−fruits[left][0])
+		// 先右后左距离: (fruits[right][0]−startPos)+(fruits[right][0]−fruits[left][0])
 		for fruits[right][0]*2-fruits[left][0]-startPos > k &&
-			//先左后右距离:(startPos−fruits[left][0])+(fruits[right][0]−fruits[left][0])
+			// 先左后右距离:(startPos−fruits[left][0])+(fruits[right][0]−fruits[left][0])
 			fruits[right][0]-fruits[left][0]*2+startPos > k {
 			// fruits[left][0] 无法到达
 			sum -= fruits[left][1]
-			//如果上面两个式子均大于 k，就说明 fruits[left][0] 太远了，需要增加left
+			// 如果上面两个式子均大于 k，就说明 fruits[left][0] 太远了，需要增加left
 			left++
 		}
 		ans = max(ans, sum)

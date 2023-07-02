@@ -1,8 +1,9 @@
 package deletenodesandreturnforest
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**

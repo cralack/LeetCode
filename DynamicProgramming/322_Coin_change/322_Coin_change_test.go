@@ -12,21 +12,21 @@ func TestCoinChange(t *testing.T) {
 }
 
 func coinChange(coins []int, amount int) int {
-	dp := make([]int, amount+1) //初始化dp数组
+	dp := make([]int, amount+1) // 初始化dp数组
 	for i := 0; i < len(dp); i++ {
-		dp[i] = amount + 1 //初始值设为大值
+		dp[i] = amount + 1 // 初始值设为大值
 	}
 
-	dp[0] = 0 //base case
+	dp[0] = 0 // base case
 	min := func(a, b int) int {
 		if a < b {
 			return a
 		}
 		return b
 	}
-	for i := 0; i < len(dp); i++ { //遍历所有状态取值
-		for _, coin := range coins { //遍历所有选择
-			if i-coin < 0 { //子问题无解则跳过
+	for i := 0; i < len(dp); i++ { // 遍历所有状态取值
+		for _, coin := range coins { // 遍历所有选择
+			if i-coin < 0 { // 子问题无解则跳过
 				continue
 			}
 			dp[i] = min(dp[i], 1+dp[i-coin])

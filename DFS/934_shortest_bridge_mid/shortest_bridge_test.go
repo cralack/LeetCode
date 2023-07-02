@@ -7,7 +7,7 @@ func shortestBridge(grid [][]int) (ans int) {
 	dirs := []int{-1, 0, 1, 0, -1}
 	type pair struct{ i, j int }
 	que := []pair{}
-	//func part
+	// func part
 	var dfs func(int, int)
 	dfs = func(i, j int) {
 		grid[i][j] = 2
@@ -19,7 +19,7 @@ func shortestBridge(grid [][]int) (ans int) {
 			}
 		}
 	}
-	//find 1st island && 1->2
+	// find 1st island && 1->2
 	for i, x := 0, 1; i < n && x == 1; i++ {
 		for j := 0; j < n; j++ {
 			if grid[i][j] == 1 {
@@ -29,7 +29,7 @@ func shortestBridge(grid [][]int) (ans int) {
 			}
 		}
 	}
-	//bfs find 2nd island
+	// bfs find 2nd island
 	for {
 		for i := len(que); i > 0; i-- {
 			cur := que[0]

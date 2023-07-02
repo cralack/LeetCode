@@ -36,7 +36,7 @@ func valid(nums []int, m, tar int) bool {
 	return cnt <= m
 }
 func Test_split_array_largest_sum(t *testing.T) {
-	//same with 1011
+	// same with 1011
 	nums, m := []int{7, 2, 5, 10, 8}, 2
 	t.Log(splitArray(nums, m))
 	nums, m = []int{1, 4, 4}, 3

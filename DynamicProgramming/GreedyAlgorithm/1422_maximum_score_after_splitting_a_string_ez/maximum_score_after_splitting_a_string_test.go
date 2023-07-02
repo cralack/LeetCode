@@ -9,7 +9,7 @@ func maxScore(s string) (ans int) {
 			sum++
 		}
 	}
-	for i := 0; i < len(s)-1; i++ { //分割成两个 非空 子字符串
+	for i := 0; i < len(s)-1; i++ { // 分割成两个 非空 子字符串
 		if s[i] == '0' {
 			sum++
 		} else {

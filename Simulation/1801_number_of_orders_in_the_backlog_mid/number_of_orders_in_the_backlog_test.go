@@ -17,36 +17,36 @@ func (h *hp) Push(v interface{}) { *h = append(*h, v.(order)) }
 func (h *hp) Pop() interface{}   { a := *h; v := a[len(a)-1]; *h = a[:len(a)-1]; return v }
 
 func getNumberOfBacklogOrders(orders [][]int) (ans int) {
-	//买单价需>=售单价 才能匹配一对订单
-	sell := hp{} //小根堆
-	buy := hp{}  //大根堆
+	// 买单价需>=售单价 才能匹配一对订单
+	sell := hp{} // 小根堆
+	buy := hp{}  // 大根堆
 	for _, cur := range orders {
-		//curOrder
+		// curOrder
 		curPrice, curAmount, curType := cur[0], cur[1], cur[2]
-		//buy order
+		// buy order
 		if curType == 0 {
-			//尽量匹配卖单价有<=当前买单价的订单
+			// 尽量匹配卖单价有<=当前买单价的订单
 			for curAmount > 0 && len(sell) > 0 && sell[0].price <= curPrice {
-				//卖价最小的单
+				// 卖价最小的单
 				pair := heap.Pop(&sell).(order)
-				//买单量足以匹配卖单
+				// 买单量足以匹配卖单
 				if curAmount >= pair.amount {
 					curAmount -= pair.amount
-					//买单量不足以匹配卖单
+					// 买单量不足以匹配卖单
 				} else {
-					//卖单抵扣数量后重新压回队列
+					// 卖单抵扣数量后重新压回队列
 					heap.Push(&sell, order{
 						pair.price,
 						pair.amount - curAmount})
-					//买单量清零
+					// 买单量清零
 					curAmount = 0
 				}
 			}
-			//买单量有剩余
+			// 买单量有剩余
 			if curAmount > 0 {
 				heap.Push(&buy, order{-curPrice, curAmount})
 			}
-			//sell order
+			// sell order
 		} else {
 			for curAmount > 0 && len(buy) > 0 && -buy[0].price >= curPrice {
 				pair := heap.Pop(&buy).(order)
@@ -65,7 +65,7 @@ func getNumberOfBacklogOrders(orders [][]int) (ans int) {
 		}
 	}
 	const mod int = 1e9 + 7
-	//买单盈余
+	// 买单盈余
 	for len(buy) > 0 {
 		ans += heap.Pop(&buy).(order).amount
 	}

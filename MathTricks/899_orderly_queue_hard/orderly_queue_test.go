@@ -6,7 +6,7 @@ import (
 )
 
 func orderlyQueue(s string, k int) string {
-	if k == 1 { //字符串即为环,遍历求最小字典序str
+	if k == 1 { // 字符串即为环,遍历求最小字典序str
 		ans := s
 		for i := 0; i < len(s); i++ {
 			cur := s[i:] + s[:i]
@@ -15,7 +15,7 @@ func orderlyQueue(s string, k int) string {
 			}
 		}
 		return ans
-	} else { //总能有序,排序
+	} else { // 总能有序,排序
 		byt := []byte(s)
 		sort.Slice(byt, func(i, j int) bool { return byt[i] < byt[j] })
 		return string(byt)

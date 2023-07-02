@@ -8,21 +8,21 @@ import (
 func areSentencesSimilar(sentence1 string, sentence2 string) bool {
 	words1 := strings.Fields(sentence1)
 	words2 := strings.Fields(sentence2)
-	//keep len(words1)>len(words2)
+	// keep len(words1)>len(words2)
 	if len(words1) < len(words2) {
 		words1, words2 = words2, words1
 	}
 	m, n := len(words1), len(words2)
 	i, j := 0, 0
-	//从前往后比对
+	// 从前往后比对
 	for i < n && words1[i] == words2[i] {
 		i++
 	}
-	//从后往前比对
+	// 从后往前比对
 	for j < n && words1[m-j-1] == words2[n-j-1] {
 		j++
 	}
-	//双端指针能覆盖短句
+	// 双端指针能覆盖短句
 	return i+j >= n
 }
 func Test_sentence_similarity_iii(t *testing.T) {

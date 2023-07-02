@@ -9,7 +9,7 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 			graph[i] = []int{}
 		}
 		for _, edge := range prerequisites {
-			//修完课程 from 才能修课程 to
+			// 修完课程 from 才能修课程 to
 			from, to := edge[1], edge[0]
 			graph[from] = append(graph[from], to)
 		}
@@ -43,7 +43,7 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 		return []int{}
 	}
 	res := []int{}
-	//将后序遍历结果反转即可得到拓扑排序
+	// 将后序遍历结果反转即可得到拓扑排序
 	for i := len(postOrder) - 1; i >= 0; i-- {
 		res = append(res, postOrder[i])
 	}
@@ -57,7 +57,7 @@ func findOrder_BFS(numCourses int, prerequisites [][]int) []int {
 			graph[i] = []int{}
 		}
 		for _, edge := range prerequisites {
-			//修完课程 from 才能修课程 to
+			// 修完课程 from 才能修课程 to
 			from, to := edge[1], edge[0]
 			graph[from] = append(graph[from], to)
 		}

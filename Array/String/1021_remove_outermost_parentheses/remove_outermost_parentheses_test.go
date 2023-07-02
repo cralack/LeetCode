@@ -6,7 +6,7 @@ func removeOuterParentheses(s string) string {
 	var ans, stack []byte
 	for _, char := range s {
 		if char == ')' {
-			stack = stack[:len(stack)-1] //pop
+			stack = stack[:len(stack)-1] // pop
 		}
 		if len(stack) > 0 {
 			ans = append(ans, byte(char))

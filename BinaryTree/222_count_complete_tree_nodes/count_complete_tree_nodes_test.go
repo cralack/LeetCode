@@ -1,10 +1,11 @@
 package countcompletetreenodes
 
 import (
-	. "LeetCode/util/BinTree"
 	"fmt"
 	"math"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func CountNodes1(root *TreeNode) int {

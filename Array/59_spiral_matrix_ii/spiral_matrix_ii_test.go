@@ -11,7 +11,7 @@ func generateMatrix(n int) [][]int {
 	leB, riB := 0, n-1
 	cnt := 1
 	for cnt <= n*n {
-		//→
+		// →
 		if upB <= loB {
 			for j := leB; j <= riB; j++ {
 				matrix[upB][j] = cnt
@@ -19,7 +19,7 @@ func generateMatrix(n int) [][]int {
 			}
 			upB++
 		}
-		//↓
+		// ↓
 		if leB <= riB {
 			for i := upB; i <= loB; i++ {
 				matrix[i][riB] = cnt
@@ -27,7 +27,7 @@ func generateMatrix(n int) [][]int {
 			}
 			riB--
 		}
-		//←
+		// ←
 		if upB <= loB {
 			for j := riB; leB <= j; j-- {
 				matrix[loB][j] = cnt
@@ -35,7 +35,7 @@ func generateMatrix(n int) [][]int {
 			}
 			loB--
 		}
-		//↑
+		// ↑
 		if leB <= riB {
 			for i := loB; upB <= i; i-- {
 				matrix[i][leB] = cnt

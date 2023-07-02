@@ -9,9 +9,9 @@ func similarPairs(words []string) (ans int) {
 	cnt := make(map[int]int)
 	for _, word := range words {
 		mask := word2mask(word)
-		//先把cnt[mask] 加到答案中
+		// 先把cnt[mask] 加到答案中
 		ans += cnt[mask]
-		//然后把mask 的出现次数加一
+		// 然后把mask 的出现次数加一
 		cnt[mask]++
 	}
 	return
@@ -38,9 +38,9 @@ func Test_1st(t *testing.T) {
 /************ 2nd test************/
 func smallestValue(n int) int {
 	notPrime := make([]bool, n+1)
-	for i := 2; i*i <= n; i++ { //只需要遍历 [2,sqrt(n)]
+	for i := 2; i*i <= n; i++ { // 只需要遍历 [2,sqrt(n)]
 		if !notPrime[i] {
-			for j := i * i; j <= n; j += i { //from i*i
+			for j := i * i; j <= n; j += i { // from i*i
 				notPrime[j] = true
 			}
 		}
@@ -81,7 +81,7 @@ func Test_2nd(t *testing.T) {
 /************ 3rd test************/
 func isPossible(n int, edges [][]int) bool {
 	type pair struct{ from, to int }
-	//from到to两点之间是否存在边
+	// from到to两点之间是否存在边
 	has := map[pair]bool{}
 	deg := make([]int, n+1)
 	for _, e := range edges {
@@ -102,12 +102,12 @@ func isPossible(n int, edges [][]int) bool {
 		return true
 	}
 	if oddCnt == 2 {
-		//奇点有2个:设这两个奇点为a和b。若a和b之间无连边，则把它们连起来；
+		// 奇点有2个:设这两个奇点为a和b。若a和b之间无连边，则把它们连起来；
 		x, y := odd[0], odd[1]
 		if !has[pair{x, y}] {
 			return true
 		}
-		//否则我们需要找另一个点c分别连接a和b，枚举c即可
+		// 否则我们需要找另一个点c分别连接a和b，枚举c即可
 		for i := 1; i <= n; i++ {
 			if i != x && i != y && !has[pair{i, x}] && !has[pair{i, y}] {
 				return true
@@ -116,8 +116,8 @@ func isPossible(n int, edges [][]int) bool {
 		return false
 	}
 	if oddCnt == 4 {
-		//奇点有4个:只能用两条边连接这四个点才有可能符合要求。
-		//因此枚举第一个点和哪个点连接，并检查是否合法即可
+		// 奇点有4个:只能用两条边连接这四个点才有可能符合要求。
+		// 因此枚举第一个点和哪个点连接，并检查是否合法即可
 		a, b, c, d := odd[0], odd[1], odd[2], odd[3]
 		return !has[pair{a, b}] && !has[pair{c, d}] ||
 			!has[pair{a, c}] && !has[pair{b, d}] ||
@@ -142,13 +142,13 @@ func cycleLengthQueries(n int, queries [][]int) (ans []int) {
 	ans = make([]int, len(queries))
 	for i, q := range queries {
 		res := 1
-		//不断循环，每次循环比较a和b的大小
+		// 不断循环，每次循环比较a和b的大小
 		for a, b := q[0], q[1]; a != b; res++ {
-			//如果a>b，说明a的深度大于等于b的深度
+			// 如果a>b，说明a的深度大于等于b的深度
 			if a > b {
-				//那么把a移动到其父节点
+				// 那么把a移动到其父节点
 				a /= 2
-			} else { //否则相反
+			} else { // 否则相反
 				b /= 2
 			}
 		}

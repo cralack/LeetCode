@@ -105,7 +105,7 @@ func isNice(slow, fast int, nums []int) bool {
 	return true
 }
 func Test_3rd(t *testing.T) {
-	//t.Log(isNice(1, 3, []int{1, 3, 8, 48, 10}))
+	// t.Log(isNice(1, 3, []int{1, 3, 8, 48, 10}))
 	nums := []int{1, 3, 8, 48, 10}
 	t.Log(longestNiceSubarray(nums))
 	nums = []int{3, 1, 5, 11, 13}

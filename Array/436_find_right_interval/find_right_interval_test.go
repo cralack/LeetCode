@@ -20,7 +20,7 @@ func findRightInterval(intervals [][]int) []int {
 	sort.Slice(ends, func(i, j int) bool { return ends[i].pos < ends[j].pos })
 
 	res := make([]int, n)
-	//sort
+	// sort
 	j := 0
 	for _, end := range ends {
 		for j < n && starts[j].pos < end.pos {

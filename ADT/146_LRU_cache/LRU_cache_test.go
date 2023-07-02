@@ -15,7 +15,7 @@ type DLNode struct {
 }
 
 func Constructor(capacity int) LRUCache {
-	//尾部的数据是最近使用的，头部的数据是最久为使用的
+	// 尾部的数据是最近使用的，头部的数据是最久为使用的
 	head := &DLNode{Key: -1}
 	tail := &DLNode{Key: -2}
 	head.Next = tail
@@ -63,7 +63,7 @@ func (lr *LRUCache) MakeRecently(x *DLNode) {
 
 func (lr *LRUCache) Get(key int) int {
 	if value, ok := lr.Cache[key]; ok {
-		//提升优先级
+		// 提升优先级
 		lr.MakeRecently(value)
 		return value.Val
 	}
@@ -73,16 +73,16 @@ func (lr *LRUCache) Get(key int) int {
 func (lr *LRUCache) Put(key int, value int) {
 	if v, ok := lr.Cache[key]; ok {
 		v.Val = value
-		//提升优先级
+		// 提升优先级
 		lr.MakeRecently(v)
 
 	} else {
-		//cache满了
+		// cache满了
 		tmp := &DLNode{Key: key, Val: value}
 		if lr.Size == lr.Cap {
-			rKey := lr.RemoveFirst() //map need --
+			rKey := lr.RemoveFirst() // map need --
 			delete(lr.Cache, rKey)
-		} //else { //cache 没满
+		} // else { //cache 没满
 		// }
 		lr.AddLast(tmp)
 		lr.Cache[key] = tmp

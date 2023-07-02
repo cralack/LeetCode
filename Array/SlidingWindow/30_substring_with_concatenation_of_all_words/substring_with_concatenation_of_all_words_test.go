@@ -16,7 +16,7 @@ func findSubstring(s string, words []string) (ans []int) {
 		totalMap[word]++
 	}
 	for i := 0; i < w; i++ {
-		//copy(curMap,totalMap)
+		// copy(curMap,totalMap)
 		cnt := 0
 		curMap := make(map[string]int, 0)
 		// 滑动窗口的大小固定是 m * w，

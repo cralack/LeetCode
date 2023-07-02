@@ -21,7 +21,7 @@ func minNumberOfHours(initialEnergy int, initialExperience int, energy []int, ex
 }
 
 func Test_minimum_hours_of_training_to_win_a_competition(t *testing.T) {
-	//test table
+	// test table
 	tests := []struct {
 		iiEne, iiExp int
 		ene, exp     []int
@@ -30,7 +30,7 @@ func Test_minimum_hours_of_training_to_win_a_competition(t *testing.T) {
 		{2, 4, []int{1}, []int{3}},
 	}
 
-	//table drive test
+	// table drive test
 	for _, tt := range tests {
 		t.Run("", func(t *testing.T) {
 			ans := minNumberOfHours(tt.iiEne, tt.iiExp, tt.ene, tt.exp)

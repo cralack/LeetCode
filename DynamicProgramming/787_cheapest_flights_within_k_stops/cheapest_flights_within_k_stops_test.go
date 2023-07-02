@@ -109,7 +109,7 @@ func (h *Heap) Pop() interface{} {
 	return x
 }
 func findCheapestPrice_Dijkstra(n int, flights [][]int, src int, dst int, k int) int {
-	//init graph
+	// init graph
 	graph := make(map[int][][]int, n+1)
 	for _, edge := range flights {
 		from, to, wei := edge[0], edge[1], edge[2]

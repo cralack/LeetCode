@@ -4,7 +4,7 @@ import "testing"
 
 func isBipartite(graph [][]int) bool {
 	size := len(graph)
-	//记录图中节点是否被访问过，以及图是否符合二分图性质
+	// 记录图中节点是否被访问过，以及图是否符合二分图性质
 	visited, ok := make([]bool, size), true
 	// 记录图中节点颜色，false 和 true 代表两种不同颜色
 	color := make([]bool, size)
@@ -49,7 +49,7 @@ func isBipartite(graph [][]int) bool {
 }
 func isBipartite_BFS(graph [][]int) bool {
 	size := len(graph)
-	//记录图中节点是否被访问过，以及图是否符合二分图性质
+	// 记录图中节点是否被访问过，以及图是否符合二分图性质
 	visited, ok := make([]bool, size), true
 	// 记录图中节点颜色，false 和 true 代表两种不同颜色
 	color := make([]bool, size)

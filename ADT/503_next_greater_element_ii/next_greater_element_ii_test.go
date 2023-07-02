@@ -28,9 +28,9 @@ func nextGreaterElements(nums []int) []int {
 	res := make([]int, len(nums))
 	n := len(nums)
 	var s Stack
-	//双倍遍历数组模拟循环
+	// 双倍遍历数组模拟循环
 	for i := 2*n - 1; i >= 0; i-- {
-		//索引求模
+		// 索引求模
 		for !s.Empty() && s.Peek() <= nums[i%n] {
 			s.Pop()
 		}

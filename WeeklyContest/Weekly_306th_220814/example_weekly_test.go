@@ -33,9 +33,9 @@ func Example_largest_local_values_in_a_matrix() {
 	fmt.Println(largestLocal(grid))
 	grid = [][]int{{1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 2, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}}
 	fmt.Println(largestLocal(grid))
-	//Output:
-	//[[9 9] [8 6]]
-	//[[2 2 2] [2 2 2] [2 2 2]]
+	// Output:
+	// [[9 9] [8 6]]
+	// [[2 2 2] [2 2 2] [2 2 2]]
 }
 
 /************ 2nd test************/
@@ -43,8 +43,8 @@ func edgeScore(edges []int) (ans int) {
 	scoreMap := make([]int, len(edges))
 	for from, to := range edges {
 		scoreMap[to] += from
-		if scoreMap[to] > scoreMap[ans] || //取边积分最大,或
-			(scoreMap[to] == scoreMap[ans] && to < ans) { //边积分相同取编号最小
+		if scoreMap[to] > scoreMap[ans] || // 取边积分最大,或
+			(scoreMap[to] == scoreMap[ans] && to < ans) { // 边积分相同取编号最小
 			ans = to
 		}
 	}
@@ -57,10 +57,10 @@ func Example_node_with_highest_edge_score() {
 	fmt.Println(edgeScore(edges))
 	edges = []int{3, 3, 3, 0}
 	fmt.Println(edgeScore(edges))
-	//Output:
-	//7
-	//0
-	//0
+	// Output:
+	// 7
+	// 0
+	// 0
 }
 
 /************ 3rd test************/
@@ -107,9 +107,9 @@ func Example_construct_smallest_number_from_di_string() {
 	fmt.Println(smallestNumber(pattern))
 	pattern = "DDD"
 	fmt.Println(smallestNumber(pattern))
-	//Output:
-	//123549876
-	//4321
+	// Output:
+	// 123549876
+	// 4321
 }
 
 /************ 4th test************/
@@ -170,8 +170,8 @@ func Example_count_special_integers() {
 	fmt.Println(countSpecialNumbers(n))
 	n = 135
 	fmt.Println(countSpecialNumbers(n))
-	//Output:
-	//19
-	//5
-	//110
+	// Output:
+	// 19
+	// 5
+	// 110
 }

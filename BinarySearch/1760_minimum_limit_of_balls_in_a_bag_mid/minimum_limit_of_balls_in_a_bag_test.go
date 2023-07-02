@@ -15,10 +15,10 @@ func minimumSize(nums []int, maxOperations int) int {
 	left, right := 1, max
 	for left < right {
 		mid := left + (right-left)>>1
-		//假设每袋放mid个球,总共会消耗sum次操作数
+		// 假设每袋放mid个球,总共会消耗sum次操作数
 		sum := 0
 		for _, n := range nums {
-			//向下取整
+			// 向下取整
 			sum += (n - 1) / mid
 		}
 		if sum <= maxOperations {

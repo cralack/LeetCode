@@ -28,12 +28,12 @@ func heapify(arr []int, n int) {
 func percolateDown(arr []int, i, n int) {
 	// target 是要下滤的结点的值
 	tar := arr[i]
-	//赋i左孩子下标,rChild: (1+i)<<1
+	// 赋i左孩子下标,rChild: (1+i)<<1
 	child := 1 + i<<1
 	for child <= n {
-		//child<r表示i有右孩子
+		// child<r表示i有右孩子
 		if child < n && arr[child+1] > arr[child] {
-			//且右孩子更大,则令 child 为右孩子下标
+			// 且右孩子更大,则令 child 为右孩子下标
 			// 此时childe为i的孩子中值较大者的下标
 			child++
 		}

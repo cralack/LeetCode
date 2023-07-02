@@ -7,7 +7,7 @@ import (
 )
 
 func validIPAddress(queryIP string) string {
-	//ipv4 judge
+	// ipv4 judge
 	if query := strings.Split(queryIP, "."); len(query) == 4 {
 		for _, v := range query {
 			if len(v) > 1 && v[0] == '0' {
@@ -19,7 +19,7 @@ func validIPAddress(queryIP string) string {
 		}
 		return "IPv4"
 	}
-	//ipv6 judge
+	// ipv6 judge
 	if query := strings.Split(queryIP, ":"); len(query) == 8 {
 		for _, v := range query {
 			if len(v) > 4 {

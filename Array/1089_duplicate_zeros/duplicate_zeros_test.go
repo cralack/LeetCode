@@ -5,14 +5,14 @@ import "testing"
 func duplicateZeros(arr []int) {
 	size := len(arr)
 	i, j := 0, 0
-	for j < size { //确定有几个0
+	for j < size { // 确定有几个0
 		if arr[i] == 0 {
 			j++
 		}
 		i, j = i+1, j+1
 	}
 	i, j = i-1, j-1
-	for i >= 0 { //倒序重建数组
+	for i >= 0 { // 倒序重建数组
 		if j < size {
 			arr[j] = arr[i]
 		}

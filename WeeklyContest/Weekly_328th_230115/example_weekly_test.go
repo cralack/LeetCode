@@ -26,7 +26,7 @@ func Test_1st(t *testing.T) {
 
 /************ 2nd test************/
 func rangeAddQueries(n int, queries [][]int) (ans [][]int) {
-	//二维差分解法
+	// 二维差分解法
 	m := n
 
 	// 二维差分模板
@@ -34,12 +34,12 @@ func rangeAddQueries(n int, queries [][]int) (ans [][]int) {
 	for i := range diff {
 		diff[i] = make([]int, m+1)
 	}
-	//本题中x为1
+	// 本题中x为1
 	update := func(r1, c1, r2, c2, x int) {
 		diff[r1][c1] += x
 		diff[r1][c2+1] -= x
 		diff[r2+1][c1] -= x
-		diff[r2+1][c2+1] += x //前面一共减了两次x,这里再补一个x
+		diff[r2+1][c2+1] += x // 前面一共减了两次x,这里再补一个x
 	}
 	for _, q := range queries {
 		update(q[0], q[1], q[2], q[3], 1)
@@ -56,7 +56,7 @@ func rangeAddQueries(n int, queries [][]int) (ans [][]int) {
 		}
 	}
 
-	//shrink
+	// shrink
 	ans = ans[1:]
 	for i, row := range ans {
 		ans[i] = row[1:]

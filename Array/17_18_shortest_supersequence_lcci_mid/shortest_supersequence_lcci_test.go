@@ -9,12 +9,12 @@ func shortestSeq(big []int, small []int) []int {
 	for _, v := range small {
 		valid[v] = 0
 	}
-	left, right := 0, 0 //slide window idx
+	left, right := 0, 0 // slide window idx
 	minLen, n := len(big)+1, len(big)
 	for left < n && right < n {
-		if _, ok := valid[big[right]]; ok { //命中small
+		if _, ok := valid[big[right]]; ok { // 命中small
 			valid[big[right]]++
-			if valid[big[right]] == 1 { //第一次出现
+			if valid[big[right]] == 1 { // 第一次出现
 				cnt++
 			}
 		}

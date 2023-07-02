@@ -63,5 +63,5 @@ func Benchmark_remove(b *testing.B) {
 		}
 		b.StopTimer()
 	})
-	//basically no difference
+	// basically no difference
 }

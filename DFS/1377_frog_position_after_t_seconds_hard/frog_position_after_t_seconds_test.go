@@ -6,7 +6,7 @@ func frogPosition(n int, edges [][]int, t int, target int) (ans float64) {
 	graph := make([][]int, n+1)
 	graph[1] = []int{0}
 	for _, edge := range edges {
-		//无向图邻接包括父节点与子节点
+		// 无向图邻接包括父节点与子节点
 		from, to := edge[0], edge[1]
 		graph[from] = append(graph[from], to)
 		graph[to] = append(graph[to], from)
@@ -23,7 +23,7 @@ func frogPosition(n int, edges [][]int, t int, target int) (ans float64) {
 		if cur == target || leftT == 0 {
 			return false
 		}
-		//子节点规模
+		// 子节点规模
 		size := len(graph[cur]) - 1
 		for _, next := range graph[cur] {
 			if next != father &&

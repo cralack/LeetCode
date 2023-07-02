@@ -1,9 +1,10 @@
 package weekly_contest
 
 import (
-	. "LeetCode/util/MyList"
 	"math"
 	"testing"
+
+	. "LeetCode/util/MyList"
 )
 
 /************ 1st test************/
@@ -17,11 +18,11 @@ func pivotInteger(n int) int {
 }
 func Test_1st(t *testing.T) {
 	n := 8
-	t.Log(pivotInteger(n)) //6
+	t.Log(pivotInteger(n)) // 6
 	n = 1
-	t.Log(pivotInteger(n)) //1
+	t.Log(pivotInteger(n)) // 1
 	n = 4
-	t.Log(pivotInteger(n)) //-1
+	t.Log(pivotInteger(n)) // -1
 }
 
 /************ 2nd test************/

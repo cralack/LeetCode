@@ -1,10 +1,11 @@
 package maximumbinarytreemid
 
 import (
-	. "LeetCode/util/BinTree"
-	"LeetCode/util/GetPrime"
 	"math/rand"
 	"testing"
+
+	. "LeetCode/util/BinTree"
+	"LeetCode/util/GetPrime"
 )
 
 /**
@@ -39,7 +40,7 @@ func constructMaximumBinaryTree_recursion(nums []int) *TreeNode {
 }
 
 func constructMaximumBinaryTree_monoStack(nums []int) *TreeNode {
-	//单调递减栈
+	// 单调递减栈
 	stack := []*TreeNode{}
 	for _, num := range nums {
 		cur := &TreeNode{
@@ -47,14 +48,14 @@ func constructMaximumBinaryTree_monoStack(nums []int) *TreeNode {
 			Left:  nil,
 			Right: nil}
 
-		//栈不为空 持续pop出所有 栈中元素 < cur.val
+		// 栈不为空 持续pop出所有 栈中元素 < cur.val
 		for len(stack) > 0 && stack[len(stack)-1].Val < cur.Val {
-			//赋为LeftChild
+			// 赋为LeftChild
 			cur.Left = stack[len(stack)-1]
 			stack = stack[:len(stack)-1]
-		} //栈不为空 且 cur.val < 栈顶元素
+		} // 栈不为空 且 cur.val < 栈顶元素
 		if len(stack) > 0 {
-			//赋为RichtChild
+			// 赋为RichtChild
 			stack[len(stack)-1].Right = cur
 		}
 		stack = append(stack, cur)
@@ -75,7 +76,7 @@ func Benchmark_maxBinTree(b *testing.B) {
 	n := 10000
 	arr := GetPrime.PrimeArr(n)
 	n = len(arr)
-	//shuffle array
+	// shuffle array
 	for i := 0; i < n; i++ {
 		idx := rand.Intn(n)
 		arr[i], arr[idx] = arr[idx], arr[i]

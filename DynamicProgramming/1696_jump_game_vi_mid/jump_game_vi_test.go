@@ -9,7 +9,7 @@ func maxResult(nums []int, k int) int {
 	dp := make([]int, n)
 	dp[0] = nums[0]
 
-	//单调递减队列,que[0]为(i-k,i)中最大元素
+	// 单调递减队列,que[0]为(i-k,i)中最大元素
 	que := []int{nums[0]}
 	for i := 1; i < n; i++ {
 		// dp[i] = Max(dp[i-k, i]) + nums[i]
@@ -19,7 +19,7 @@ func maxResult(nums []int, k int) int {
 		if k <= i && 0 < len(que) && dp[i-k] == que[0] {
 			que = que[1:]
 		}
-		//保证队尾元素>=cur
+		// 保证队尾元素>=cur
 		for 0 < len(que) && que[len(que)-1] < cur {
 			que = que[:len(que)-1]
 		}

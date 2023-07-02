@@ -15,7 +15,7 @@ func calculateMinimumHP_recursion(grid [][]int) int {
 		}
 		return res
 	}
-	//init
+	// init
 	m, n := len(grid), len(grid[0])
 	memo := make([][]int, m)
 	for i := range memo {
@@ -27,14 +27,14 @@ func calculateMinimumHP_recursion(grid [][]int) int {
 	/* 定义：从 (i, j) 到达右下角，需要的初始血量至少是多少 */
 	var dp func(i, j int) int
 	dp = func(i, j int) int {
-		//base case
-		if i == m-1 && j == n-1 { //end
+		// base case
+		if i == m-1 && j == n-1 { // end
 			if grid[i][j] >= 0 {
 				return 1
 			}
 			return -grid[i][j] + 1
 		}
-		//触及边界
+		// 触及边界
 		if i == m || j == n {
 			return INT_MAX
 		}
@@ -56,7 +56,7 @@ func calculateMinimumHP_recursion(grid [][]int) int {
 	return res
 }
 func calculateMinimumHP_iterate(grid [][]int) int {
-	//init
+	// init
 	const INT_MAX = int(^uint(0) >> 1)
 	min := func(a ...int) int {
 		res := a[0]
@@ -72,7 +72,7 @@ func calculateMinimumHP_iterate(grid [][]int) int {
 	for i := range dp {
 		dp[i] = make([]int, n+1)
 	}
-	//base case
+	// base case
 	if grid[m-1][n-1] < 0 {
 		dp[m-1][n-1] = -grid[m-1][n-1] + 1
 	} else {
@@ -81,12 +81,12 @@ func calculateMinimumHP_iterate(grid [][]int) int {
 
 	for i := m; i >= 0; i-- {
 		for j := n; j >= 0; j-- {
-			//边界
+			// 边界
 			if i == m || j == n {
 				dp[i][j] = INT_MAX
 				continue
 			}
-			//略过base case
+			// 略过base case
 			if i == m-1 && j == n-1 {
 				continue
 			} // 状态转移逻辑

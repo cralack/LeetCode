@@ -3,7 +3,7 @@ package minimumfallingpathsum
 import "testing"
 
 func minFallingPathSum(matrix [][]int) int {
-	//init
+	// init
 	n := len(matrix)
 	dp := make([][]int, n)
 	min := func(a, b int) int {
@@ -21,12 +21,12 @@ func minFallingPathSum(matrix [][]int) int {
 		}
 	}
 	minVal := 999999
-	//dp
+	// dp
 	for i := 1; i < n; i++ {
 		for j := 0; j < n; j++ {
-			if j == 0 { //left side
+			if j == 0 { // left side
 				dp[i][j] = min(dp[i-1][j], dp[i-1][j+1]) + matrix[i][j]
-			} else if j == n-1 { //right side
+			} else if j == n-1 { // right side
 				dp[i][j] = min(dp[i-1][j], dp[i-1][j-1]) + matrix[i][j]
 			} else {
 				dp[i][j] = min(min(dp[i-1][j], dp[i-1][j-1]),
@@ -34,7 +34,7 @@ func minFallingPathSum(matrix [][]int) int {
 			}
 		}
 	}
-	//check min
+	// check min
 	for k := 0; k < n; k++ {
 		if minVal > dp[n-1][k] {
 			minVal = dp[n-1][k]

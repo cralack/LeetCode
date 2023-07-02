@@ -10,17 +10,17 @@ func braceExpansionII(expression string) (ans []string) {
 	check := make(map[string]struct{})
 	var dfs func(string)
 	dfs = func(exp string) {
-		//先找到第一个}
+		// 先找到第一个}
 		j := strings.Index(exp, "}")
-		//base case
+		// base case
 		if j == -1 {
-			//找不到则exp为单一元素
+			// 找不到则exp为单一元素
 			check[exp] = struct{}{}
 			return
 		}
-		//j对应的{
+		// j对应的{
 		i := strings.LastIndex(exp[:j], "{")
-		//前缀和后缀
+		// 前缀和后缀
 		a, c := exp[:i], exp[j+1:]
 		for _, b := range strings.Split(exp[i+1:j], ",") {
 			dfs(a + b + c)

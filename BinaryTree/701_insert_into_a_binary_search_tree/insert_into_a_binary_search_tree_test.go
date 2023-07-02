@@ -1,8 +1,9 @@
 package insertintoabinarysearchtree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func insertIntoBST(root *TreeNode, val int) *TreeNode {

@@ -17,7 +17,7 @@ func reachableNodes(edges [][]int, maxMoves int, n int) (ans int) {
 
 	// 从 0 出发的最短路
 	dist := dijkstra(graph, 0)
-	//能抵达的原始节点数
+	// 能抵达的原始节点数
 	for _, d := range dist {
 		if d <= maxMoves {
 			ans++
@@ -39,7 +39,7 @@ type neighbor struct{ to, weight int }
 func dijkstra(graph [][]neighbor, start int) []int {
 	dist := make([]int, len(graph))
 	for i := range dist {
-		//各点dist赋最大值初始化
+		// 各点dist赋最大值初始化
 		dist[i] = math.MaxInt32
 	}
 	dist[start] = 0
@@ -88,11 +88,11 @@ func max(a, b int) int {
 func Test_reachable_nodes_in_subdivided_graph(t *testing.T) {
 	edges, maxMoves, n := [][]int{
 		{0, 1, 10}, {0, 2, 1}, {1, 2, 2}}, 6, 3
-	t.Log(reachableNodes(edges, maxMoves, n)) //13
+	t.Log(reachableNodes(edges, maxMoves, n)) // 13
 	edges, maxMoves, n = [][]int{
 		{0, 1, 4}, {1, 2, 6}, {0, 2, 8}, {1, 3, 1}}, 10, 4
-	t.Log(reachableNodes(edges, maxMoves, n)) //23
+	t.Log(reachableNodes(edges, maxMoves, n)) // 23
 	edges, maxMoves, n = [][]int{
 		{1, 2, 4}, {1, 4, 5}, {1, 3, 1}, {2, 3, 4}, {3, 4, 5}}, 17, 5
-	t.Log(reachableNodes(edges, maxMoves, n)) //1
+	t.Log(reachableNodes(edges, maxMoves, n)) // 1
 }

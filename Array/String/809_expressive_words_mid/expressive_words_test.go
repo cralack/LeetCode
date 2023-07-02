@@ -21,7 +21,7 @@ func check(txt, pat string) bool {
 		if txt[pi] != pat[pj] {
 			return false
 		}
-		//相等字符连续长度
+		// 相等字符连续长度
 		char := txt[pi]
 		cntTxt, cntPat := 0, 0
 		for pi < len(txt) && txt[pi] == char {
@@ -32,7 +32,7 @@ func check(txt, pat string) bool {
 			cntPat++
 			pj++
 		}
-		//单次扩张长度为3
+		// 单次扩张长度为3
 		if cntPat < cntTxt || (cntPat != cntTxt) && cntPat < 3 {
 			return false
 		}

@@ -68,9 +68,9 @@ func findTargetSumWays_dp(nums []int, target int) int {
 	if (sum+target) < 0 || (sum+target)%2 != 0 {
 		return 0
 	}
-	//a+b=tar
-	//a-b=sum
-	//a=(sum+tar)/2
+	// a+b=tar
+	// a-b=sum
+	// a=(sum+tar)/2
 	sum = (sum + target) / 2
 	dp := make([]int, sum+1)
 	dp[0] = 1

@@ -15,7 +15,6 @@ import (
 第三个人只吃第1,3种葡萄。
 适当安排三个人使得吃完所有的葡萄,
 并且且三个人中吃的最多的那个人吃得尽量少。
-
 */
 func solution(arr []int) int {
 	sort.Ints(arr)

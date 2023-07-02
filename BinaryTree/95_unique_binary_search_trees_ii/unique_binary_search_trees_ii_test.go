@@ -1,8 +1,9 @@
 package uniquebinarysearchtreesii
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func generateTrees(n int) []*TreeNode {

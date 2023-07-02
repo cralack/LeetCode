@@ -1,8 +1,9 @@
 package successorlcci
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -15,8 +16,8 @@ import (
  */
 func inorderSuccessor(root *TreeNode, p *TreeNode) *TreeNode {
 	var succ *TreeNode
-	//如果节点 pp 的右子树不为空
-	//则节点 pp 的后继节点为其右子树中最左侧节点
+	// 如果节点 pp 的右子树不为空
+	// 则节点 pp 的后继节点为其右子树中最左侧节点
 	if p.Right != nil {
 		succ = p.Right
 		for succ.Left != nil {

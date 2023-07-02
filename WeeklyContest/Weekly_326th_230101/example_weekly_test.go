@@ -27,7 +27,7 @@ func Test_1st(t *testing.T) {
 func distinctPrimeFactors(nums []int) int {
 	set := make(map[int]struct{}, 0)
 	for _, n := range nums {
-		//枚举n的质因数
+		// 枚举n的质因数
 		for i := 2; i*i <= n; i++ {
 			if n%i == 0 {
 				set[i] = struct{}{}
@@ -82,7 +82,7 @@ func init() {
 	notPrime := make([]bool, mx+1)
 	for i := 2; i <= mx; i++ {
 		if !notPrime[i] {
-			//预处理出primes
+			// 预处理出primes
 			primes = append(primes, i)
 			for j := i * i; j <= mx; j += i {
 				notPrime[j] = true
@@ -100,7 +100,7 @@ func closestPrimes(left int, right int) (ans []int) {
 		if gap < maxGap {
 			maxGap = gap
 			ans[0], ans[1] = pre, cur
-			//除了[2,3]其他都是[x,x+2]
+			// 除了[2,3]其他都是[x,x+2]
 			if gap <= 2 {
 				break
 			}

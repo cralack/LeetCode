@@ -43,7 +43,7 @@ func validPath_uf(n int, edges [][]int, source int, destination int) bool {
 		}
 		return parent[x]
 	}
-	//union
+	// union
 	for _, edg := range edges {
 		parent[find(edg[0])] = find(edg[1])
 	}

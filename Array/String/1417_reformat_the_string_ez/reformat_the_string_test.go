@@ -17,11 +17,11 @@ func reformat(s string) string {
 		return ""
 	}
 
-	flag := cntDig > cntStr //判断偶数位放字母还是数字
+	flag := cntDig > cntStr // 判断偶数位放字母还是数字
 	ans := []byte(s)
 	for i, j := 0, 1; i < len(ans); i += 2 {
-		if isDigit(ans[i]) != flag { //偶数位放置错误
-			for isDigit(ans[j]) != flag { //奇数位放置错误
+		if isDigit(ans[i]) != flag { // 偶数位放置错误
+			for isDigit(ans[j]) != flag { // 奇数位放置错误
 				j += 2
 			}
 			ans[i], ans[j] = ans[j], ans[i]

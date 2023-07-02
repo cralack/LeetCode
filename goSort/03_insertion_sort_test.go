@@ -38,7 +38,7 @@ func insertion_sort_v2(arr []int) []int {
 	for i := 1; i < len(arr); i++ {
 		// 通过二分查找得到插入位置
 		tar := arr[i]
-		//arr[0,i)是排序状态
+		// arr[0,i)是排序状态
 		// pos := binSearch(0, i-1, tar)
 		pos := sort.Search(i, func(x int) bool {
 			return arr[x] > tar

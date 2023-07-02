@@ -14,14 +14,14 @@ func min(a, b int) int {
 func minDistance_DFS(word1 string, word2 string) int {
 	var dp func(i, j int) int
 	dp = func(i, j int) int {
-		//base case
+		// base case
 		if i == -1 {
 			return j + 1
 		}
 		if j == -1 {
 			return i + 1
 		}
-		//skip
+		// skip
 		if word1[i] == word2[j] {
 			return dp(i-1, j-1)
 		} else {
@@ -31,7 +31,7 @@ func minDistance_DFS(word1 string, word2 string) int {
 	return dp(len(word1)-1, len(word2)-1)
 }
 func minDistance_DP(word1, word2 string) int {
-	//init
+	// init
 	m, n := len(word1), len(word2)
 	if n*m == 0 {
 		return m + n
@@ -40,11 +40,11 @@ func minDistance_DP(word1, word2 string) int {
 	for i := range dp {
 		dp[i] = make([]int, n+1)
 	}
-	//if word2=="" word1->base case
+	// if word2=="" word1->base case
 	for i := 1; i <= m; i++ {
 		dp[i][0] = i
 	}
-	//if word1=="" word2->base case
+	// if word1=="" word2->base case
 	for j := 1; j <= n; j++ {
 		dp[0][j] = j
 	}
@@ -58,7 +58,7 @@ func minDistance_DP(word1, word2 string) int {
 		}
 	}
 
-	return dp[m][n] //O(n^2)
+	return dp[m][n] // O(n^2)
 }
 func Test_edit_distance(t *testing.T) {
 	word1 := "horse"

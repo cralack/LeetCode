@@ -1,9 +1,10 @@
 package binarytreecoloringgame
 
 import (
-	. "LeetCode/util/BinTree"
 	"math/rand"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 /**
@@ -80,7 +81,7 @@ func Test_binary_tree_coloring_game(t *testing.T) {
 	for i := range arr {
 		arr[i] = i + 1
 	}
-	x = rand.Intn(n) + 1 //[1,n]
+	x = rand.Intn(n) + 1 // [1,n]
 	root = Init(arr)
 	t.Log(btreeGameWinningMove(root, n, x))
 	t.Log(btreeGameWinningMove_v2(root, n, x))

@@ -6,7 +6,7 @@ import (
 )
 
 func platesBetweenCandles1(s string, queries [][]int) []int {
-	//*=42,|=124
+	// *=42,|=124
 	ans := []int{}
 	for _, val := range queries {
 		cnt := 0

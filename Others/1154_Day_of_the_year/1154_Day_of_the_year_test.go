@@ -27,7 +27,7 @@ func dayOfYear(date string) int {
 	if date_int[0]%400 == 0 || (date_int[0]%4 == 0 && date_int[0]%100 != 0) {
 		days[2]++
 	}
-	//fmt.Printf("Year:%d,month:%d,day:%d", year, month, day)
+	// fmt.Printf("Year:%d,month:%d,day:%d", year, month, day)
 	for i := 1; i < date_int[1]; i++ {
 		date_int[2] += days[i]
 	}

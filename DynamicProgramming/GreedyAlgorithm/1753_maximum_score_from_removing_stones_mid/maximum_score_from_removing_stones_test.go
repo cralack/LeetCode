@@ -19,7 +19,7 @@ func maximumScore(a int, b int, c int) (ans int) {
 func maximumScore_math(a int, b int, c int) (ans int) {
 	arr := []int{a, b, c}
 	sort.Ints(arr)
-	//triangle?
+	// triangle?
 	if arr[0]+arr[1] <= arr[2] {
 		return arr[0] + arr[1]
 	}

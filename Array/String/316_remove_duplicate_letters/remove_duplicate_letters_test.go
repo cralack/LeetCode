@@ -24,10 +24,10 @@ func removeDuplicateLetters(s string) string {
 				break
 			}
 			inStack[stack[len(stack)-1]] = false
-			//pop
+			// pop
 			stack = stack[:len(stack)-1]
 		}
-		//push c
+		// push c
 		stack = append(stack, byte(c))
 		inStack[byte(c)] = true
 	}

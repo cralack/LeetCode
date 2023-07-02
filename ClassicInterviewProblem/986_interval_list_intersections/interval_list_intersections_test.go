@@ -22,7 +22,7 @@ func intervalIntersection(firstList [][]int,
 	for i < n && j < m {
 		l1, r1 := firstList[i][0], firstList[i][1]
 		l2, r2 := secondList[j][0], secondList[j][1]
-		if r2 >= l1 && r1 >= l2 { //两个区间存在交集
+		if r2 >= l1 && r1 >= l2 { // 两个区间存在交集
 			res = append(res, []int{max(l1, l2), min(r1, r2)})
 		}
 		if r2 < r1 {

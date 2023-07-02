@@ -14,18 +14,18 @@ func largestSumOfAverages(nums []int, m int) float64 {
 	for i := range dp {
 		dp[i] = make([]float64, m+1)
 	}
-	//将前 i 个元素
+	// 将前 i 个元素
 	for i := 1; i <= n; i++ {
-		//分成 j 份
+		// 分成 j 份
 		for j := 1; j <= min(i, m); j++ {
 			if j == 1 {
-				//只分一组则sum/i
+				// 只分一组则sum/i
 				dp[i][1] = float64(preSum[i]) / float64(i)
 			} else {
-				//枚举最后一个子数组的起点k
+				// 枚举最后一个子数组的起点k
 				for k := 2; k <= i; k++ {
 					dp[i][j] = max(dp[i][j], dp[k-1][j-1]+
-						//Avg(k~i)
+						// Avg(k~i)
 						float64(preSum[i]-preSum[k-1])/float64(i-k+1))
 				}
 			}

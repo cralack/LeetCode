@@ -12,7 +12,7 @@ func stringMatching(words []string) (ans []string) {
 	for i := 0; i < len(words); i++ {
 		for j := i + 1; j < len(words); j++ {
 			if isMatch(words[i], words[j]) {
-				if len(ans) > 0 && ans[len(ans)-1] == words[i] { //ans 去重
+				if len(ans) > 0 && ans[len(ans)-1] == words[i] { // ans 去重
 					continue
 				}
 				ans = append(ans, words[i])

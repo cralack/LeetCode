@@ -8,28 +8,28 @@ func spiralOrder(matrix [][]int) []int {
 	leftBound, rightBound := 0, n-1
 	res := []int{}
 	for len(res) < m*n {
-		//→
+		// →
 		if upperBound <= lowerBound {
 			for j := leftBound; j <= rightBound; j++ {
 				res = append(res, matrix[upperBound][j])
 			}
 			upperBound++
 		}
-		//↓
+		// ↓
 		if leftBound <= rightBound {
 			for i := upperBound; i <= lowerBound; i++ {
 				res = append(res, matrix[i][rightBound])
 			}
 			rightBound--
 		}
-		//←
+		// ←
 		if upperBound <= lowerBound {
 			for j := rightBound; leftBound <= j; j-- {
 				res = append(res, matrix[lowerBound][j])
 			}
 			lowerBound--
 		}
-		//↑
+		// ↑
 		if leftBound <= rightBound {
 			for i := lowerBound; upperBound <= i; i-- {
 				res = append(res, matrix[i][leftBound])

@@ -1,8 +1,9 @@
 package searchinabinarysearchtree
 
 import (
-	. "LeetCode/util/BinTree"
 	"testing"
+
+	. "LeetCode/util/BinTree"
 )
 
 func searchBST(root *TreeNode, val int) *TreeNode {

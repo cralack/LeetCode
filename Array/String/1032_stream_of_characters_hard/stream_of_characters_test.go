@@ -27,7 +27,7 @@ func Constructor(words []string) StreamChecker {
 
 func (this *Trie) insert(word string) {
 	cur := this
-	//倒序建树
+	// 倒序建树
 	for i := len(word) - 1; i >= 0; i-- {
 		char := word[i] - 'a'
 		if cur.child[char] == nil {

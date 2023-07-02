@@ -11,7 +11,7 @@ func radix_sort_v1(arr []int) []int {
 	for _, num := range arr[1:] {
 		mx = max(mx, abs(num))
 	}
-	//// 求最大数的位数
+	// // 求最大数的位数
 	width, base := 0, 10
 	for mx != 0 {
 		width++
@@ -54,7 +54,7 @@ func radix_sort_v2(arr []int) []int {
 	for _, num := range arr[1:] {
 		mx = max(mx, abs(num))
 	}
-	//// 求最大数的位数
+	// // 求最大数的位数
 	width, base := 0, 10
 	for mx != 0 {
 		width++
@@ -65,7 +65,7 @@ func radix_sort_v2(arr []int) []int {
 	for i := range buckets {
 		buckets[i] = make([]int, n+1)
 	}
-	//在每一位上将数组中所有具有该位的数字装入对应桶中
+	// 在每一位上将数组中所有具有该位的数字装入对应桶中
 	for i := 0; i < width; i++ {
 		for _, num := range arr {
 			idx := (num%base)/(base/10) + 9

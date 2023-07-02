@@ -39,7 +39,7 @@ func bucket_sort_v1(arr []int) []int {
 }
 
 func Test_bucket_sort(t *testing.T) {
-	//稳定性：取决于桶内排序方法的稳定性
+	// 稳定性：取决于桶内排序方法的稳定性
 	t.Log(bucket_sort_v1(Knuth_shuffle(15)))
 }
 

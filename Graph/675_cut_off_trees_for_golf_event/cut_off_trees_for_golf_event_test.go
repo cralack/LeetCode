@@ -13,16 +13,16 @@ func cutOffTree(forest [][]int) int {
 	trees := []point{}
 	for i := range forest {
 		for j, h := range forest[i] {
-			if h > 1 { //traverse forest
+			if h > 1 { // traverse forest
 				trees = append(trees, point{i, j, h})
 			}
 		}
 	}
-	sort.Slice(trees, //sort by tree's height
+	sort.Slice(trees, // sort by tree's height
 		func(i, j int) bool { return trees[i].height < trees[j].height })
 
 	bfs := func(start, tar point) int {
-		dir := [][]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}} //4 direction
+		dir := [][]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}} // 4 direction
 		m, n := len(forest), len(forest[0])
 		vis := make([][]bool, m)
 		for i := range vis {
@@ -34,14 +34,14 @@ func cutOffTree(forest [][]int) int {
 		for len(que) > 0 {
 			size := len(que)
 			for i := 0; i < size; i++ {
-				//pop cur node
+				// pop cur node
 				cur := que[0]
 				que = que[1:]
-				//base case
+				// base case
 				if cur.x == tar.x && cur.y == tar.y {
 					return step
 				}
-				for _, d := range dir { //expand node
+				for _, d := range dir { // expand node
 					next := point{cur.x + d[0], cur.y + d[1], 0}
 					if 0 <= next.x && next.x < m && 0 <= next.y && next.y < n &&
 						!vis[next.x][next.y] && forest[next.x][next.y] > 0 {

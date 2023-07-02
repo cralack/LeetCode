@@ -4,7 +4,7 @@ import "testing"
 
 func shortestPathAllKeys(grid []string) (ans int) {
 	m, n := len(grid), len(grid[0])
-	//统计钥匙数目,起点坐标
+	// 统计钥匙数目,起点坐标
 	var keyCnt, si, sj int
 	for i, row := range grid {
 		for j, c := range row {

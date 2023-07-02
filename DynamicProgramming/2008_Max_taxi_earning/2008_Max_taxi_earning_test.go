@@ -11,7 +11,7 @@ func maxTaxiEarnings(n int, rides [][]int) int64 {
 		}
 		return b
 	}
-	//[end][idx][start/tip]
+	// [end][idx][start/tip]
 	ends := make([][][2]int, n+1)
 	for _, ride := range rides {
 		start, end, tip := ride[0], ride[1], ride[2]

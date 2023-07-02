@@ -4,9 +4,9 @@ import "testing"
 
 func boxDelivering(boxes [][]int, portsCount int, maxBoxes int, maxWeight int) int {
 	n := len(boxes)
-	//箱子重量前缀和
+	// 箱子重量前缀和
 	weiSum := make([]int, n+1)
-	//码头间行程数
+	// 码头间行程数
 	cost := make([]int, n)
 	for i, box := range boxes {
 		tarPort, weight := box[0], box[1]
@@ -19,7 +19,7 @@ func boxDelivering(boxes [][]int, portsCount int, maxBoxes int, maxWeight int) i
 			cost[i+1] = cost[i] + t
 		}
 	}
-	//前 i 个箱子运送到位的最小行程数
+	// 前 i 个箱子运送到位的最小行程数
 	dp := make([]int, n+1)
 	// { //O(n^2)
 	// 	for i := 1; i <= n; i++ {
@@ -32,10 +32,10 @@ func boxDelivering(boxes [][]int, portsCount int, maxBoxes int, maxWeight int) i
 	// 		}
 	// 	}
 	// }
-	//箱子idx 单调栈
+	// 箱子idx 单调栈
 	que := &Queue{0}
 	for i := 1; i <= n; i++ {
-		//队列内箱子数或箱子总重超限
+		// 队列内箱子数或箱子总重超限
 		for !que.IsEmpty() && (i-que.Head() > maxBoxes || weiSum[i]-weiSum[que.Head()] > maxWeight) {
 			que.PopHead()
 		}
