@@ -24,17 +24,14 @@ func distributeCoins_v1(root *TreeNode) (ans int) {
 }
 
 func distributeCoins_v2(root *TreeNode) (ans int) {
-	var dfs func(*TreeNode) (int, int)
-	dfs = func(node *TreeNode) (int, int) {
+	var dfs func(*TreeNode) int
+	dfs = func(node *TreeNode) int {
 		if node == nil {
-			return 0, 0
+			return 0
 		}
-		coinsL, nodesL := dfs(node.Left)
-		coinsR, nodesR := dfs(node.Right)
-		coins := coinsL + coinsR + node.Val // 子树硬币个数
-		nodes := nodesL + nodesR + 1        // 子树节点数
-		ans += abs(coins - nodes)
-		return coins, nodes
+		d := dfs(node.Left) + dfs(node.Right) + node.Val - 1
+		ans += abs(d)
+		return d
 	}
 	dfs(root)
 	return
