@@ -19,6 +19,7 @@ func minimumSeconds(nums []int) int {
 		}
 		ans = min(ans, mx/2) // 最后再除 2
 	}
+
 	return ans
 }
 
