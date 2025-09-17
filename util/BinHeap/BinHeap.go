@@ -51,13 +51,13 @@ func (b *BinHeap) Insert(x *Node) {
 	b.Swim(b.Size)
 }
 func (b *BinHeap) DelMax() *Node {
-	max := b.Heap[1]
+	mx := b.Heap[1]
 	b.Swap(1, b.Size)
 	b.Heap[b.Size] = nil
 	b.Size--
 	// 让 pq[1] 下沉到正确位置
 	b.Sink(1)
-	return max
+	return mx
 }
 
 func (b *BinHeap) Init(arr []int) {
