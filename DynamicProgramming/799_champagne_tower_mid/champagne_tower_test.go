@@ -22,18 +22,18 @@ func champagneTower(poured int, query_row int, query_glass int) float64 {
 	return min(1.0, dp[query_row][query_glass])
 }
 
-func min(a, b float64) float64 {
-	if a < b {
-		return a
-	}
-	return b
-}
-
 func Test_champagne_tower(t *testing.T) {
-	poured, query_glass, query_row := 1, 1, 1
-	t.Log(champagneTower(poured, query_row, query_glass))
-	poured, query_glass, query_row = 2, 1, 1
-	t.Log(champagneTower(poured, query_row, query_glass))
-	poured, query_glass, query_row = 6, 2, 3
-	t.Log(champagneTower(poured, query_row, query_glass))
+	tests := []struct {
+		poured      int
+		query_glass int
+		query_row   int
+	}{
+		{poured: 1, query_glass: 1, query_row: 1},
+		{poured: 2, query_glass: 1, query_row: 1},
+		{poured: 6, query_glass: 2, query_row: 3},
+		{poured: 100000009, query_glass: 17, query_row: 33},
+	}
+	for _, test := range tests {
+		t.Log(champagneTower(test.poured, test.query_row, test.query_glass))
+	}
 }
